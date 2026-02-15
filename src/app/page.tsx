@@ -8,7 +8,6 @@ import GlassComponent from "../shared/components/atoms/GlassComponent";
 import TiltedCard from "../shared/components/atoms/TiltedCard";
 import { ContainerGlass } from "../shared/components/molecules/ContainerGlass";
 import { CarouselCard } from "../shared/components/molecules/CarouselCard";
-import { GetUpdate } from "../shared/components/organisms/GetUpdate";
 import ParticlesComponent from "../shared/components/particles/particles";
 import { LuPuzzle } from "react-icons/lu";
 import { SlWallet } from "react-icons/sl";
@@ -39,7 +38,6 @@ export default function HomePage() {
       <NativeWalletSection />
       <WhitepaperRoadmapSection />
       {/* <TeamSection /> */}
-      <GetUpdate />
     </div>
   );
 }

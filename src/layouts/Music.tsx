@@ -109,7 +109,7 @@ export const Music = () => {
     setIndex((i) => (i - 1 + PLAYLIST.length) % PLAYLIST.length);
 
   return (
-    <div className="fixed bottom-4 left-4 group z-50 max-md:hidden">
+    <div className="fixed bottom-4 left-4 group z-35 max-md:hidden">
       <GlassComponent className="pl-4 pr-8 py-2 flex flex-col rounded-full">
         <div className="flex justify-between items-center gap-6">
           {/* music detail  */}

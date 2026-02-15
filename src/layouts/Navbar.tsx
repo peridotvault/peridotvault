@@ -107,7 +107,7 @@ export const Navbar = () => {
   }, []);
 
   return (
-    <header className="p-4 fixed top-0 left-0 w-full z-40">
+    <header className="p-4 fixed top-0 left-0 w-full z-50">
       <div
         className={`transition-all duration-300 rounded-2xl flex justify-between border ${
           isScrolled ? "backdrop-blur-lg border-white/10" : "border-transparent"
