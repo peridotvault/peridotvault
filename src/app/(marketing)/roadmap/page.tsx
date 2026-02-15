@@ -8,9 +8,9 @@ import {
   faCircleNotch,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import roadmapData from "../../assets/roadmap.json";
-import FaultyTerminal from "../../shared/components/atoms/FaultyTerminal";
-import SpotlightCard from "../../shared/components/atoms/SpotlightCard";
+import roadmapData from "../../../assets/roadmap.json";
+import FaultyTerminal from "../../../shared/components/atoms/FaultyTerminal";
+import SpotlightCard from "../../../shared/components/atoms/SpotlightCard";
 
 type RoadmapItem = {
   title: string;
@@ -94,7 +94,9 @@ function RoadmapTimelineSection({ section }: { section: RoadmapSectionType }) {
     <section className="w-full flex flex-col gap-14 max-md:gap-8 items-center">
       <div className="max-w-[1200px] w-full">
         <div className="flex flex-col gap-8 px-8 max-md:gap-4">
-          <h2 className="text-4xl font-bold max-md:text-3xl">{section.title}</h2>
+          <h2 className="text-4xl font-bold max-md:text-3xl">
+            {section.title}
+          </h2>
           <p className="w-2/3 max-w-[800px] text-xl max-md:text-base max-md:w-full">
             {section.description}
           </p>
@@ -145,7 +147,11 @@ function RoadmapTimelineSection({ section }: { section: RoadmapSectionType }) {
                         }`}
                       >
                         <FontAwesomeIcon
-                          icon={item.status === "completed" ? faCheck : faCircleNotch}
+                          icon={
+                            item.status === "completed"
+                              ? faCheck
+                              : faCircleNotch
+                          }
                         />
                       </div>
                     </div>
@@ -155,7 +161,9 @@ function RoadmapTimelineSection({ section }: { section: RoadmapSectionType }) {
                       {item.description}
                     </p>
                     <div className="flex flex-col items-end">
-                      <span className="text-8xl max-md:text-5xl ">{item.featuresCount}</span>
+                      <span className="text-8xl max-md:text-5xl ">
+                        {item.featuresCount}
+                      </span>
                       <span className="max-md:text-sm">Features</span>
                     </div>
                   </div>
@@ -183,7 +191,10 @@ function RoadmapContentSections() {
     <div className="w-full flex justify-center py-24 max-md:py-10 gap-10 max-md:gap-8">
       <div className="w-full flex flex-col gap-24">
         {data.sections.map((section, idx) => (
-          <RoadmapTimelineSection key={`${section.title}-${idx}`} section={section} />
+          <RoadmapTimelineSection
+            key={`${section.title}-${idx}`}
+            section={section}
+          />
         ))}
       </div>
     </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
-import { EyeglassesIcon } from "../../assets/icons/MainIcons";
+import { EyeglassesIcon } from "../../../assets/icons/MainIcons";
 
 function stripXmlBlocks(s: string) {
   return s
@@ -18,7 +18,10 @@ function unquote(s: string) {
 }
 
 function collapseWS(s: string) {
-  return s.replace(/[ \t]+/g, " ").replace(/\n{3,}/g, "\n\n").trim();
+  return s
+    .replace(/[ \t]+/g, " ")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
 }
 
 function limitSentences(s: string, n: number) {
@@ -58,7 +61,7 @@ function sanitizeReply(raw: unknown, opts?: { maxSentences?: number }) {
 
 function useAutosizeTextArea(
   textAreaRef: React.RefObject<HTMLTextAreaElement | null>,
-  value: string
+  value: string,
 ) {
   useLayoutEffect(() => {
     const el = textAreaRef.current;
@@ -110,7 +113,7 @@ function PeriChatSection() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ query }),
         signal: ac.signal,
-      })
+      }),
     );
 
     return sanitizeReply(raw, { maxSentences: 3 });
@@ -133,7 +136,7 @@ function PeriChatSection() {
             (obj.role === "user" || obj.role === "assistant") &&
             typeof obj.text === "string"
           );
-        })
+        }),
       );
     } catch {
       setMsgs([]);
@@ -209,7 +212,9 @@ function PeriChatSection() {
               <h1 className="text-5xl font-bold max-md:text-3xl">
                 How can I help you today?
               </h1>
-              <span className="text-text_disabled text-xl">Give Peri a task to work</span>
+              <span className="text-text_disabled text-xl">
+                Give Peri a task to work
+              </span>
             </div>
           </div>
 
@@ -293,7 +298,10 @@ function PeriChatSection() {
             )}
           </div>
 
-          <form onSubmit={onSubmit} className="sticky bottom-0 w-full max-w-3xl">
+          <form
+            onSubmit={onSubmit}
+            className="sticky bottom-0 w-full max-w-3xl"
+          >
             <div className="bg-background_primary border border-white/10 rounded-lg p-2">
               <textarea
                 ref={inputRef}

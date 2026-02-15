@@ -130,7 +130,7 @@ void main(){
 `;
 
 export default function BgGrainient({
-  timeSpeed = 0.1,
+  timeSpeed = 0.2,
   colorBalance = 0.0,
   warpStrength = 1.0,
   warpFrequency = 5.0,

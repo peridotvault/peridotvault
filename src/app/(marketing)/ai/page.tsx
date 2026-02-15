@@ -2,12 +2,12 @@
 
 import React, { useEffect } from "react";
 import Link from "next/link";
-import AnimatedContent from "../../shared/components/animations/AnimatedContent";
-import GlassComponent from "../../shared/components/atoms/GlassComponent";
-import GradientBlinds from "../../shared/components/atoms/GradientBlinds";
-import StarBorder from "../../shared/components/atoms/StarBorder";
-import { ContainerGlass } from "../../shared/components/molecules/ContainerGlass";
-import { GetUpdate } from "../../shared/components/organisms/GetUpdate";
+import AnimatedContent from "../../../shared/components/animations/AnimatedContent";
+import GlassComponent from "../../../shared/components/atoms/GlassComponent";
+import GradientBlinds from "../../../shared/components/atoms/GradientBlinds";
+import StarBorder from "../../../shared/components/atoms/StarBorder";
+import { ContainerGlass } from "../../../shared/components/molecules/ContainerGlass";
+import { GetUpdate } from "../../../shared/components/organisms/GetUpdate";
 
 function AiHeroSection() {
   return (
@@ -173,8 +173,8 @@ function PersonalizedRecommendationsSection() {
         <p className="text-center max-w-5xl max-md:text-start max-md:text-base">
           Peridot's AI analyzes your play history, genre preferences, behavior
           patterns, and community trends to recommend games you are most likely
-          to enjoy. It is more than a store algorithm - it is a personal
-          curator for your gaming taste.
+          to enjoy. It is more than a store algorithm - it is a personal curator
+          for your gaming taste.
         </p>
 
         <div className="w-full grid grid-cols-5 max-lg:grid-cols-2 gap-8">
@@ -198,7 +198,9 @@ function PersonalizedRecommendationsSection() {
               >
                 <h3 className="text-xl px-8 max-md:text-lg">{item.title}</h3>
                 <hr className="border-t border-white/10 " />
-                <p className="px-8 text-3xl max-md:text-2xl">{item.description}</p>
+                <p className="px-8 text-3xl max-md:text-2xl">
+                  {item.description}
+                </p>
               </div>
             ))}
           </div>

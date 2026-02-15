@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import FitText from "../shared/components/atoms/FitText";
 import {
   FaDiscord,
   FaGithub,
@@ -66,7 +65,7 @@ export const Footer = () => {
         }}
       >
         <div className="max-w-(--container-max-width) px-8 w-full flex flex-col pt-24 pb-8 gap-10 ">
-          <div className="relative">
+          {/* <div className="relative">
             <FitText
               min={24}
               max={224}
@@ -76,7 +75,7 @@ export const Footer = () => {
               <span className="font-light">Vault</span>
             </FitText>
             <div className="absolute w-full h-full bg-linear-to-t from-accent bottom-0 left-0"></div>
-          </div>
+          </div> */}
 
           <hr className="opacity-20 border-t border-label" />
 

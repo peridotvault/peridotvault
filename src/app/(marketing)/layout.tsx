@@ -6,6 +6,7 @@ import { Music } from "@/layouts/Music";
 // import { usePathname } from "next/navigation";
 import ScrollToHash from "@/shared/components/atoms/ScrollToHash";
 import { Navbar } from "@/layouts/Navbar";
+import { ToasterComponent } from "@/shared/infra/toast/ToasterComponent";
 
 export const metadata: Metadata = {
   title: "PeridotVault",
@@ -24,6 +25,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <ScrollToHash />
+        <ToasterComponent />
         <Navbar />
         <main className="flex flex-col w-full overflow-hidden min-h-screen justify-between ">
           {children}

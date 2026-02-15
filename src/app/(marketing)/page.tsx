@@ -2,13 +2,13 @@
 
 import { useEffect } from "react";
 import Link from "next/link";
-import AnimatedContent from "../shared/components/animations/AnimatedContent";
-import { FeatureHeader } from "../shared/components/atoms/FeatureHeader";
-import GlassComponent from "../shared/components/atoms/GlassComponent";
-import TiltedCard from "../shared/components/atoms/TiltedCard";
-import { ContainerGlass } from "../shared/components/molecules/ContainerGlass";
-import { CarouselCard } from "../shared/components/molecules/CarouselCard";
-import ParticlesComponent from "../shared/components/particles/particles";
+import AnimatedContent from "../../shared/components/animations/AnimatedContent";
+import { FeatureHeader } from "../../shared/components/atoms/FeatureHeader";
+import GlassComponent from "../../shared/components/atoms/GlassComponent";
+import TiltedCard from "../../shared/components/atoms/TiltedCard";
+import { ContainerGlass } from "../../shared/components/molecules/ContainerGlass";
+import { CarouselCard } from "../../shared/components/molecules/CarouselCard";
+import ParticlesComponent from "../../shared/components/particles/particles";
 import { LuPuzzle } from "react-icons/lu";
 import { SlWallet } from "react-icons/sl";
 import Image from "next/image";
