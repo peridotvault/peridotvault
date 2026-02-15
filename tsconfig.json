@@ -19,7 +19,16 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@fortawesome/react-fontawesome": ["./src/shims/fontawesome-react.tsx"],
+      "@fortawesome/fontawesome-svg-core": ["./src/shims/fontawesome-core.ts"],
+      "@fortawesome/free-solid-svg-icons": ["./src/shims/fontawesome-solid.ts"],
+      "@fortawesome/free-brands-svg-icons": ["./src/shims/fontawesome-brands.ts"],
+      "@tsparticles/react": ["./src/shims/tsparticles-react.tsx"],
+      "@tsparticles/slim": ["./src/shims/tsparticles-slim.ts"],
+      "@tsparticles/engine": ["./src/shims/tsparticles-engine.ts"],
+      "ogl": ["./src/shims/ogl.ts"],
+      "declarations/peridot_ai/index.js": ["./src/shims/peridot-ai.ts"]
     }
   },
   "include": [
