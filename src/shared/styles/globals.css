@@ -4,6 +4,7 @@
 @import "./token/colors.css";
 @import "./token/shadow.css";
 @import "./token/fonts.css";
+@import "./token/size.css";
 
 @import "./scrollbar.css";
 @import "./animations.css";

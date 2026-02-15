@@ -1,4 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
+"use client";
+import { useEffect, useRef, useState } from "react";
 import GlassComponent from "../shared/components/atoms/GlassComponent";
 import ElasticSlider from "../shared/components/atoms/ElasticSlider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

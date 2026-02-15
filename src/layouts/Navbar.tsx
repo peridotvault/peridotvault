@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+"use client";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import StaggeredMenu from "../shared/components/atoms/StaggeredMenu";
@@ -175,7 +176,7 @@ export const Navbar = () => {
           {/* <DownloadComponent /> */}
           <a
             href="https://web.peridotvault.com/"
-            className="py-2 px-6 flex justify-center items-center gap-3 duration-300 max-md:text-sm group bg-accent_secondary hover:bg-white hover:text-black rounded-lg"
+            className="py-2 px-6 flex justify-center items-center gap-3 duration-300 max-md:text-sm group bg-primary hover:bg-white hover:text-black rounded-lg"
           >
             Try Web Version
           </a>

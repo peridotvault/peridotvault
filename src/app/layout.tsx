@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
 import { ReactNode } from "react";
-import ClientShell from "./ClientShell";
 import "@/shared/styles/globals.css";
+import { Footer } from "@/layouts/Footer";
+import { Music } from "@/layouts/Music";
+// import { usePathname } from "next/navigation";
+import ScrollToHash from "@/shared/components/atoms/ScrollToHash";
+import { Navbar } from "@/layouts/Navbar";
 
 export const metadata: Metadata = {
   title: "PeridotVault",
@@ -13,10 +17,19 @@ export default function RootLayout({
 }: Readonly<{
   children: ReactNode;
 }>) {
+  // const pathname = usePathname();
+  // const noFooter = pathname === "/peri";
+
   return (
     <html lang="en">
       <body>
-        <ClientShell>{children}</ClientShell>
+        <ScrollToHash />
+        <Navbar />
+        <main className="flex flex-col w-full overflow-hidden min-h-screen justify-between ">
+          {children}
+        </main>
+        <Music />
+        <Footer />
       </body>
     </html>
   );
