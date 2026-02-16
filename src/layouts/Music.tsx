@@ -2,15 +2,14 @@
 import { useEffect, useRef, useState } from "react";
 import GlassComponent from "../shared/components/atoms/GlassComponent";
 import ElasticSlider from "../shared/components/atoms/ElasticSlider";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faPlay,
-  faPause,
-  faForwardStep,
-  faBackwardStep,
-  faVolumeOff,
-  faVolumeHigh,
-} from "@fortawesome/free-solid-svg-icons";
+  FaBackwardStep,
+  FaForwardStep,
+  FaPause,
+  FaPlay,
+  FaVolumeHigh,
+  FaVolumeOff,
+} from "react-icons/fa6";
 
 type PlaylistItem = {
   title: string;
@@ -140,7 +139,7 @@ export const Music = () => {
                 onClick={prevSong}
                 title="Previous"
               >
-                <FontAwesomeIcon icon={faBackwardStep} />
+                <FaBackwardStep />
               </button>
 
               {isPlaying ? (
@@ -149,7 +148,7 @@ export const Music = () => {
                   onClick={pauseSound}
                   title="Pause"
                 >
-                  <FontAwesomeIcon icon={faPause} />
+                  <FaPause />
                 </button>
               ) : (
                 <button
@@ -157,7 +156,7 @@ export const Music = () => {
                   onClick={playSound}
                   title="Play"
                 >
-                  <FontAwesomeIcon icon={faPlay} />
+                  <FaPlay />
                 </button>
               )}
 
@@ -166,14 +165,14 @@ export const Music = () => {
                 onClick={nextSong}
                 title="Next"
               >
-                <FontAwesomeIcon icon={faForwardStep} />
+                <FaForwardStep />
               </button>
             </div>
           </div>
 
           {/* Volume slider */}
           <div
-            className="relative"
+            className="relative text-2xl flex items-center"
             onMouseEnter={() => setVolOpen(true)}
             onMouseLeave={() => setVolOpen(false)}
           >
@@ -182,7 +181,7 @@ export const Music = () => {
               title="Volume"
               aria-expanded={volOpen}
             >
-              <FontAwesomeIcon icon={faVolumeHigh} className="opacity-70" />
+              <FaVolumeHigh className="opacity-70" />
             </button>
             <div
               className={`absolute left-12 top-1/2 -translate-y-1/2 transition-all duration-300
@@ -190,18 +189,8 @@ export const Music = () => {
             >
               <div className="w-48">
                 <ElasticSlider
-                  leftIcon={
-                    <FontAwesomeIcon
-                      icon={faVolumeOff}
-                      className="opacity-70"
-                    />
-                  }
-                  rightIcon={
-                    <FontAwesomeIcon
-                      icon={faVolumeHigh}
-                      className="opacity-70"
-                    />
-                  }
+                  leftIcon={<FaVolumeOff className="opacity-70" />}
+                  rightIcon={<FaVolumeHigh className="opacity-70" />}
                   startingValue={0}
                   defaultValue={Math.round(volume * 100)} // 0..100
                   maxValue={100}

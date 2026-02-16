@@ -3,7 +3,7 @@
      Brand tokens (identity)
     ========================= */
   --brand-1: #349b65;
-  --brand-2: #349b66ce;
+  --brand-2: #349b6650;
   --brand-3: #87ee83;
 
   /* =========================
@@ -34,7 +34,7 @@
 
   --chart-1: oklch(0.488 0.243 264.376);
   --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-3: oklch(62.115% 0.13883 65.441);
   --chart-4: oklch(0.627 0.265 303.9);
   --chart-5: oklch(0.645 0.246 16.439);
 
@@ -49,7 +49,7 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 
-  --color-primary: var() --color-surface: var(--surface);
+  --color-surface: var(--surface);
   --color-surface-foreground: var(--surface-foreground);
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);

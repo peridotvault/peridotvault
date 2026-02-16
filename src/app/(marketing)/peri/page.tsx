@@ -219,7 +219,7 @@ function PeriChatSection() {
           </div>
 
           <form onSubmit={onSubmit} className="w-full">
-            <div className="bg-background_primary border border-white/10 rounded-lg p-2">
+            <div className="bg-background_primary border border-border rounded-lg p-2">
               <textarea
                 ref={inputRef}
                 value={input}
@@ -236,7 +236,7 @@ function PeriChatSection() {
             </div>
           </form>
 
-          <ol className="w-full border border-white/10 rounded-lg divide-y divide-white/10 overflow-hidden text-left">
+          <ol className="w-full border border-border rounded-lg divide-y divide-white/10 overflow-hidden text-left">
             {questionLists.map((item, idx) => (
               <li key={idx}>
                 <button
@@ -265,7 +265,7 @@ function PeriChatSection() {
                 }`}
               >
                 <div
-                  className={`max-w-[80%] rounded-xl px-4 py-3 leading-relaxed border border-white/10 whitespace-pre-wrap break-words ${
+                  className={`max-w-[80%] rounded-xl px-4 py-3 leading-relaxed border border-border whitespace-pre-wrap wrap-break-word ${
                     m.role === "user"
                       ? "bg-white/10 text-white"
                       : "bg-background_primary/80 text-white/90"
@@ -282,14 +282,14 @@ function PeriChatSection() {
                   <div className="text-[10px] tracking-wider text-text_disabled/70 mb-1">
                     Peri
                   </div>
-                  <div className="rounded-xl border border-white/10 px-4 py-3 bg-background_primary/80 inline-flex items-center gap-1">
-                    <span className="h-2 w-2 bg-background_disabled rounded-full inline-block animate-bounce" />
+                  <div className="rounded-xl border border-border px-4 py-3 bg-background_primary/80 inline-flex items-center gap-1">
+                    <span className="h-2 w-2 bg-muted rounded-full inline-block animate-bounce" />
                     <span
-                      className="h-2 w-2 bg-background_disabled rounded-full inline-block animate-bounce"
+                      className="h-2 w-2 bg-muted rounded-full inline-block animate-bounce"
                       style={{ animationDelay: "120ms" }}
                     />
                     <span
-                      className="h-2 w-2 bg-background_disabled rounded-full inline-block animate-bounce"
+                      className="h-2 w-2 bg-muted rounded-full inline-block animate-bounce"
                       style={{ animationDelay: "240ms" }}
                     />
                   </div>
@@ -302,7 +302,7 @@ function PeriChatSection() {
             onSubmit={onSubmit}
             className="sticky bottom-0 w-full max-w-3xl"
           >
-            <div className="bg-background_primary border border-white/10 rounded-lg p-2">
+            <div className="bg-background_primary border border-border rounded-lg p-2">
               <textarea
                 ref={inputRef}
                 value={input}

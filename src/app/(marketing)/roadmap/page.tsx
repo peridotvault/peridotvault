@@ -1,16 +1,15 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
-import {
-  faCheck,
-  faChevronLeft,
-  faChevronRight,
-  faCircleNotch,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useEffect, useRef } from "react";
 import roadmapData from "../../../assets/roadmap.json";
 import FaultyTerminal from "../../../shared/components/atoms/FaultyTerminal";
 import SpotlightCard from "../../../shared/components/atoms/SpotlightCard";
+import {
+  FaCheck,
+  FaChevronLeft,
+  FaChevronRight,
+  FaCircleNotch,
+} from "react-icons/fa6";
 
 type RoadmapItem = {
   title: string;
@@ -37,10 +36,23 @@ const formatDate = (iso: string) =>
     day: "numeric",
   });
 
+export default function RoadmapRoutePage() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  return (
+    <div>
+      <RoadmapHeroSection />
+      <RoadmapContentSections />
+    </div>
+  );
+}
+
 function RoadmapHeroSection() {
   return (
     <section className="w-full h-[50dvh] relative p-4 ">
-      <div className="h-full w-full bg-background_secondary relative rounded-2xl overflow-hidden">
+      <div className="h-full w-full bg-surface relative rounded-2xl overflow-hidden">
         <FaultyTerminal
           scale={1.5}
           gridMul={[2, 1]}
@@ -63,7 +75,7 @@ function RoadmapHeroSection() {
         />
       </div>
       <div className="absolute w-full h-full top-0 left-0 p-8 flex justify-center pointer-events-none">
-        <div className="w-full max-w-[1200px] h-full flex flex-col gap-4 max-md:gap-3 justify-center items-start text-start max-md:text-center">
+        <div className="w-full max-w-(--container-max-width) h-full flex flex-col gap-4 max-md:gap-3 justify-center items-start text-start max-md:text-center">
           <h1 className="text-7xl font-bold max-md:text-4xl max-md:w-full">
             Roadmap
           </h1>
@@ -92,12 +104,12 @@ function RoadmapTimelineSection({ section }: { section: RoadmapSectionType }) {
 
   return (
     <section className="w-full flex flex-col gap-14 max-md:gap-8 items-center">
-      <div className="max-w-[1200px] w-full">
+      <div className="max-w-(--container-max-width) w-full">
         <div className="flex flex-col gap-8 px-8 max-md:gap-4">
           <h2 className="text-4xl font-bold max-md:text-3xl">
             {section.title}
           </h2>
-          <p className="w-2/3 max-w-[800px] text-xl max-md:text-base max-md:w-full">
+          <p className="w-2/3 max-w-200 text-xl max-md:text-base max-md:w-full">
             {section.description}
           </p>
         </div>
@@ -106,22 +118,22 @@ function RoadmapTimelineSection({ section }: { section: RoadmapSectionType }) {
       <div className="relative w-full">
         <button
           onClick={() => scroll("left")}
-          className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-background_secondary p-3 rounded-full shadow-md hover:bg-background_primary"
+          className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-surface rounded-full shadow-md disabled:opacity-30 hover:bg-primary duration-300 bg-button w-12 h-12 flex items-center justify-center ml-4"
         >
-          <FontAwesomeIcon icon={faChevronLeft} className="text-xl" />
+          <FaChevronLeft className="text-xl" />
         </button>
 
         <div
           ref={scrollRef}
           className="w-full overflow-x-auto scrollbar-hide scroll-smooth"
         >
-          <div className="max-w-[1200px] mx-auto px-8">
+          <div className="max-w-(--container-max-width) mx-auto px-8">
             <div className="flex gap-8 max-md:gap-6 w-max">
               {section.items.map((item, idx) => (
                 <SpotlightCard
                   key={`${item.title}-${idx}`}
-                  className={`flex-shrink-0 custom-spotlight-card p-8 max-md:p-6 rounded-xl aspect-video w-[450px] max-md:w-[300px] flex flex-col justify-between ${
-                    item.status === "completed" ? "bg-accent_secondary/10" : ""
+                  className={`shrink-0 custom-spotlight-card p-8 max-md:p-6 rounded-xl aspect-video w-140 max-md:w-100 flex flex-col justify-between ${
+                    item.status === "completed" ? "bg-secondary/10" : ""
                   }`}
                 >
                   <div className="flex justify-between relative">
@@ -131,7 +143,7 @@ function RoadmapTimelineSection({ section }: { section: RoadmapSectionType }) {
                       </h3>
                       {item.status === "completed" && item.date && (
                         <p className="max-md:text-sm">
-                          <span className={"text-success capitalize"}>
+                          <span className={"text-ch border-chart-2 capitalize"}>
                             {item.status}
                           </span>{" "}
                           {formatDate(item.date)}
@@ -140,19 +152,17 @@ function RoadmapTimelineSection({ section }: { section: RoadmapSectionType }) {
                     </div>
                     <div>
                       <div
-                        className={`w-[50px] max-md:w-[40px] duration-300 rounded-full aspect-square flex items-center justify-center text-3xl max-md:text-xl text-background_primary ${
+                        className={`w-12.5 max-md:w-10 duration-300 rounded-full aspect-square flex items-center justify-center text-3xl max-md:text-xl text-surface ${
                           item.status === "completed"
-                            ? "border border-success bg-accent_secondary"
-                            : "bg-warning"
+                            ? "border border-chart-2 bg-secondary"
+                            : "bg-chart-3"
                         }`}
                       >
-                        <FontAwesomeIcon
-                          icon={
-                            item.status === "completed"
-                              ? faCheck
-                              : faCircleNotch
-                          }
-                        />
+                        {item.status === "completed" ? (
+                          <FaCheck />
+                        ) : (
+                          <FaCircleNotch />
+                        )}
                       </div>
                     </div>
                   </div>
@@ -175,9 +185,9 @@ function RoadmapTimelineSection({ section }: { section: RoadmapSectionType }) {
 
         <button
           onClick={() => scroll("right")}
-          className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-background_secondary p-3 rounded-full shadow-md hover:bg-background_primary"
+          className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-surface p-3 rounded-full shadow-md hover:bg-primary duration-300 bg-button w-12 h-12 flex items-center justify-center mr-4"
         >
-          <FontAwesomeIcon icon={faChevronRight} className="text-xl" />
+          <FaChevronRight className="text-xl" />
         </button>
       </div>
     </section>
@@ -197,19 +207,6 @@ function RoadmapContentSections() {
           />
         ))}
       </div>
-    </div>
-  );
-}
-
-export default function RoadmapRoutePage() {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
-  return (
-    <div>
-      <RoadmapHeroSection />
-      <RoadmapContentSections />
     </div>
   );
 }

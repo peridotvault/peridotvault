@@ -10,7 +10,7 @@ type MenuItem = {
   ariaLabel: string;
   link: string;
   target: "_self" | "_blank";
-  type: "route" | "team" | "external";
+  type: "route" | "waitlist" | "external";
 };
 
 type SocialItem = {
@@ -49,11 +49,11 @@ export const Navbar = () => {
 
     // 🔹 Team sekarang link ke "/#team"
     {
-      label: "Team",
-      ariaLabel: "View our team",
-      link: "/#team",
+      label: "Waitlist",
+      ariaLabel: "Join Our Waitlist",
+      link: "/#waitlist",
       target: "_self",
-      type: "team",
+      type: "waitlist",
     },
 
     {
@@ -143,7 +143,7 @@ export const Navbar = () => {
               }
 
               // 2) Team → Link ke "/#team" + cek hash
-              if (item.type === "team") {
+              if (item.type === "waitlist") {
                 return (
                   <Link
                     key={index}
