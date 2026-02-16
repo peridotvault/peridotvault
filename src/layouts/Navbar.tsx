@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import StaggeredMenu from "../shared/components/atoms/StaggeredMenu";
 import { Button } from "@/shared/components/molecules/Button";
+import { SideCorner } from "@/shared/components/atoms/SideCorner";
 
 type MenuItem = {
   label: string;
@@ -19,26 +20,25 @@ type SocialItem = {
 };
 
 export const Navbar = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
   const [hash, setHash] = useState("");
 
   const menuItems: MenuItem[] = [
-    {
-      label: "PERI",
-      ariaLabel: "View our services",
-      link: "/peri",
-      target: "_self",
-      type: "route",
-    },
-    {
-      label: "AI",
-      ariaLabel: "Get in touch",
-      link: "/ai",
-      target: "_self",
-      type: "route",
-    },
+    // {
+    //   label: "PERI",
+    //   ariaLabel: "View our services",
+    //   link: "/peri",
+    //   target: "_self",
+    //   type: "route",
+    // },
+    // {
+    //   label: "AI",
+    //   ariaLabel: "Get in touch",
+    //   link: "/ai",
+    //   target: "_self",
+    //   type: "route",
+    // },
     {
       label: "Roadmap",
       ariaLabel: "Learn about us",
@@ -87,13 +87,6 @@ export const Navbar = () => {
     return () => window.removeEventListener("hashchange", syncHash);
   }, [pathname]);
 
-  // blur background on scroll
-  useEffect(() => {
-    const onScroll = () => setIsScrolled(window.scrollY > 0);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
   // lock body scroll saat drawer terbuka
   useEffect(() => {
     document.body.classList.toggle("overflow-hidden", open);
@@ -108,19 +101,22 @@ export const Navbar = () => {
   }, []);
 
   return (
-    <header className="p-4 fixed top-0 left-0 w-full z-50">
+    <header className="fixed top-4 left-0 z-50 w-full">
       <div
-        className={`transition-all duration-300 rounded-2xl flex justify-between border ${
-          isScrolled ? "backdrop-blur-lg border-white/10" : "border-transparent"
-        } max-md:hidden`}
+        className={`transition-all duration-300  flex justify-between  max-md:hidden`}
       >
-        <div className="w-full px-8 py-4 flex items-center justify-between">
+        <div className="bg-surface rounded-b-[35] px-8 py-6 flex items-center justify-between mx-auto w-180 relative">
+          <SideCorner
+            position="top-left"
+            className="absolute right-0 top-0 translate-x-full text-surface"
+          />
+          <SideCorner
+            position="top-right"
+            className="absolute left-0 -translate-x-full top-0 text-surface"
+          />
+
           <Link href="/" className="text-2xl flex items-center gap-2">
-            <img src="/Logo-full.png" className="h-6" alt="PeridotVault logo" />
-            <div>
-              <span className="font-bold">Peridot</span>
-              <span>Vault</span>
-            </div>
+            <img src="/Logo-full.png" className="h-8" alt="PeridotVault logo" />
           </Link>
 
           {/* Desktop actions */}
@@ -180,7 +176,7 @@ export const Navbar = () => {
         </div>
       </div>
 
-      <div className="fixed top-0 left-0 inset-0 z-50 md:hidden ">
+      <div className="fixed top-4 right-4 z-50 w-full md:hidden">
         <StaggeredMenu
           position="right"
           items={menuItems}

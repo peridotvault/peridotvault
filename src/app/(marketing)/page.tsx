@@ -5,10 +5,8 @@ import Link from "next/link";
 import AnimatedContent from "../../shared/components/animations/AnimatedContent";
 import { FeatureHeader } from "../../shared/components/atoms/FeatureHeader";
 import GlassComponent from "../../shared/components/atoms/GlassComponent";
-import TiltedCard from "../../shared/components/atoms/TiltedCard";
 import { ContainerGlass } from "../../shared/components/molecules/ContainerGlass";
 import { CarouselCard } from "../../shared/components/molecules/CarouselCard";
-import ParticlesComponent from "../../shared/components/particles/particles";
 import { LuPuzzle } from "react-icons/lu";
 import { SlWallet } from "react-icons/sl";
 import Image from "next/image";
@@ -29,7 +27,6 @@ export default function HomePage() {
 
   return (
     <div className="flex flex-col items-center justify-center text-lg">
-      <ParticlesComponent />
       <HeroSection />
       <AboutSection />
       <ProductShowcaseSection />
@@ -37,20 +34,20 @@ export default function HomePage() {
       <GameVaultSection />
       <NativeWalletSection />
       <WhitepaperRoadmapSection />
-      {/* <TeamSection /> */}
     </div>
   );
 }
 
 function HeroSection() {
   return (
-    <section className="flex w-full p-4">
+    <section className="flex w-full p-2">
       <div className="relative w-full flex justify-center overflow-hidden rounded-4xl">
         <div className="max-w-(--container-max-width) flex justify-center items-center px-8 h-[80dvh] ">
           <div className="w-full text-center flex flex-col gap-6 max-md:gap-4 ">
             <div className="mb-5 ">
               <label className="shadow-xl shadow-accent/30 py-2 px-4 rounded-lg ring-1 ring-accent/30 text-base max-md:text-sm">
-                Closed Beta Version 0.0.5
+                {/* Closed Beta Version 0.0.5 */}
+                PeridotVault Testnet Live
               </label>
             </div>
             <h1 className="text-6xl font-bold max-md:text-3xl">
@@ -142,7 +139,7 @@ function AiFeatureSection() {
   return (
     <AnimatedContent>
       <section className="max-w-(--container-max-width) px-8 max-md:px-4 py-24 max-md:py-10 w-full">
-        <GlassComponent className="w-full p-16 max-md:p-8 flex gap-12 items-center justify-between rounded-2xl max-lg:flex-col">
+        <GlassComponent className="w-full p-16 max-md:p-8 flex gap-12 items-center justify-between rounded-2xl  max-lg:flex-col">
           <div className="w-1/2 max-lg:w-full flex flex-col gap-6">
             <div className="bg-linear-to-tr from-primary via-accent to-accent bg-clip-text text-transparent">
               <span className="uppercase text-base max-md:text-sm">
@@ -289,7 +286,7 @@ function WhitepaperRoadmapCard({
   return (
     <section
       id={id}
-      className="w-full bg-background border border-border aspect-3/4 max-md:aspect-4/3 duration-300 rounded-2xl overflow-hidden relative"
+      className="w-full aspect-3/4 max-md:aspect-4/3 duration-300 rounded-2xl overflow-hidden relative"
     >
       <div className="absolute inset-0 z-0 top-0 left-0">
         <Image
@@ -302,7 +299,7 @@ function WhitepaperRoadmapCard({
           width={1280}
           height={720}
         />
-        <div className="bg-linear-to-b from-background via-background absolute top-0 w-full h-2/3" />
+        <div className="bg-linear-to-b from-surface via-surface absolute top-0 w-full h-2/3" />
       </div>
 
       <div className="relative p-24 max-md:p-8 flex flex-col gap-8 max-md:gap-4 text-xl z-10">
@@ -311,7 +308,7 @@ function WhitepaperRoadmapCard({
         <div className="py-4 max-md:py-2">
           <Link
             href={href}
-            className="border py-4 max-md:py-2 px-6 max-md:px-4 max-md:text-base max-md:rounded-lg rounded-xl border-border duration-300 hover:-translate-y-1 bg-white/10 hover:bg-primary"
+            className="py-4 max-md:py-2 px-6 max-md:px-4 max-md:text-base max-md:rounded-lg rounded-xl duration-300 hover:-translate-y-1 bg-white text-surface hover:bg-primary"
           >
             {hookText}
           </Link>
@@ -348,60 +345,60 @@ function WhitepaperRoadmapSection() {
   );
 }
 
-function TeamSection() {
-  const teamMembers = [
-    {
-      image: "/assets/teams/the-founder.webp",
-      name: "Ranaufal Muha",
-      title: "Founder, CEO",
-    },
-    {
-      image: "./assets/teams/the-backend.webp",
-      name: "Iqbal Muhakim",
-      title: "Co-Founder, Core Systems Engineer",
-    },
-  ];
+// function TeamSection() {
+//   const teamMembers = [
+//     {
+//       image: "/assets/teams/the-founder.webp",
+//       name: "Ranaufal Muha",
+//       title: "Founder, CEO",
+//     },
+//     {
+//       image: "./assets/teams/the-backend.webp",
+//       name: "Iqbal Muhakim",
+//       title: "Co-Founder, Core Systems Engineer",
+//     },
+//   ];
 
-  return (
-    <AnimatedContent>
-      <section
-        id="team"
-        className="max-w-(--container-max-width) w-full flex flex-col justify-center px-8 gap-20 max-md:gap-12 py-24 max-md:py-10"
-      >
-        <div className="flex flex-col items-center gap-6 max-md:gap-4">
-          <h2 className="text-5xl font-bold max-md:text-3xl">
-            Meet Our <span className="text-accent">Team</span>
-          </h2>
-          <p className="text-xl w-200 text-center max-md:text-base">
-            Passionate Innovators Driving PeridotVault Forward
-          </p>
-        </div>
-        <div className="flex max-md:flex-col justify-center items-center gap-10 max-md:gap-6">
-          {teamMembers.map((item) => (
-            <div
-              key={item.name}
-              className="aspect-4/5 max-lg:aspect-3/4 max-md:aspect-square  duration-300 w-full h-full"
-            >
-              <TiltedCard
-                imageSrc={item.image}
-                altText={item.name}
-                captionText={item.title}
-                rotateAmplitude={12}
-                scaleOnHover={1.1}
-                showMobileWarning={false}
-                showTooltip={true}
-                displayOverlayContent={true}
-                overlayContent={
-                  <div className="p-10 w-full h-full flex flex-col justify-end text-center">
-                    <h3 className="text-2xl font-bold">{item.name}</h3>
-                    <p>{item.title}</p>
-                  </div>
-                }
-              />
-            </div>
-          ))}
-        </div>
-      </section>
-    </AnimatedContent>
-  );
-}
+//   return (
+//     <AnimatedContent>
+//       <section
+//         id="team"
+//         className="max-w-(--container-max-width) w-full flex flex-col justify-center px-8 gap-20 max-md:gap-12 py-24 max-md:py-10"
+//       >
+//         <div className="flex flex-col items-center gap-6 max-md:gap-4">
+//           <h2 className="text-5xl font-bold max-md:text-3xl">
+//             Meet Our <span className="text-accent">Team</span>
+//           </h2>
+//           <p className="text-xl w-200 text-center max-md:text-base">
+//             Passionate Innovators Driving PeridotVault Forward
+//           </p>
+//         </div>
+//         <div className="flex max-md:flex-col justify-center items-center gap-10 max-md:gap-6">
+//           {teamMembers.map((item) => (
+//             <div
+//               key={item.name}
+//               className="aspect-4/5 max-lg:aspect-3/4 max-md:aspect-square  duration-300 w-full h-full"
+//             >
+//               <TiltedCard
+//                 imageSrc={item.image}
+//                 altText={item.name}
+//                 captionText={item.title}
+//                 rotateAmplitude={12}
+//                 scaleOnHover={1.1}
+//                 showMobileWarning={false}
+//                 showTooltip={true}
+//                 displayOverlayContent={true}
+//                 overlayContent={
+//                   <div className="p-10 w-full h-full flex flex-col justify-end text-center">
+//                     <h3 className="text-2xl font-bold">{item.name}</h3>
+//                     <p>{item.title}</p>
+//                   </div>
+//                 }
+//               />
+//             </div>
+//           ))}
+//         </div>
+//       </section>
+//     </AnimatedContent>
+//   );
+// }

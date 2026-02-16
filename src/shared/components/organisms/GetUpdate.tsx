@@ -73,7 +73,7 @@ export const GetUpdate = () => {
   return (
     <section
       id="waitlist"
-      className="w-full px-8 pb-4 pt-24 max-md:pt-10 flex justify-center"
+      className="w-full px-8 max-md:px-4 pb-4 pt-24 max-md:pt-10 flex justify-center"
     >
       <div className="w-full max-w-(--container-max-width) rounded-3xl max-md:rounded-2xl px-24 max-md:px-8 relative overflow-hidden flex justify-center items-center drop-shadow-2xl">
         {/* CONTENT */}

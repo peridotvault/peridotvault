@@ -59,7 +59,7 @@ export const Footer = () => {
         <GetUpdate />
       </div>
       <footer
-        className="flex justify-center bg-accent text-background rounded-4xl m-3"
+        className="flex justify-center bg-accent text-background rounded-[30] m-6 max-md:m-3"
         style={{
           paddingTop: updateHeight / 2,
         }}
