@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import StaggeredMenu from "../shared/components/atoms/StaggeredMenu";
+import { Button } from "@/shared/components/molecules/Button";
 
 type MenuItem = {
   label: string;
@@ -173,13 +174,9 @@ export const Navbar = () => {
             })}
           </nav>
 
-          {/* <DownloadComponent /> */}
-          <a
-            href="https://web.peridotvault.com/"
-            className="py-2 px-6 flex justify-center items-center gap-3 duration-300 max-md:text-sm group bg-primary hover:bg-white hover:text-black rounded-lg"
-          >
-            Try Web Version
-          </a>
+          <Link href="https://web.peridotvault.com/" target="_blank">
+            <Button>Try Web Version</Button>
+          </Link>
         </div>
       </div>
 

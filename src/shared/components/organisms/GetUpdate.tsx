@@ -2,10 +2,11 @@
 
 import { useState } from "react";
 import clsx from "clsx";
-import { GoArrowDownRight, GoMail } from "react-icons/go";
+import { GoMail } from "react-icons/go";
 import { FaCode, FaPuzzlePiece } from "react-icons/fa6";
 import BgGrainient from "../atoms/BgGrainient";
 import { toastService } from "@/shared/infra/toast/toast.service";
+import { Button } from "../molecules/Button";
 
 export const GetUpdate = () => {
   const [roles, setRoles] = useState<string[]>([]);
@@ -118,7 +119,14 @@ export const GetUpdate = () => {
               </div>
 
               {/* BUTTON */}
-              <button
+              <Button
+                onClick={handleSubmit}
+                disabled={!canSubmit}
+                className="max-md:w-full md:shrink-0"
+              >
+                Join Waitlist
+              </Button>
+              {/* <button
                 onClick={handleSubmit}
                 disabled={!canSubmit}
                 className={clsx(
@@ -137,7 +145,7 @@ export const GetUpdate = () => {
                     canSubmit && "group-hover:-rotate-45",
                   )}
                 />
-              </button>
+              </button> */}
             </div>
           </div>
         </div>

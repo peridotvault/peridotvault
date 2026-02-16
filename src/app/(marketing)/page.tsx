@@ -45,7 +45,7 @@ export default function HomePage() {
 function HeroSection() {
   return (
     <section className="flex w-full p-4">
-      <div className="relative w-full flex justify-center overflow-hidden rounded-2xl">
+      <div className="relative w-full flex justify-center overflow-hidden rounded-4xl">
         <div className="max-w-(--container-max-width) flex justify-center items-center px-8 h-[80dvh] ">
           <div className="w-full text-center flex flex-col gap-6 max-md:gap-4 ">
             <div className="mb-5 ">
