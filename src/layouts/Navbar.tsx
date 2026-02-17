@@ -59,7 +59,7 @@ export const Navbar = () => {
     {
       label: "Docs",
       ariaLabel: "Go to docs",
-      link: "https://peridotvault.gitbook.io/docs",
+      link: "https://docs.peridotvault.com/",
       target: "_blank",
       type: "external",
     },
