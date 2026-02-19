@@ -1,18 +1,19 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState } from "react";
 
 const carouselItems = [
-  { alt: "Hollow Knight", img_url: "/img/hn-games.png" },
-  { alt: "A Space for the unbound", img_url: "/img/asftu-games.jpg" },
-  { alt: "God Of War", img_url: "/img/gow-games.jpg" },
-  { alt: "Axie Infinity", img_url: "/img/ai-games.png" },
-  { alt: "Fifa Rivals", img_url: "/img/fr-games.png" },
-  { alt: "Hollow Knight", img_url: "/img/hn-games.png" },
-  { alt: "A Space for the unbound", img_url: "/img/asftu-games.jpg" },
-  { alt: "God Of War", img_url: "/img/gow-games.jpg" },
-  { alt: "Axie Infinity", img_url: "/img/ai-games.png" },
-  { alt: "Fifa Rivals", img_url: "/img/fr-games.png" },
+  { alt: "Hollow Knight", img_url: "/img/games/hn-games.png" },
+  { alt: "A Space for the unbound", img_url: "/img/games/asftu-games.jpg" },
+  { alt: "God Of War", img_url: "/img/games/gow-games.jpg" },
+  { alt: "Axie Infinity", img_url: "/img/games/ai-games.png" },
+  { alt: "Fifa Rivals", img_url: "/img/games/fr-games.png" },
+  { alt: "Hollow Knight", img_url: "/img/games/hn-games.png" },
+  { alt: "A Space for the unbound", img_url: "/img/games/asftu-games.jpg" },
+  { alt: "God Of War", img_url: "/img/games/gow-games.jpg" },
+  { alt: "Axie Infinity", img_url: "/img/games/ai-games.png" },
+  { alt: "Fifa Rivals", img_url: "/img/games/fr-games.png" },
 ];
 
 export const CarouselCard = () => {
@@ -39,7 +40,7 @@ export const CarouselCard = () => {
   };
 
   return (
-    <div className="relative overflow-hidden">
+    <div className="relative w-full overflow-hidden">
       {/* Fade sides */}
       <div className="pointer-events-none absolute left-0 top-0 h-full w-24 bg-linear-to-r from-background z-10" />
       <div className="pointer-events-none absolute right-0 top-0 h-full w-24 bg-linear-to-l from-background z-10" />
@@ -54,13 +55,14 @@ export const CarouselCard = () => {
           }}
         >
           {extendedItems.map((item, idx) => (
-            <div key={idx} className="w-[200px] max-md:w-[150px] flex-shrink-0">
-              <div className="bg-background_secondary rounded-2xl max-md:rounded-xl shadow-lg overflow-hidden h-full aspect-[3/4] flex flex-col justify-between">
-                <img
-                  draggable={false}
+            <div key={idx} className="w-60 max-md:w-50 shrink-0">
+              <div className="bg-background_secondary rounded-2xl max-md:rounded-xl shadow-lg overflow-hidden h-full aspect-3/4 flex flex-col justify-between relative">
+                <Image
                   src={item.img_url}
+                  draggable={false}
                   className="w-full h-full object-cover opacity-70"
                   alt={item.alt}
+                  fill
                 />
               </div>
             </div>

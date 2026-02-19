@@ -25,7 +25,7 @@ export const FeatureHeader = ({
       </div>
 
       {/* description */}
-      <p className="w-3/5 max-md:w-full max-md:text-base">{description}</p>
+      <p className="w-3/5 max-md:w-full md:text-lg">{description}</p>
     </div>
   );
 };

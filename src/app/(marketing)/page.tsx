@@ -9,6 +9,9 @@ import Image from "next/image";
 import { Button } from "@/shared/components/molecules/Button";
 import { SideCorner } from "@/shared/components/atoms/SideCorner";
 import { ScrollToTop } from "@/shared/components/atoms/ScrollToTop";
+import Tilt from "@/shared/components/atoms/Tilt";
+import { Marquee } from "@/shared/components/atoms/Marquee";
+import ContainerPadding from "@/shared/components/atoms/ContainerPadding";
 
 type WhitepaperRoadmapCardProps = {
   id: string;
@@ -21,7 +24,7 @@ type WhitepaperRoadmapCardProps = {
 
 export default function HomePage() {
   return (
-    <div className="flex flex-col items-center justify-center text-lg">
+    <div className="flex flex-col items-center justify-center">
       <ScrollToTop />
       <HeroSection />
       <AboutSection />
@@ -30,6 +33,7 @@ export default function HomePage() {
       <GameVaultSection />
       <NativeWalletSection />
       <WhitepaperRoadmapSection />
+      <Gallery />
     </div>
   );
 }
@@ -75,24 +79,21 @@ function HeroSection() {
 
 function AboutSection() {
   return (
-    <section
-      id="about"
-      className="max-w-(--container-max-width) flex max-md:flex-col justify-between px-8 py-24 max-md:py-10 gap-10 w-full overflow-hidden"
-    >
-      <div className="max-w-140 flex flex-col items-start gap-5">
+    <ContainerPadding className="flex max-md:flex-col justify-between py-24 max-md:py-10 gap-10 overflow-hidden">
+      <section id="about" className="max-w-140 flex flex-col items-start gap-5">
         <p className="bg-linear-to-tr from-primary via-accent to-accent bg-clip-text text-transparent max-md:text-sm">
           Gaming isn&apos;t just a hobby
         </p>
         <h2 className="text-4xl font-bold max-md:text-3xl">
           Elevate Your Lifestyle with the Vault of Games
         </h2>
-        <p className="text-xl max-md:text-base">
+        <p className="md:text-lg">
           Blockchain Gaming Platform that allows Gamers to Buy, Download, and
           Play their favorite Games.
         </p>
-      </div>
+      </section>
       <CarouselCard />
-    </section>
+    </ContainerPadding>
   );
 }
 
@@ -101,13 +102,13 @@ function ProductShowcaseSection() {
     <AnimatedContent>
       <section
         id="product"
-        className="max-w-(--container-max-width) flex flex-col items-center gap-2 relative pt-24 max-md:py-10 pb-12 "
+        className="max-w-(--container-max-width) flex flex-col items-center gap-2 relative pt-24 max-md:py-10 pb-12 w-full"
       >
         <div className="flex flex-col items-center text-center max-md:text-start gap-6 px-8">
           <h2 className="bg-linear-to-tr from-primary via-accent to-accent bg-clip-text text-transparent text-5xl font-bold max-md:text-3xl w-full duration-300">
             Gaming, Evolved with AI and Web3
           </h2>
-          <p className="w-4/5 max-md:w-full duration-300 max-md:text-base">
+          <p className="w-4/5 max-md:w-full duration-300 md:text-lg">
             PeridotVault is more than just a platform, it&apos;s where advanced
             AI meets decentralized technology to create a smarter, more
             connected gaming experience for players and developers alike
@@ -134,7 +135,7 @@ function ProductShowcaseSection() {
 function AiFeatureSection() {
   return (
     <AnimatedContent>
-      <section className="px-8 max-md:px-4 py-24 max-md:py-10 w-full bg-surface relative">
+      <section className="px-8 max-md:px-4 py-24 max-md:py-10 w-full bg-surface relative ">
         <SideCorner
           position="bottom-right"
           className="absolute right-2 top-0 -translate-y-full text-surface"
@@ -151,7 +152,7 @@ function AiFeatureSection() {
           position="top-left"
           className="absolute left-2 bottom-0 translate-y-full text-surface"
         />
-        <div className="max-w-(--container-max-width) mx-auto flex gap-12 items-center justify-between max-lg:flex-col">
+        <ContainerPadding className="flex gap-12 items-center justify-between max-lg:flex-col">
           <div className="w-1/2 max-lg:w-full flex flex-col gap-6">
             <div className="bg-linear-to-tr from-primary via-accent to-accent bg-clip-text text-transparent">
               <span className="uppercase text-base max-md:text-sm">
@@ -161,7 +162,7 @@ function AiFeatureSection() {
                 Smarter Play, Powered by AI
               </h2>
             </div>
-            <p className="max-md:text-base">
+            <p className="md:text-lg">
               PeridotVault&apos;s AI curates games just for you, assists your
               journey, and keeps communities safe - making every play smarter
               and more personal.
@@ -182,7 +183,7 @@ function AiFeatureSection() {
               height={720}
             />
           </div>
-        </div>
+        </ContainerPadding>
       </section>
     </AnimatedContent>
   );
@@ -207,21 +208,23 @@ function GameVaultSection() {
 
   return (
     <AnimatedContent>
-      <section className="max-w-(--container-max-width) px-8 py-24 max-md:py-10 w-full flex flex-col gap-12 max-md:gap-8">
-        <FeatureHeader
-          Icon={LuPuzzle}
-          title="GameVault"
-          description="Experience a new era of gaming with GameVault where buying games is simple, fast, and transparent. Own your collection forever with blockchain-backed security."
-        />
-        <div className="grid grid-cols-3 max-lg:grid-cols-2 max-md:grid-cols-1 gap-8 max-md:gap-6">
-          {features.map((item) => (
-            <ContainerGlass
-              key={item.title}
-              title={item.title}
-              description={item.description}
-            />
-          ))}
-        </div>
+      <section className="py-24 max-md:py-10">
+        <ContainerPadding className="flex flex-col gap-12 max-md:gap-8">
+          <FeatureHeader
+            Icon={LuPuzzle}
+            title="GameVault"
+            description="Experience a new era of gaming with GameVault where buying games is simple, fast, and transparent. Own your collection forever with blockchain-backed security."
+          />
+          <div className="grid grid-cols-3 max-lg:grid-cols-2 max-md:grid-cols-1 gap-8 max-md:gap-6">
+            {features.map((item) => (
+              <ContainerGlass
+                key={item.title}
+                title={item.title}
+                description={item.description}
+              />
+            ))}
+          </div>
+        </ContainerPadding>
       </section>
     </AnimatedContent>
   );
@@ -245,15 +248,15 @@ function NativeWalletSection() {
 
   return (
     <AnimatedContent>
-      <section className="max-w-(--container-max-width) px-8 max-md:px-4 py-24 max-md:py-10 w-full ">
-        <div className="flex flex-col gap-12 max-md:gap-8 p-16 max-md:p-8 border border-border rounded-2xl duration-300">
+      <section className="py-24 max-md:py-10">
+        <ContainerPadding className="flex flex-col gap-12 max-md:gap-8">
           <FeatureHeader
             Icon={SlWallet}
             title="Native Wallet"
             description="Meet the wallet that feels invisible-always there, always secure. Complete control of your digital assets, without the complexity."
           />
 
-          <div className="grid grid-cols-2 max-lg:grid-cols-1 gap-8 bh">
+          <div className="grid grid-cols-2 max-lg:grid-cols-1 gap-8">
             {highlights.map((item) => (
               <div
                 className="aspect-4/3 max-lg:aspect-video max-md:aspect-4/3 border hover:-translate-y-4 duration-300 bg-white/5 backdrop-blur-lg border-border rounded-2xl overflow-hidden"
@@ -271,14 +274,14 @@ function NativeWalletSection() {
                 </div>
                 <div className="h-full flex flex-col gap-2 p-8 max-md:p-6">
                   <h2 className="text-2xl max-md:text-xl">{item.title}</h2>
-                  <p className="text-paragraph max-md:text-base">
+                  <p className="text-paragraph text-lg max-md:text-base">
                     {item.description}
                   </p>
                 </div>
               </div>
             ))}
           </div>
-        </div>
+        </ContainerPadding>
       </section>
     </AnimatedContent>
   );
@@ -311,7 +314,7 @@ function WhitepaperRoadmapCard({
         <div className="bg-linear-to-b from-surface via-surface absolute top-0 w-full h-2/3" />
       </div>
 
-      <div className="relative p-24 max-md:p-8 flex flex-col gap-8 max-md:gap-4 text-xl z-10">
+      <div className="relative lg:p-24 md:p-16 p-8 flex flex-col gap-8 max-md:gap-4 text-xl z-10">
         <h2 className="text-4xl font-bold max-md:text-3xl">{title}</h2>
         <p className="max-md:text-base">{description}</p>
         <div className="py-4 max-md:py-2">
@@ -330,27 +333,94 @@ function WhitepaperRoadmapCard({
 function WhitepaperRoadmapSection() {
   return (
     <AnimatedContent>
-      <div className="w-full flex justify-center py-24 max-md:py-10">
-        <div className="max-w-(--container-max-width) w-full grid grid-cols-2 max-md:grid-cols-1 gap-8 px-8 max-md:px-4">
-          <WhitepaperRoadmapCard
-            id="whitepaper"
-            title="Whitepaper"
-            description="Explore the vision, technology, and economics behind PeridotVault. Our whitepaper details how we're building the future of gaming-secure, decentralized, and player-first."
-            hookText="Read Now"
-            href="#"
-            imgUrl="/assets/views/landing/whitepaper.webp"
-          />
-          <WhitepaperRoadmapCard
-            id="roadmap"
-            title="Roadmap"
-            description="From concept to reality, our roadmap reflects our commitment to innovation and transparency. Track every stage as PeridotVault evolves."
-            hookText="Get into it"
-            href="/roadmap"
-            imgUrl="/assets/views/landing/roadmap.gif"
-          />
-        </div>
-      </div>
+      <ContainerPadding className="py-24 max-md:py-10 grid grid-cols-2 max-md:grid-cols-1 gap-8">
+        <WhitepaperRoadmapCard
+          id="whitepaper"
+          title="Whitepaper"
+          description="Explore the vision, technology, and economics behind PeridotVault. Our whitepaper details how we're building the future of gaming-secure, decentralized, and player-first."
+          hookText="Read Now"
+          href="#"
+          imgUrl="/assets/views/landing/whitepaper.webp"
+        />
+        <WhitepaperRoadmapCard
+          id="roadmap"
+          title="Roadmap"
+          description="From concept to reality, our roadmap reflects our commitment to innovation and transparency. Track every stage as PeridotVault evolves."
+          hookText="Get into it"
+          href="/roadmap"
+          imgUrl="/assets/views/landing/roadmap.gif"
+        />
+      </ContainerPadding>
     </AnimatedContent>
+  );
+}
+
+function Gallery() {
+  const listGallery = [
+    {
+      imgUrl: "/img/gallery/team-working.jpg",
+      alt: "Team Working",
+    },
+    {
+      imgUrl: "/img/gallery/founder-judging-participant.jpg",
+      alt: "Founder Judging Participant",
+    },
+    {
+      imgUrl: "/img/gallery/winner-participant-with-founder.jpg",
+      alt: "Winner Participant With Founder",
+    },
+    {
+      imgUrl: "/img/gallery/hackathon-team-discussion.jpg",
+      alt: "Hackathon Team Discussion",
+    },
+    {
+      imgUrl: "/img/gallery/team-working.jpg",
+      alt: "Team Working",
+    },
+    {
+      imgUrl: "/img/gallery/founder-judging-participant.jpg",
+      alt: "Founder Judging Participant",
+    },
+    {
+      imgUrl: "/img/gallery/winner-participant-with-founder.jpg",
+      alt: "Winner Participant With Founder",
+    },
+    {
+      imgUrl: "/img/gallery/hackathon-team-discussion.jpg",
+      alt: "Hackathon Team Discussion",
+    },
+  ];
+
+  return (
+    <section className="py-24 max-md:py-10 flex flex-col items-center gap-12 overflow-hidden">
+      <ContainerPadding className="flex flex-col gap-6 mb-12">
+        <div className="bg-linear-to-tr from-primary via-accent to-accent bg-clip-text text-transparent px-3">
+          <span className="lg:text-xl md:text-lg">Community</span>
+        </div>
+        <h2 className="lg:text-6xl md:text-5xl text-4xl max-w-4xl font-medium px-3">
+          From Digital Vision to Real World Gaming Impact.
+        </h2>
+      </ContainerPadding>
+      <div className="flex flex-col gap-8 max-w-screen justify-center">
+        <Marquee>
+          {listGallery.map((item, index) => (
+            <Tilt key={index}>
+              <div className="xl:h-110 lg:h-100 md:h-90 h-80 bg-muted rounded-2xl overflow-hidden text-2xl text-black">
+                <Image
+                  src={item.imgUrl}
+                  alt={item.alt}
+                  width={300}
+                  height={400}
+                  draggable={false}
+                  className="h-full w-auto object-cover shrink-0"
+                />
+                {index}
+              </div>
+            </Tilt>
+          ))}
+        </Marquee>
+      </div>
+    </section>
   );
 }
 

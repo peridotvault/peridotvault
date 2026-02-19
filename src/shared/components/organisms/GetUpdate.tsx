@@ -77,7 +77,7 @@ export const GetUpdate = () => {
     >
       <div className="w-full max-w-(--container-max-width) rounded-3xl max-md:rounded-2xl px-24 max-md:px-8 relative overflow-hidden flex justify-center items-center drop-shadow-2xl">
         {/* CONTENT */}
-        <div className="flex h-full flex-col items-center justify-center lg:py-28 md:py-20 py-12 max-lg:w-full lg:gap-18 md:gap-10 gap-8 z-10">
+        <div className="flex h-full flex-col items-center justify-center lg:py-28 md:py-20 py-12 max-lg:w-full lg:gap-18 md:gap-10 gap-8 z-20">
           <h2 className="lg:text-7xl md:text-5xl text-3xl text-background max-w-4xl text-center font-medium">
             Get Exclusive PeridotVault Platform Updates
           </h2>
@@ -126,26 +126,6 @@ export const GetUpdate = () => {
               >
                 Join Waitlist
               </Button>
-              {/* <button
-                onClick={handleSubmit}
-                disabled={!canSubmit}
-                className={clsx(
-                  "rounded-xl flex items-center justify-center h-full overflow-hidden group max-md:w-full md:shrink-0 transition-all duration-300 bg-accent text-background",
-                  canSubmit
-                    ? "cursor-pointer"
-                    : "cursor-not-allowed opacity-50",
-                )}
-              >
-                <span className="bg-white w-full rounded-xl h-full flex items-center justify-center text-sm p-3 font-medium">
-                  {loading ? "Joining..." : "Join Waitlist"}
-                </span>
-                <GoArrowDownRight
-                  className={clsx(
-                    "w-14 h-12 p-3 duration-300",
-                    canSubmit && "group-hover:-rotate-45",
-                  )}
-                />
-              </button> */}
             </div>
           </div>
         </div>
