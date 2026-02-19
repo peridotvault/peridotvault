@@ -2,7 +2,7 @@ import { SideCorner } from "@/shared/components/atoms/SideCorner";
 
 export const FrameInvertedRadius = () => {
   return (
-    <div className="fixed w-full h-screen top-0 left-0 z-50 pointer-events-none max-md:hidden">
+    <div className="fixed w-full h-screen top-0 left-0 z-50 pointer-events-none ">
       <div className="relative w-full h-full text-surface">
         <div className="bg-surface w-4 h-full left-0 top-0 absolute" />
         <div className="bg-surface w-4 h-full right-0 top-0 absolute" />

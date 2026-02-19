@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from "react";
+"use client";
+
+import { useEffect, useState } from "react";
 
 const carouselItems = [
   { alt: "Hollow Knight", img_url: "/img/hn-games.png" },

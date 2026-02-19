@@ -1,15 +1,14 @@
-"use client";
-
-import { useEffect } from "react";
 import Link from "next/link";
 import AnimatedContent from "../../shared/components/animations/AnimatedContent";
 import { FeatureHeader } from "../../shared/components/atoms/FeatureHeader";
-import GlassComponent from "../../shared/components/atoms/GlassComponent";
 import { ContainerGlass } from "../../shared/components/molecules/ContainerGlass";
 import { CarouselCard } from "../../shared/components/molecules/CarouselCard";
 import { LuPuzzle } from "react-icons/lu";
 import { SlWallet } from "react-icons/sl";
 import Image from "next/image";
+import { Button } from "@/shared/components/molecules/Button";
+import { SideCorner } from "@/shared/components/atoms/SideCorner";
+import { ScrollToTop } from "@/shared/components/atoms/ScrollToTop";
 
 type WhitepaperRoadmapCardProps = {
   id: string;
@@ -21,12 +20,9 @@ type WhitepaperRoadmapCardProps = {
 };
 
 export default function HomePage() {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   return (
     <div className="flex flex-col items-center justify-center text-lg">
+      <ScrollToTop />
       <HeroSection />
       <AboutSection />
       <ProductShowcaseSection />
@@ -138,8 +134,24 @@ function ProductShowcaseSection() {
 function AiFeatureSection() {
   return (
     <AnimatedContent>
-      <section className="max-w-(--container-max-width) px-8 max-md:px-4 py-24 max-md:py-10 w-full">
-        <GlassComponent className="w-full p-16 max-md:p-8 flex gap-12 items-center justify-between rounded-2xl  max-lg:flex-col">
+      <section className="px-8 max-md:px-4 py-24 max-md:py-10 w-full bg-surface relative">
+        <SideCorner
+          position="bottom-right"
+          className="absolute right-2 top-0 -translate-y-full text-surface"
+        />
+        <SideCorner
+          position="bottom-left"
+          className="absolute left-2 top-0 -translate-y-full text-surface"
+        />
+        <SideCorner
+          position="top-right"
+          className="absolute right-2 bottom-0 translate-y-full text-surface"
+        />
+        <SideCorner
+          position="top-left"
+          className="absolute left-2 bottom-0 translate-y-full text-surface"
+        />
+        <div className="max-w-(--container-max-width) mx-auto flex gap-12 items-center justify-between max-lg:flex-col">
           <div className="w-1/2 max-lg:w-full flex flex-col gap-6">
             <div className="bg-linear-to-tr from-primary via-accent to-accent bg-clip-text text-transparent">
               <span className="uppercase text-base max-md:text-sm">
@@ -155,15 +167,12 @@ function AiFeatureSection() {
               and more personal.
             </p>
             <div className="flex">
-              <Link
-                href="/ai"
-                className="bg-primary p-3 px-6 rounded-xl max-md:text-base"
-              >
-                Learn More Our AI Features
+              <Link href="/ai">
+                <Button>Learn More Our AI Features</Button>
               </Link>
             </div>
           </div>
-          <div className="w-1/2 aspect-4/3 max-lg:w-full max-lg:aspect-video  rounded-xl overflow-hidden bg-background">
+          <div className="w-1/2 aspect-4/3 max-lg:w-full max-lg:aspect-video  rounded-3xl overflow-hidden bg-background">
             <Image
               src="/assets/views/landing/ai.gif"
               alt="Image Person Playing Game"
@@ -173,7 +182,7 @@ function AiFeatureSection() {
               height={720}
             />
           </div>
-        </GlassComponent>
+        </div>
       </section>
     </AnimatedContent>
   );
