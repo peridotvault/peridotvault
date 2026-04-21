@@ -20,6 +20,11 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 
+// Brand Colors (used sparingly - max 10%)
+// --brand-1: #349b65 (main)
+// --brand-2: #349b6650 (transparent)
+// --brand-3: #87ee83 (light accent)
+
 // ASCII Art for PeridotCode - PERIDOT
 const ASCII_LOGO = `
 ██████╗ ███████╗██████╗ ██╗██████╗  ██████╗ ████████╗
@@ -113,7 +118,8 @@ function InstallCommand() {
       <div className="relative group">
         <div className="relative flex items-center justify-between p-4 bg-neutral-50 dark:bg-neutral-900/50 border border-neutral-200 dark:border-neutral-800">
           <code className="text-sm sm:text-base font-mono text-neutral-700 dark:text-neutral-300 overflow-x-auto">
-            <span className="text-[#349b65]">$</span> {commands[activeTab]}
+            <span style={{ color: "var(--brand-3, #87ee83)" }}>$</span>{" "}
+            {commands[activeTab]}
           </code>
           <button
             onClick={handleCopy}
@@ -121,7 +127,7 @@ function InstallCommand() {
             aria-label="Copy command"
           >
             {copied ? (
-              <FiCheck className="w-4 h-4 text-[#349b65]" />
+              <FiCheck className="w-4 h-4 text-neutral-600" />
             ) : (
               <FiCopy className="w-4 h-4 text-neutral-500" />
             )}
@@ -157,7 +163,7 @@ function MatrixRain() {
       ctx.fillStyle = "rgba(10, 10, 10, 0.05)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      ctx.fillStyle = "#349b65";
+      ctx.fillStyle = "#525252";
       ctx.font = "15px monospace";
 
       for (let i = 0; i < drops.length; i++) {
@@ -217,7 +223,7 @@ function TypingAscii({ text, delay = 0 }: { text: string; delay?: number }) {
   }, [text, delay]);
 
   return (
-    <div className="font-mono text-[#349b65] text-xs sm:text-sm md:text-base leading-none whitespace-pre overflow-hidden">
+    <div className="font-mono text-neutral-500 text-[10px] sm:text-xs md:text-sm lg:text-base leading-none whitespace-pre overflow-hidden">
       {displayedLines.map((line, i) => (
         <motion.div
           key={i}
@@ -232,7 +238,8 @@ function TypingAscii({ text, delay = 0 }: { text: string; delay?: number }) {
         <motion.span
           animate={{ opacity: [1, 0] }}
           transition={{ duration: 0.5, repeat: Infinity }}
-          className="inline-block w-3 h-5 bg-[#349b65] ml-1"
+          className="inline-block w-3 h-5 ml-1"
+          style={{ backgroundColor: "var(--brand-3, #87ee83)" }}
         />
       )}
     </div>
@@ -287,8 +294,8 @@ function FeatureCard({
       className="group relative p-6 bg-white dark:bg-neutral-900/30 border border-neutral-200 dark:border-neutral-800 hover:border-neutral-300 dark:hover:border-neutral-700 transition-all duration-300"
     >
       <div className="relative">
-        <div className="w-10 h-10 bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center mb-4 group-hover:bg-[#349b65]/10 transition-colors duration-300">
-          <Icon className="w-5 h-5 text-neutral-600 dark:text-neutral-400 group-hover:text-[#349b65] transition-colors duration-300" />
+        <div className="w-10 h-10 bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center mb-4 group-hover:bg-neutral-200 dark:group-hover:bg-neutral-700 transition-colors duration-300">
+          <Icon className="w-5 h-5 text-neutral-600 dark:text-neutral-400 group-hover:text-neutral-900 dark:group-hover:text-white transition-colors duration-300" />
         </div>
         <h3 className="text-base font-semibold text-neutral-900 dark:text-white mb-2">
           {title}
@@ -323,8 +330,8 @@ function FAQItem({
           {question}
         </span>
         <span
-          className={`ml-4 text-xl text-neutral-400 group-hover:text-[#349b65] transition-all duration-300 ${
-            isOpen ? "rotate-45 text-[#349b65]" : ""
+          className={`ml-4 text-xl text-neutral-400 group-hover:text-neutral-900 dark:group-hover:text-white transition-all duration-300 ${
+            isOpen ? "rotate-45 text-neutral-900 dark:text-white" : ""
           }`}
         >
           +
@@ -455,7 +462,7 @@ export default function PeridotCodePage() {
       >
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center justify-between px-6 py-3 bg-white/80 dark:bg-neutral-900/80 backdrop-blur-xl border border-neutral-200 dark:border-neutral-800">
-            <Link href="/" className="flex items-center">
+            <a href="/peridotcode#hero" className="flex items-center">
               <Image
                 src="/logo/peridotcode-horizontal_logo.png"
                 alt="PeridotCode"
@@ -463,7 +470,7 @@ export default function PeridotCodePage() {
                 height={40}
                 className="h-8 w-auto"
               />
-            </Link>
+            </a>
 
             <div className="hidden md:flex items-center gap-1">
               {["Features", "FAQ"].map((item) => (
@@ -483,14 +490,17 @@ export default function PeridotCodePage() {
       </motion.nav>
 
       {/* Hero Section - Full Page */}
-      <section className="relative h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-hidden">
+      <section
+        id="hero"
+        className="relative min-h-[100dvh] flex items-center justify-center px-4 sm:px-6 lg:px-8 py-20 sm:py-0 overflow-hidden"
+      >
         <MatrixRain />
 
         {/* Grid Background */}
         <div
-          className="absolute inset-0 z-0 opacity-10"
+          className="absolute inset-0 z-0 opacity-5"
           style={{
-            backgroundImage: `linear-gradient(#349b65 1px, transparent 1px), linear-gradient(90deg, #349b65 1px, transparent 1px)`,
+            backgroundImage: `linear-gradient(#737373 1px, transparent 1px), linear-gradient(90deg, #737373 1px, transparent 1px)`,
             backgroundSize: "50px 50px",
             transform: isClient
               ? `translate(${(mousePos.x - windowSize.width / 2) / 50}px, ${(mousePos.y - windowSize.height / 2) / 50}px)`
@@ -500,9 +510,9 @@ export default function PeridotCodePage() {
         />
 
         <div className="relative z-10 max-w-7xl mx-auto w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left Side - ASCII Art & Title */}
-            <div className="space-y-8">
+            <div className="space-y-6 sm:space-y-8 text-center lg:text-left">
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -521,9 +531,9 @@ export default function PeridotCodePage() {
                 <Image
                   src="/logo/peridotcode-mark_logo_withbackground.png"
                   alt="PeridotCode"
-                  width={120}
-                  height={120}
-                  className="w-32 h-32"
+                  width={80}
+                  height={80}
+                  className="w-20 h-20"
                 />
               </motion.div>
 
@@ -531,10 +541,11 @@ export default function PeridotCodePage() {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: 1 }}
-                className="inline-flex items-center gap-2 px-3 py-1.5 bg-neutral-100 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800"
+                className="inline-flex items-center gap-2 px-3 py-1.5 bg-neutral-100 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 mx-auto lg:mx-0"
               >
                 <motion.span
-                  className="w-2 h-2 bg-[#349b65]"
+                  className="w-2 h-2"
+                  style={{ backgroundColor: "var(--brand-1, #349b65)" }}
                   animate={{ opacity: [1, 0.3, 1] }}
                   transition={{ duration: 1.5, repeat: Infinity }}
                 />
@@ -547,11 +558,11 @@ export default function PeridotCodePage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 1.2 }}
-                className="text-3xl sm:text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white leading-tight"
+                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-neutral-900 dark:text-white leading-tight"
               >
-                <GlitchText>AI-Powered</GlitchText>
+                AI-Powered
                 <br />
-                <span className="text-[#349b65]">Game Development</span>
+                Game Development
                 <br />
                 Assistant
               </motion.h2>
@@ -560,7 +571,7 @@ export default function PeridotCodePage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 1.4 }}
-                className="text-lg text-neutral-600 dark:text-neutral-400 font-mono"
+                className="text-base sm:text-lg text-neutral-600 dark:text-neutral-400 font-mono px-4 sm:px-0"
               >
                 &gt; Generate game logic, scripts, shaders, and more with the
                 power of AI
@@ -570,20 +581,21 @@ export default function PeridotCodePage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 1.6 }}
-                className="flex flex-col sm:flex-row items-start sm:items-center gap-4"
+                className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start"
               >
                 <a
                   href="https://github.com/peridotvault/peridotcode"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-6 py-3 bg-[#349b65] text-white font-medium hover:bg-[#2d7a53] transition-colors font-mono"
+                  className="flex items-center gap-2 px-6 py-3 text-white font-medium transition-colors font-mono"
+                  style={{ backgroundColor: "var(--brand-1, #349b65)" }}
                 >
                   <FiDownload className="w-4 h-4" />
                   ./install.sh
                 </a>
                 <a
                   href="#features"
-                  className="flex items-center gap-2 px-6 py-3 bg-neutral-100 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 text-neutral-700 dark:text-neutral-300 font-medium hover:border-[#349b65] dark:hover:border-[#349b65] transition-colors font-mono"
+                  className="flex items-center gap-2 px-6 py-3 bg-neutral-100 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 text-neutral-700 dark:text-neutral-300 font-medium hover:border-neutral-400 dark:hover:border-neutral-600 transition-colors font-mono"
                 >
                   <FiTerminal className="w-4 h-4" />
                   cat features.md
@@ -591,12 +603,12 @@ export default function PeridotCodePage() {
               </motion.div>
             </div>
 
-            {/* Right Side - Terminal Window */}
+            {/* Right Side - Terminal Window - Hidden on mobile */}
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 1 }}
-              className="relative"
+              className="relative hidden lg:block"
             >
               <div className="bg-neutral-900 border border-neutral-700 shadow-2xl">
                 {/* Terminal Header */}
@@ -626,12 +638,12 @@ export default function PeridotCodePage() {
 
               {/* Decorative Elements */}
               <motion.div
-                className="absolute -top-4 -right-4 w-24 h-24 border border-[#349b65]/30"
+                className="absolute -top-4 -right-4 w-24 h-24 border border-neutral-400/30"
                 animate={{ rotate: 360 }}
                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
               />
               <motion.div
-                className="absolute -bottom-4 -left-4 w-16 h-16 border border-[#349b65]/30"
+                className="absolute -bottom-4 -left-4 w-16 h-16 border border-neutral-400/30"
                 animate={{ rotate: -360 }}
                 transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
               />
@@ -654,7 +666,10 @@ export default function PeridotCodePage() {
             transition={{ duration: 1.5, repeat: Infinity }}
             className="w-6 h-10 border border-neutral-400 flex items-start justify-center p-2 bg-neutral-50/50 dark:bg-[#0a0a0a]/50"
           >
-            <motion.div className="w-1 h-2 bg-[#349b65]" />
+            <motion.div
+              className="w-1 h-2"
+              style={{ backgroundColor: "var(--brand-1, #349b65)" }}
+            />
           </motion.div>
         </motion.div>
       </section>
@@ -669,7 +684,7 @@ export default function PeridotCodePage() {
             className="text-center mb-16"
           >
             <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-neutral-100 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 mb-6">
-              <FiTerminal className="w-4 h-4 text-[#349b65]" />
+              <FiTerminal className="w-4 h-4 text-neutral-500" />
               <span className="text-sm font-mono text-neutral-600 dark:text-neutral-400">
                 $ ls features/
               </span>
@@ -752,9 +767,18 @@ export default function PeridotCodePage() {
             </div>
 
             <div className="relative">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#349b65]/10 border border-[#349b65]/30 mb-6">
-                <FiCpu className="w-4 h-4 text-[#349b65]" />
-                <span className="text-sm font-mono text-[#349b65]">
+              <div
+                className="inline-flex items-center gap-2 px-3 py-1.5 mb-6"
+                style={{ backgroundColor: "var(--brand-2, #349b6650)" }}
+              >
+                <FiCpu
+                  className="w-4 h-4"
+                  style={{ color: "var(--brand-1, #349b65)" }}
+                />
+                <span
+                  className="text-sm font-mono"
+                  style={{ color: "var(--brand-1, #349b65)" }}
+                >
                   READY_TO_DEPLOY
                 </span>
               </div>
@@ -772,7 +796,7 @@ export default function PeridotCodePage() {
                   href="https://github.com/peridotvault/peridotcode"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-6 py-3 bg-[#349b65] text-white font-medium hover:bg-[#2d7a53] transition-colors font-mono"
+                  className="flex items-center gap-2 px-6 py-3 bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 font-medium hover:bg-neutral-800 dark:hover:bg-neutral-100 transition-colors font-mono"
                 >
                   <FiGithub className="w-4 h-4" />
                   git clone
@@ -781,7 +805,7 @@ export default function PeridotCodePage() {
                   href="https://github.com/peridotvault/peridotcode#readme"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-6 py-3 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 text-neutral-700 dark:text-neutral-300 font-medium hover:border-[#349b65] dark:hover:border-[#349b65] transition-colors font-mono"
+                  className="flex items-center gap-2 px-6 py-3 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 text-neutral-700 dark:text-neutral-300 font-medium hover:border-neutral-400 dark:hover:border-neutral-600 transition-colors font-mono"
                 >
                   <FiTerminal className="w-4 h-4" />
                   README.md
@@ -821,7 +845,8 @@ export default function PeridotCodePage() {
             </div>
 
             <p className="text-neutral-500 text-sm font-mono">
-              <span className="text-[#349b65]">&gt;</span> © 2026 PeridotVault
+              <span style={{ color: "var(--brand-1, #349b65)" }}>&gt;</span> ©
+              2026 PeridotVault
             </p>
           </div>
         </div>
@@ -832,21 +857,21 @@ export default function PeridotCodePage() {
 
 // Terminal content data - defined outside component to avoid closure issues
 const TERMINAL_LINES = [
-  { text: "$ peridotcode init", color: "text-[#349b65]" },
-  { text: "Initializing PeridotCode...", color: "text-neutral-400" },
+  { text: "$ peridotcode init", color: "text-neutral-300" },
+  { text: "Initializing PeridotCode...", color: "text-neutral-500" },
   {
     text: "✓ Detecting game engine: Unity 2022.3 LTS",
-    color: "text-green-400",
+    color: "text-neutral-400",
   },
-  { text: "✓ Loading AI models...", color: "text-green-400" },
-  { text: "✓ Connecting to PeridotVault...", color: "text-green-400" },
-  { text: "", color: "text-neutral-400" },
+  { text: "✓ Loading AI models...", color: "text-neutral-400" },
+  { text: "✓ Connecting to PeridotVault...", color: "text-neutral-400" },
+  { text: "", color: "text-neutral-500" },
   { text: "Ready! Try these commands:", color: "text-neutral-300" },
-  { text: "  • 'generate player controller'", color: "text-blue-400" },
-  { text: "  • 'fix null reference exception'", color: "text-blue-400" },
-  { text: "  • 'optimize shader performance'", color: "text-blue-400" },
-  { text: "", color: "text-neutral-400" },
-  { text: "$ _", color: "text-[#349b65]" },
+  { text: "  • 'generate player controller'", color: "text-neutral-400" },
+  { text: "  • 'fix null reference exception'", color: "text-neutral-400" },
+  { text: "  • 'optimize shader performance'", color: "text-neutral-400" },
+  { text: "", color: "text-neutral-500" },
+  { text: "$ _", color: "text-[#87ee83]" },
 ];
 
 // Terminal typing animation component
@@ -881,7 +906,8 @@ function TerminalContent() {
         <motion.span
           animate={{ opacity: [1, 0] }}
           transition={{ duration: 0.8, repeat: Infinity }}
-          className="inline-block w-2 h-4 bg-[#349b65] ml-1"
+          className="inline-block w-2 h-4 ml-1"
+          style={{ backgroundColor: "var(--brand-3, #87ee83)" }}
         />
       )}
     </div>
