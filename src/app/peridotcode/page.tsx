@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import { motion, useMotionValue, useSpring } from "framer-motion";
+import { motion } from "framer-motion";
 import {
   FiGithub,
   FiStar,
@@ -17,7 +17,6 @@ import {
   FiDownload,
   FiCpu,
 } from "react-icons/fi";
-import Link from "next/link";
 import Image from "next/image";
 
 // Brand Colors (used sparingly - max 10%)
@@ -45,13 +44,23 @@ function GitHubStars() {
   useEffect(() => {
     const fetchStars = async () => {
       try {
-        setStars(0);
+        const res = await fetch(
+          "https://api.github.com/repos/peridotvault/peridotcode",
+          {
+            headers: { Accept: "application/vnd.github.v3+json" },
+          },
+        );
+        if (!res.ok) throw new Error("Failed to fetch");
+        const data = await res.json();
+        setStars(data.stargazers_count);
       } catch {
         // Error handled silently
       }
     };
 
     fetchStars();
+    const interval = setInterval(fetchStars, 60000);
+    return () => clearInterval(interval);
   }, []);
 
   const displayStars = stars !== null ? stars.toLocaleString() : "0";
@@ -492,7 +501,7 @@ export default function PeridotCodePage() {
       {/* Hero Section - Full Page */}
       <section
         id="hero"
-        className="relative min-h-[100dvh] flex items-center justify-center px-4 sm:px-6 lg:px-8 py-20 sm:py-0 overflow-hidden"
+        className="relative min-h-dvh flex items-center justify-center px-4 sm:px-6 lg:px-8 py-20 sm:py-0 overflow-hidden"
       >
         <MatrixRain />
 
