@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
 import { motion } from "framer-motion";
 import {
   FiGithub,
@@ -85,6 +85,7 @@ function GitHubStars() {
 }
 
 // Installation command component
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function InstallCommand() {
   const [copied, setCopied] = useState(false);
   const [activeTab, setActiveTab] = useState<"curl" | "npm" | "bun" | "pnpm">(
@@ -211,7 +212,10 @@ function MatrixRain() {
 // Typing effect component for ASCII art
 function TypingAscii({ text, delay = 0 }: { text: string; delay?: number }) {
   const [displayedLines, setDisplayedLines] = useState<string[]>([]);
-  const lines = text.split("\n").filter((line) => line.trim() !== "");
+  const lines = useMemo(
+    () => text.split("\n").filter((line) => line.trim() !== ""),
+    [text],
+  );
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -229,7 +233,7 @@ function TypingAscii({ text, delay = 0 }: { text: string; delay?: number }) {
     }, delay);
 
     return () => clearTimeout(timeout);
-  }, [text, delay]);
+  }, [text, delay, lines]);
 
   return (
     <div className="font-mono text-neutral-500 text-[10px] sm:text-xs md:text-sm lg:text-base leading-none whitespace-pre overflow-hidden">
@@ -251,33 +255,6 @@ function TypingAscii({ text, delay = 0 }: { text: string; delay?: number }) {
           style={{ backgroundColor: "var(--brand-3, #87ee83)" }}
         />
       )}
-    </div>
-  );
-}
-
-// Glitch text effect component
-function GlitchText({
-  children,
-  className = "",
-}: {
-  children: string;
-  className?: string;
-}) {
-  return (
-    <div className={`relative inline-block ${className}`}>
-      <span className="relative z-10">{children}</span>
-      <span
-        className="absolute top-0 left-0 -z-10 text-red-500 opacity-70 animate-pulse"
-        style={{ clipPath: "inset(0 0 50% 0)", transform: "translateX(2px)" }}
-      >
-        {children}
-      </span>
-      <span
-        className="absolute top-0 left-0 -z-10 text-blue-500 opacity-70 animate-pulse"
-        style={{ clipPath: "inset(50% 0 0 0)", transform: "translateX(-2px)" }}
-      >
-        {children}
-      </span>
     </div>
   );
 }
