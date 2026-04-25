@@ -59,9 +59,7 @@ export const metadata: Metadata = {
     shortcut: "/logo/peridotcode-mark_logo_nobg.png",
     apple: "/logo/peridotcode-mark_logo_withbackground.png",
   },
-  verification: {
-    google: "your-google-verification-code",
-  },
+  verification: {},
   alternates: {
     canonical: "https://peridotvault.com/peridotcode",
   },
@@ -118,11 +116,6 @@ export default function PeridotCodeLayout({
                 "@type": "ImageObject",
                 url: "https://peridotvault.com/logo/peridotcode-horizontal_logo.png",
               },
-            },
-            aggregateRating: {
-              "@type": "AggregateRating",
-              ratingValue: "4.8",
-              ratingCount: "100",
             },
           }),
         }}

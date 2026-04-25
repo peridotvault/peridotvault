@@ -28,6 +28,9 @@ export function createMetadata({
         },
 
         openGraph: {
+            type: "website",
+            locale: "en_US",
+            siteName: SITE.name,
             title,
             description,
             url,

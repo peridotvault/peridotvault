@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import StaggeredMenu from "../shared/components/atoms/StaggeredMenu";
 import { Button } from "@/shared/components/molecules/Button";
 import { SideCorner } from "@/shared/components/atoms/SideCorner";
+import Image from "next/image";
 
 type MenuItem = {
   label: string;
@@ -116,7 +117,14 @@ export const Navbar = () => {
           />
 
           <Link href="/" className="text-2xl flex items-center gap-2">
-            <img src="/Logo-full.png" className="h-8" alt="PeridotVault logo" />
+            <Image
+              src="/Logo-full.png"
+              className="h-8 w-auto"
+              alt="PeridotVault logo"
+              width={160}
+              height={32}
+              priority
+            />
           </Link>
 
           {/* Desktop actions */}
@@ -170,9 +178,13 @@ export const Navbar = () => {
             })}
           </nav>
 
-          <Link href="https://web.peridotvault.com/" target="_blank">
+          <a
+            href="https://web.peridotvault.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <Button>Try Web Version</Button>
-          </Link>
+          </a>
         </div>
       </div>
 

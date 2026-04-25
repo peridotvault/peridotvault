@@ -78,6 +78,11 @@ type ChatMessage = {
   text: string;
 };
 
+const QUESTION_LISTS = [
+  { question: "What is PeridotVault?" },
+  { question: "Tell me all PeridotVault roadmap!" },
+];
+
 function PeriChatSection() {
   const [input, setInput] = useState("");
   const [msgs, setMsgs] = useState<ChatMessage[]>([]);
@@ -88,11 +93,6 @@ function PeriChatSection() {
   const abortRef = useRef<AbortController | null>(null);
 
   useAutosizeTextArea(inputRef, input);
-
-  const questionLists = [
-    { question: "What is PeridotVault?" },
-    { question: "Tell me all PeridotVault roadmap!" },
-  ];
 
   const isEmpty = msgs.length === 0;
 
@@ -237,7 +237,7 @@ function PeriChatSection() {
           </form>
 
           <ol className="w-full border border-border rounded-lg divide-y divide-white/10 overflow-hidden text-left">
-            {questionLists.map((item, idx) => (
+            {QUESTION_LISTS.map((item, idx) => (
               <li key={idx}>
                 <button
                   className="py-4 px-4 w-full text-start hover:bg-white/5 transition"

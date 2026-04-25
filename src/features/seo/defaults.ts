@@ -17,7 +17,7 @@ export function buildRootMetadata(): Metadata {
 
         openGraph: {
             type: "website",
-            locale: "en_EN",
+            locale: "en_US",
             siteName: SITE.name,
             title: SITE.defaultTitle,
             description: SITE.defaultDescription,
@@ -35,6 +35,7 @@ export function buildRootMetadata(): Metadata {
             card: "summary_large_image",
             title: SITE.defaultTitle,
             description: SITE.defaultDescription,
+            creator: "@peridotvault",
             images: [socialImage],
         },
 

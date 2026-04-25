@@ -1,17 +1,43 @@
 import Link from "next/link";
-import AnimatedContent from "../../shared/components/animations/AnimatedContent";
+import dynamic from "next/dynamic";
 import { FeatureHeader } from "../../shared/components/atoms/FeatureHeader";
-import { ContainerGlass } from "../../shared/components/molecules/ContainerGlass";
-import { CarouselCard } from "../../shared/components/molecules/CarouselCard";
 import { LuPuzzle } from "react-icons/lu";
 import { SlWallet } from "react-icons/sl";
 import Image from "next/image";
 import { Button } from "@/shared/components/molecules/Button";
 import { SideCorner } from "@/shared/components/atoms/SideCorner";
 import { ScrollToTop } from "@/shared/components/atoms/ScrollToTop";
-import Tilt from "@/shared/components/atoms/Tilt";
-import { Marquee } from "@/shared/components/atoms/Marquee";
 import ContainerPadding from "@/shared/components/atoms/ContainerPadding";
+import { createMetadata } from "@/features/seo";
+
+const AnimatedContent = dynamic(
+  () => import("../../shared/components/animations/AnimatedContent"),
+);
+const CarouselCard = dynamic(
+  () =>
+    import("../../shared/components/molecules/CarouselCard").then((mod) => ({
+      default: mod.CarouselCard,
+    })),
+);
+const ContainerGlass = dynamic(
+  () =>
+    import("../../shared/components/molecules/ContainerGlass").then(
+      (mod) => ({ default: mod.ContainerGlass }),
+    ),
+);
+const Tilt = dynamic(
+  () => import("@/shared/components/atoms/Tilt"),
+);
+const Marquee = dynamic(
+  () => import("@/shared/components/atoms/Marquee").then((mod) => ({ default: mod.Marquee })),
+);
+
+export const metadata = createMetadata({
+  title: "Intelligent Decentralized Gaming",
+  description:
+    "Your next gaming era starts here personalized by AI and powered by blockchain. PeridotVault gives you control, simplicity, and freedom.",
+  path: "/",
+});
 
 type WhitepaperRoadmapCardProps = {
   id: string;
@@ -124,6 +150,8 @@ function ProductShowcaseSection() {
             alt="Mockup Home Page PeridotVault Desktop"
             width={1280}
             height={720}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1280px"
+            priority
           />
           <div className="w-full h-2/3 bg-linear-to-t from-background absolute bottom-[5%] left-0" />
         </div>
@@ -181,6 +209,7 @@ function AiFeatureSection() {
               draggable={false}
               width={1280}
               height={720}
+              sizes="(max-width: 768px) 100vw, 640px"
             />
           </div>
         </ContainerPadding>
@@ -189,23 +218,73 @@ function AiFeatureSection() {
   );
 }
 
-function GameVaultSection() {
-  const features = [
-    {
-      title: "Buy Games Directly",
-      description: "Purchase your favorite Web2 and Web3 titles seamlessly",
-    },
-    {
-      title: "True Ownership",
-      description: "Own your games as blockchain-backed assets forever",
-    },
-    {
-      title: "Web2 & Web3 in One Place",
-      description:
-        "Play traditional and blockchain games on one seamless platform",
-    },
-  ];
+const GAME_VAULT_FEATURES = [
+  {
+    title: "Buy Games Directly",
+    description: "Purchase your favorite Web2 and Web3 titles seamlessly",
+  },
+  {
+    title: "True Ownership",
+    description: "Own your games as blockchain-backed assets forever",
+  },
+  {
+    title: "Web2 & Web3 in One Place",
+    description:
+      "Play traditional and blockchain games on one seamless platform",
+  },
+];
 
+const NATIVE_WALLET_HIGHLIGHTS = [
+  {
+    title: "Built for Gamers",
+    description:
+      "A wallet that works like magic-effortless, integrated, and ready when you are.",
+    image: "/assets/views/landing/build-for-gamers.webp",
+  },
+  {
+    title: "Secure & Self-Custodial",
+    description:
+      "Your assets are yours-no banks, no middlemen, just pure control.",
+    image: "/assets/views/landing/secure.webp",
+  },
+];
+
+const GALLERY_ITEMS = [
+  {
+    imgUrl: "/img/gallery/team-working.jpg",
+    alt: "Team Working",
+  },
+  {
+    imgUrl: "/img/gallery/founder-judging-participant.jpg",
+    alt: "Founder Judging Participant",
+  },
+  {
+    imgUrl: "/img/gallery/winner-participant-with-founder.jpg",
+    alt: "Winner Participant With Founder",
+  },
+  {
+    imgUrl: "/img/gallery/hackathon-team-discussion.jpg",
+    alt: "Hackathon Team Discussion",
+  },
+  {
+    imgUrl: "/img/gallery/team-working.jpg",
+    alt: "Team Working",
+  },
+  {
+    imgUrl: "/img/gallery/founder-judging-participant.jpg",
+    alt: "Founder Judging Participant",
+  },
+  {
+    imgUrl: "/img/gallery/winner-participant-with-founder.jpg",
+    alt: "Winner Participant With Founder",
+  },
+  {
+    imgUrl: "/img/gallery/hackathon-team-discussion.jpg",
+    alt: "Hackathon Team Discussion",
+  },
+];
+
+function GameVaultSection() {
   return (
     <AnimatedContent>
       <section className="py-24 max-md:py-10">
@@ -216,7 +295,7 @@ function GameVaultSection() {
             description="Experience a new era of gaming with GameVault where buying games is simple, fast, and transparent. Own your collection forever with blockchain-backed security."
           />
           <div className="grid grid-cols-3 max-lg:grid-cols-2 max-md:grid-cols-1 gap-8 max-md:gap-6">
-            {features.map((item) => (
+            {GAME_VAULT_FEATURES.map((item) => (
               <ContainerGlass
                 key={item.title}
                 title={item.title}
@@ -231,21 +310,6 @@ function GameVaultSection() {
 }
 
 function NativeWalletSection() {
-  const highlights = [
-    {
-      title: "Built for Gamers",
-      description:
-        "A wallet that works like magic-effortless, integrated, and ready when you are.",
-      image: "/assets/views/landing/build-for-gamers.webp",
-    },
-    {
-      title: "Secure & Self-Custodial",
-      description:
-        "Your assets are yours-no banks, no middlemen, just pure control.",
-      image: "/assets/views/landing/secure.webp",
-    },
-  ];
-
   return (
     <AnimatedContent>
       <section className="py-24 max-md:py-10">
@@ -257,7 +321,7 @@ function NativeWalletSection() {
           />
 
           <div className="grid grid-cols-2 max-lg:grid-cols-1 gap-8">
-            {highlights.map((item) => (
+            {NATIVE_WALLET_HIGHLIGHTS.map((item) => (
               <div
                 className="aspect-4/3 max-lg:aspect-video max-md:aspect-4/3 border hover:-translate-y-4 duration-300 bg-white/5 backdrop-blur-lg border-border rounded-2xl overflow-hidden"
                 key={item.title}
@@ -270,6 +334,7 @@ function NativeWalletSection() {
                     draggable={false}
                     width={1280}
                     height={720}
+                    sizes="(max-width: 768px) 100vw, 50vw"
                   />
                 </div>
                 <div className="h-full flex flex-col gap-2 p-8 max-md:p-6">
@@ -310,6 +375,7 @@ function WhitepaperRoadmapCard({
           alt={title}
           width={1280}
           height={720}
+          sizes="(max-width: 768px) 100vw, 50vw"
         />
         <div className="bg-linear-to-b from-surface via-surface absolute top-0 w-full h-2/3" />
       </div>
@@ -356,41 +422,6 @@ function WhitepaperRoadmapSection() {
 }
 
 function Gallery() {
-  const listGallery = [
-    {
-      imgUrl: "/img/gallery/team-working.jpg",
-      alt: "Team Working",
-    },
-    {
-      imgUrl: "/img/gallery/founder-judging-participant.jpg",
-      alt: "Founder Judging Participant",
-    },
-    {
-      imgUrl: "/img/gallery/winner-participant-with-founder.jpg",
-      alt: "Winner Participant With Founder",
-    },
-    {
-      imgUrl: "/img/gallery/hackathon-team-discussion.jpg",
-      alt: "Hackathon Team Discussion",
-    },
-    {
-      imgUrl: "/img/gallery/team-working.jpg",
-      alt: "Team Working",
-    },
-    {
-      imgUrl: "/img/gallery/founder-judging-participant.jpg",
-      alt: "Founder Judging Participant",
-    },
-    {
-      imgUrl: "/img/gallery/winner-participant-with-founder.jpg",
-      alt: "Winner Participant With Founder",
-    },
-    {
-      imgUrl: "/img/gallery/hackathon-team-discussion.jpg",
-      alt: "Hackathon Team Discussion",
-    },
-  ];
-
   return (
     <section className="py-24 max-md:py-10 flex flex-col items-center gap-12 overflow-hidden">
       <ContainerPadding className="flex flex-col gap-6 mb-12">
@@ -403,7 +434,7 @@ function Gallery() {
       </ContainerPadding>
       <div className="flex flex-col gap-8 max-w-screen justify-center">
         <Marquee>
-          {listGallery.map((item, index) => (
+          {GALLERY_ITEMS.map((item, index) => (
             <Tilt key={index}>
               <div className="xl:h-110 lg:h-100 md:h-90 h-80 bg-muted rounded-2xl overflow-hidden text-2xl text-black">
                 <Image
@@ -413,6 +444,8 @@ function Gallery() {
                   height={400}
                   draggable={false}
                   className="h-full w-auto object-cover shrink-0"
+                  sizes="(max-width: 768px) 50vw, 33vw"
+                  loading="lazy"
                 />
                 {index}
               </div>

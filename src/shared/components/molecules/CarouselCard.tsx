@@ -63,6 +63,7 @@ export const CarouselCard = () => {
                   className="w-full h-full object-cover opacity-70"
                   alt={item.alt}
                   fill
+                  sizes="(max-width: 768px) 50vw, 33vw"
                 />
               </div>
             </div>

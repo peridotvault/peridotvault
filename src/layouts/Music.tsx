@@ -10,6 +10,7 @@ import {
   FaVolumeHigh,
   FaVolumeOff,
 } from "react-icons/fa6";
+import Image from "next/image";
 
 type PlaylistItem = {
   title: string;
@@ -114,11 +115,13 @@ export const Music = () => {
           {/* music detail  */}
           <div className="flex items-center gap-8 border border-white/10 bg-black/20 p-2 pr-6 rounded-full duration-100">
             <div className="flex items-center">
-              <div className="bg-white/10 h-10 w-10 rounded-full overflow-hidden border border-white/5">
-                <img
+              <div className="bg-white/10 h-10 w-10 rounded-full overflow-hidden border border-white/5 relative">
+                <Image
                   src={PLAYLIST[index].imgUrl}
-                  alt=""
+                  alt={`${PLAYLIST[index].title} album art`}
                   className="w-full h-full object-cover"
+                  width={40}
+                  height={40}
                 />
               </div>
               <div className="leading-3 max-w-0 group-hover:max-w-[30rem] overflow-hidden duration-300 ">

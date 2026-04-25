@@ -169,7 +169,17 @@ function MatrixRain() {
     const columns = Math.floor(canvas.width / 20);
     const drops: number[] = Array(columns).fill(1);
 
-    const draw = () => {
+    let rafId: number;
+    let lastTime = 0;
+    const fps = 20;
+    const interval = 1000 / fps;
+
+    const draw = (time: number) => {
+      rafId = requestAnimationFrame(draw);
+
+      if (time - lastTime < interval) return;
+      lastTime = time - ((time - lastTime) % interval);
+
       ctx.fillStyle = "rgba(10, 10, 10, 0.05)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -193,10 +203,10 @@ function MatrixRain() {
       }
     };
 
-    const interval = setInterval(draw, 50);
+    rafId = requestAnimationFrame(draw);
 
     return () => {
-      clearInterval(interval);
+      cancelAnimationFrame(rafId);
       window.removeEventListener("resize", resize);
     };
   }, []);
@@ -337,6 +347,78 @@ function FAQItem({
   );
 }
 
+const PERIDOTCODE_FEATURES = [
+  {
+    icon: FiBox,
+    title: "Game Engine Support",
+    description:
+      "Native support for Unity, Unreal Engine, Godot, and custom game engines with context-aware suggestions.",
+  },
+  {
+    icon: FiCode,
+    title: "Script Generation",
+    description:
+      "Generate game scripts, AI behaviors, physics logic, and gameplay systems in C#, C++, GDScript, and more.",
+  },
+  {
+    icon: FiZap,
+    title: "Shader Assistant",
+    description:
+      "Create and optimize shaders with AI-powered suggestions for HLSL, GLSL, and ShaderLab.",
+  },
+  {
+    icon: FiGrid,
+    title: "Level Design Tools",
+    description:
+      "Generate level layouts, procedural content, and world-building code with intelligent recommendations.",
+  },
+  {
+    icon: FiMonitor,
+    title: "Debug & Optimize",
+    description:
+      "Identify performance bottlenecks, optimize rendering, and fix bugs with AI-assisted debugging.",
+  },
+  {
+    icon: FiServer,
+    title: "Multiplayer Ready",
+    description:
+      "Build networking code, server architecture, and multiplayer systems with specialized game dev patterns.",
+  },
+];
+
+const PERIDOTCODE_FAQS = [
+  {
+    question: "What is PeridotCode?",
+    answer:
+      "PeridotCode is an open-source AI-powered coding assistant specifically designed for game development. It understands game engine patterns, helps generate gameplay code, shaders, and provides intelligent suggestions tailored to game development workflows.",
+  },
+  {
+    question: "What game engines are supported?",
+    answer:
+      "PeridotCode supports all major game engines including Unity, Unreal Engine, Godot, and custom engines. It understands engine-specific APIs and patterns to provide contextually relevant code suggestions.",
+  },
+  {
+    question: "How do I install PeridotCode?",
+    answer:
+      "Installation is simple! Just run the curl command provided above, or install via npm/bun/pnpm. The setup wizard will guide you through configuration for your specific game engine and get you coding in minutes.",
+  },
+  {
+    question: "Is PeridotCode free to use?",
+    answer:
+      "Yes! PeridotCode is completely free and open source. You can use it for indie games, commercial projects, or anything in between without any licensing fees.",
+  },
+  {
+    question: "Can it help with shaders and graphics?",
+    answer:
+      "Absolutely! PeridotCode can generate and optimize shaders in HLSL, GLSL, and ShaderLab. It understands graphics programming concepts and can help with rendering pipelines, post-processing effects, and more.",
+  },
+  {
+    question: "How does it understand my game project?",
+    answer:
+      "PeridotCode analyzes your project structure, understands your codebase context, and learns your game's architecture. This allows it to provide highly relevant suggestions for gameplay systems, AI behaviors, and more.",
+  },
+];
+
 export default function PeridotCodePage() {
   const [openFAQ, setOpenFAQ] = useState<number | null>(0);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
@@ -348,8 +430,13 @@ export default function PeridotCodePage() {
     setIsClient(true);
     setWindowSize({ width: window.innerWidth, height: window.innerHeight });
 
+    let throttleTimeout: ReturnType<typeof setTimeout> | null = null;
     const handleMouseMove = (e: MouseEvent) => {
-      setMousePos({ x: e.clientX, y: e.clientY });
+      if (throttleTimeout) return;
+      throttleTimeout = setTimeout(() => {
+        setMousePos({ x: e.clientX, y: e.clientY });
+        throttleTimeout = null;
+      }, 16);
     };
 
     const handleResize = () => {
@@ -362,80 +449,13 @@ export default function PeridotCodePage() {
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("resize", handleResize);
+      if (throttleTimeout) clearTimeout(throttleTimeout);
     };
   }, []);
 
-  const features = [
-    {
-      icon: FiBox,
-      title: "Game Engine Support",
-      description:
-        "Native support for Unity, Unreal Engine, Godot, and custom game engines with context-aware suggestions.",
-    },
-    {
-      icon: FiCode,
-      title: "Script Generation",
-      description:
-        "Generate game scripts, AI behaviors, physics logic, and gameplay systems in C#, C++, GDScript, and more.",
-    },
-    {
-      icon: FiZap,
-      title: "Shader Assistant",
-      description:
-        "Create and optimize shaders with AI-powered suggestions for HLSL, GLSL, and ShaderLab.",
-    },
-    {
-      icon: FiGrid,
-      title: "Level Design Tools",
-      description:
-        "Generate level layouts, procedural content, and world-building code with intelligent recommendations.",
-    },
-    {
-      icon: FiMonitor,
-      title: "Debug & Optimize",
-      description:
-        "Identify performance bottlenecks, optimize rendering, and fix bugs with AI-assisted debugging.",
-    },
-    {
-      icon: FiServer,
-      title: "Multiplayer Ready",
-      description:
-        "Build networking code, server architecture, and multiplayer systems with specialized game dev patterns.",
-    },
-  ];
+  const features = PERIDOTCODE_FEATURES;
 
-  const faqs = [
-    {
-      question: "What is PeridotCode?",
-      answer:
-        "PeridotCode is an open-source AI-powered coding assistant specifically designed for game development. It understands game engine patterns, helps generate gameplay code, shaders, and provides intelligent suggestions tailored to game development workflows.",
-    },
-    {
-      question: "What game engines are supported?",
-      answer:
-        "PeridotCode supports all major game engines including Unity, Unreal Engine, Godot, and custom engines. It understands engine-specific APIs and patterns to provide contextually relevant code suggestions.",
-    },
-    {
-      question: "How do I install PeridotCode?",
-      answer:
-        "Installation is simple! Just run the curl command provided above, or install via npm/bun/pnpm. The setup wizard will guide you through configuration for your specific game engine and get you coding in minutes.",
-    },
-    {
-      question: "Is PeridotCode free to use?",
-      answer:
-        "Yes! PeridotCode is completely free and open source. You can use it for indie games, commercial projects, or anything in between without any licensing fees.",
-    },
-    {
-      question: "Can it help with shaders and graphics?",
-      answer:
-        "Absolutely! PeridotCode can generate and optimize shaders in HLSL, GLSL, and ShaderLab. It understands graphics programming concepts and can help with rendering pipelines, post-processing effects, and more.",
-    },
-    {
-      question: "How does it understand my game project?",
-      answer:
-        "PeridotCode analyzes your project structure, understands your codebase context, and learns your game's architecture. This allows it to provide highly relevant suggestions for gameplay systems, AI behaviors, and more.",
-    },
-  ];
+  const faqs = PERIDOTCODE_FAQS;
 
   return (
     <div className="min-h-screen bg-neutral-50 dark:bg-[#0a0a0a] overflow-x-hidden">
@@ -540,7 +560,7 @@ export default function PeridotCodePage() {
                 </span>
               </motion.div>
 
-              <motion.h2
+              <motion.h1
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 1.2 }}
@@ -551,7 +571,7 @@ export default function PeridotCodePage() {
                 Game Development
                 <br />
                 Assistant
-              </motion.h2>
+              </motion.h1>
 
               <motion.p
                 initial={{ opacity: 0, y: 20 }}

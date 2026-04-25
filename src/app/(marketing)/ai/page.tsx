@@ -2,11 +2,18 @@
 
 import { useEffect } from "react";
 import Link from "next/link";
-import AnimatedContent from "../../../shared/components/animations/AnimatedContent";
+import dynamic from "next/dynamic";
 import GlassComponent from "../../../shared/components/atoms/GlassComponent";
-import GradientBlinds from "../../../shared/components/atoms/GradientBlinds";
 import { ContainerGlass } from "../../../shared/components/molecules/ContainerGlass";
 import { Button } from "@/shared/components/molecules/Button";
+import Image from "next/image";
+
+const AnimatedContent = dynamic(
+  () => import("../../../shared/components/animations/AnimatedContent"),
+);
+const GradientBlinds = dynamic(
+  () => import("../../../shared/components/atoms/GradientBlinds"),
+);
 
 export default function AiRoutePage() {
   useEffect(() => {
@@ -70,11 +77,13 @@ function AiAboutSection() {
       className="py-24 max-md:py-10 flex items-center w-full max-w-(--container-max-width) px-8 gap-8 max-md:flex-col"
     >
       <div className="w-full max-md:aspect-video overflow-hidden rounded-3xl aspect-4/3">
-        <img
+        <Image
           src="/assets/views/ai/recommendation.gif"
           draggable={false}
           className="bg-surface w-full h-full object-cover"
-          alt=""
+          alt="AI game recommendation interface animation"
+          width={1280}
+          height={720}
         />
       </div>
       <div className="w-full flex flex-col gap-4  max-md:gap-2">
@@ -90,6 +99,55 @@ function AiAboutSection() {
     </section>
   );
 }
+
+const AI_COMPANION_FEATURES = [
+  {
+    title: "Real-time Tactical Support",
+    description:
+      "Get instant strategic tips while you play, tailored to your current in-game situation",
+  },
+  {
+    title: "Learns and Adapts Your Playstyle",
+    description:
+      "Receive intelligent prompts based on what is happening in your game right when you need them.",
+  },
+  {
+    title: "Context-aware Suggestions",
+    description:
+      "The more you play, the smarter it gets. Evolving to fit your unique gaming habits.",
+  },
+];
+
+const RECOMMENDATION_HIGHLIGHTS = [
+  {
+    title: "Custom-tailored Game Suggestions",
+    description:
+      "Discover games picked specifically for you, based on your interests and play history",
+  },
+  {
+    title: "Continuous Learning Interactions",
+    description:
+      "The system improves over time by understanding how you browse, play, and engage",
+  },
+];
+
+const GAME_NIGHT_FEATURES = [
+  {
+    title: "Intelligent Scheduling",
+    description:
+      "Automatically plans sessions by matching players' schedules for the perfect game time",
+  },
+  {
+    title: "Game Suggestions",
+    description:
+      "Recommends games everyone will enjoy, based on shared interests and past activity",
+  },
+  {
+    title: "Smart Reminders",
+    description:
+      "Sends timely notifications to keep everyone in sync before and after game night.",
+  },
+];
 
 function AiCompanionSection() {
   const features = [
@@ -133,16 +191,18 @@ function AiCompanionSection() {
               </p>
             </div>
             <div className="w-1/2 rounded-2xl overflow-hidden aspect-video max-md:w-full max-md:aspect-video">
-              <img
+              <Image
                 src="/assets/views/landing/ai.gif"
                 draggable={false}
-                alt=""
+                alt="AI Companion providing in-game tactical support"
                 className="w-full h-full object-cover"
+                width={1280}
+                height={720}
               />
             </div>
           </div>
           <div className="grid grid-cols-3 max-lg:grid-cols-2 max-md:grid-cols-1 gap-8">
-            {features.map((item) => (
+            {AI_COMPANION_FEATURES.map((item) => (
               <GlassComponent
                 key={item.title}
                 className="aspect-4/3 max-md:aspect-video border rounded-2xl flex flex-col gap-8 py-8 max-md:py-6 max-md:gap-6 bg-white/5 backdrop-blur-md border-border hover:bg-primary duration-300"
@@ -161,19 +221,6 @@ function AiCompanionSection() {
 }
 
 function PersonalizedRecommendationsSection() {
-  const highlights = [
-    {
-      title: "Custom-tailored Game Suggestions",
-      description:
-        "Discover games picked specifically for you, based on your interests and play history",
-    },
-    {
-      title: "Continuous Learning Interactions",
-      description:
-        "The system improves over time by understanding how you browse, play, and engage",
-    },
-  ];
-
   return (
     <AnimatedContent>
       <section className="max-w-(--container-max-width) px-8 py-24 w-full flex flex-col items-center gap-8 max-md:gap-6 max-md:py-10">
@@ -189,11 +236,14 @@ function PersonalizedRecommendationsSection() {
 
         <div className="w-full grid grid-cols-5 max-lg:grid-cols-2 gap-8">
           <div className="col-span-3 max-lg:col-span-2 relative max-lg:aspect-video overflow-hidden rounded-2xl">
-            <img
+            <Image
               src="/assets/views/ai/gaming.webp"
-              alt=""
+              alt="Personalized game recommendations across traditional and blockchain games"
               className="w-full h-full absolute top-0 left-0 object-cover"
               draggable={false}
+              width={1280}
+              height={720}
+              sizes="(max-width: 768px) 100vw, 60vw"
             />
             <h3 className="absolute bottom-0 left-0 p-12 max-md:p-8 text-3xl max-md:text-2xl">
               Enjoy personalized suggestions across both traditional and
@@ -201,7 +251,7 @@ function PersonalizedRecommendationsSection() {
             </h3>
           </div>
           <div className="col-span-2 grid max-lg:grid-cols-2 max-md:grid-cols-1 gap-8">
-            {highlights.map((item) => (
+            {RECOMMENDATION_HIGHLIGHTS.map((item) => (
               <div
                 key={item.title}
                 className="aspect-4/3 max-md:aspect-video border rounded-2xl flex flex-col gap-8 py-8 bg-white/5 backdrop-blur-md border-border hover:bg-primary duration-300 max-md:py-6 max-md:gap-6"
@@ -221,24 +271,6 @@ function PersonalizedRecommendationsSection() {
 }
 
 function GameNightPlannerSection() {
-  const features = [
-    {
-      title: "Intelligent Scheduling",
-      description:
-        "Automatically plans sessions by matching players' schedules for the perfect game time",
-    },
-    {
-      title: "Game Suggestions",
-      description:
-        "Recommends games everyone will enjoy, based on shared interests and past activity",
-    },
-    {
-      title: "Smart Reminders",
-      description:
-        "Sends timely notifications to keep everyone in sync before and after game night.",
-    },
-  ];
-
   return (
     <AnimatedContent>
       <section className="max-w-(--container-max-width) px-8 py-24 max-md:py-10 w-full flex flex-col gap-12 max-md:gap-6">
@@ -253,7 +285,7 @@ function GameNightPlannerSection() {
           </p>
         </div>
         <div className="grid grid-cols-3 max-lg:grid-cols-2 max-md:grid-cols-1 gap-8 max-md:gap-6">
-          {features.map((item) => (
+          {GAME_NIGHT_FEATURES.map((item) => (
             <ContainerGlass
               key={item.title}
               title={item.title}

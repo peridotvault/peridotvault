@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import roadmapData from "../../../assets/roadmap.json";
-import FaultyTerminal from "../../../shared/components/atoms/FaultyTerminal";
+import dynamic from "next/dynamic";
 import SpotlightCard from "../../../shared/components/atoms/SpotlightCard";
 import {
   FaCheck,
@@ -10,6 +10,10 @@ import {
   FaChevronRight,
   FaCircleNotch,
 } from "react-icons/fa6";
+
+const FaultyTerminal = dynamic(
+  () => import("../../../shared/components/atoms/FaultyTerminal"),
+);
 
 type RoadmapItem = {
   title: string;

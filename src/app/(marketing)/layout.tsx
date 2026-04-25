@@ -1,9 +1,11 @@
 import { ReactNode } from "react";
 import "@/shared/styles/globals.css";
 import { Footer } from "@/layouts/Footer";
-import { Music } from "@/layouts/Music";
 import { Navbar } from "@/layouts/Navbar";
 import { FrameInvertedRadius } from "@/layouts/FrameInvertedRadius";
+import dynamic from "next/dynamic";
+
+const Music = dynamic(() => import("@/layouts/Music").then((mod) => ({ default: mod.Music })));
 
 export default function MarketingLayout({
   children,
