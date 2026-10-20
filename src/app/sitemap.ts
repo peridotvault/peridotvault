@@ -29,6 +29,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
             priority: 0.8,
         },
         {
+            url: `${SITE_URL}/peridot-id`,
+            lastModified: new Date(),
+            changeFrequency: 'weekly',
+            priority: 0.8,
+        },
+        {
             url: `${SITE_URL}/peridotcode`,
             lastModified: new Date(),
             changeFrequency: 'weekly',
