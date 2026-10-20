@@ -11,6 +11,15 @@ const nextConfig: NextConfig = {
     ],
     formats: ["image/avif", "image/webp"],
   },
+  async redirects() {
+    return [
+      {
+        source: "/peridot-id",
+        destination: "/identity",
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     return [
       {
