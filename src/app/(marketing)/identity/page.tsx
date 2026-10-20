@@ -7,7 +7,7 @@ export const metadata = createMetadata({
   title: "Peridot ID — One gaming identity for players and developers",
   description:
     "PeridotID is a free gaming identity with a built-in web3 wallet for players, studios, and developers.",
-  path: "/peridot-id",
+  path: "/identity",
   image: `${SITE.domain}/seo/social-preview.png`,
 });
 
@@ -128,9 +128,9 @@ export default function PeridotIdPage() {
   return (
     <div className="mx-auto w-full max-w-(--container-max-width) px-8 py-24 max-md:py-12 flex flex-col gap-20 max-md:gap-12">
       {/* 1. Hero */}
-      <section aria-labelledby="peridot-id-heading" className="flex flex-col gap-6">
+      <section aria-labelledby="identity-heading" className="flex flex-col gap-6">
         <Breadcrumb />
-        <h1 id="peridot-id-heading" className="text-5xl font-bold max-md:text-3xl">
+        <h1 id="identity-heading" className="text-5xl font-bold max-md:text-3xl">
           Peridot ID
         </h1>
         <p className="text-xl text-neutral-300 max-md:text-lg">
