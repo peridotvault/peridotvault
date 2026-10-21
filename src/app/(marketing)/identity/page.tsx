@@ -1,4 +1,3 @@
-import Link from "next/link";
 import dynamic from "next/dynamic";
 import { createMetadata } from "@/features/seo";
 import { SITE } from "@/features/seo/site.config";
@@ -11,7 +10,6 @@ import {
   LuBadgeCheck,
   LuCode,
   LuShieldCheck,
-  LuSparkles,
 } from "react-icons/lu";
 
 const AnimatedContent = dynamic(
@@ -23,6 +21,8 @@ const ContainerGlass = dynamic(
       default: mod.ContainerGlass,
     })),
 );
+import { BurnHero } from "@/features/peridot-id/components/burn-hero";
+import { AppShowcase } from "@/features/peridot-id/components/app-showcase";
 
 export const metadata = createMetadata({
   title: "Peridot ID — One gaming identity for players and developers",
@@ -114,95 +114,11 @@ const FAQS = [
     q: "How is this different from privy.io?",
     a: "Privy offers general embedded wallets for apps. PeridotID is gaming-native: identity, cross-game profiles, shared sessions, and a player wallet bundled as one integration built for games.",
   },
+  {
+    q: "How do you estimate Privy and ZeroDev costs?",
+    a: "The hero calculator multiplies users × actions per day × 30. For Privy we apply the public tier base ($299 Core, $499 Scale, $2,000 PAYG past 10,000 MAU) plus $0.01 per signature past the 50,000 included signatures. For ZeroDev we count each action as one wallet signature (10 credits), apply $69 Launch up to 100,000 credits and $399 Scale up to 1,000,000 credits, plus $0.001 per credit beyond that. Gas-sponsorship premiums are excluded, so real bills can be higher. Sources: privy.io/pricing and zerodev.app/pricing.",
+  },
 ] as const;
-
-function Breadcrumb() {
-  return (
-    <nav aria-label="Breadcrumb" className="text-sm text-neutral-400">
-      <ol className="flex items-center gap-2">
-        <li>
-          <Link
-            href="/"
-            className={`underline underline-offset-4 ${FOCUS_RING}`}
-          >
-            Home
-          </Link>
-        </li>
-        <li aria-hidden="true">/</li>
-        <li aria-current="page" className="text-neutral-200">
-          Peridot ID
-        </li>
-      </ol>
-    </nav>
-  );
-}
-
-function IdentityHeroSection() {
-  return (
-    <section aria-labelledby="identity-heading" className="w-full p-4">
-      <div className="relative flex min-h-[70dvh] w-full flex-col items-center justify-center overflow-hidden rounded-2xl bg-surface px-8 py-24 text-center max-md:py-16">
-        <div
-          aria-hidden="true"
-          className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(77,138,106,0.35),transparent_60%)]"
-        />
-        <div
-          aria-hidden="true"
-          className="absolute inset-x-0 bottom-0 h-1/3 bg-linear-to-t from-background/60 to-transparent"
-        />
-        <div className="relative flex flex-col items-center gap-6 max-md:gap-4">
-          <span className="rounded-lg px-4 py-2 text-base ring-1 ring-accent/30 shadow-xl shadow-accent/30 max-md:text-sm">
-            PeridotID · Free gaming identity
-          </span>
-          <h1
-            id="identity-heading"
-            className="text-6xl font-bold max-md:text-3xl"
-          >
-            Peridot ID
-          </h1>
-          <p className="max-w-200 text-xl text-neutral-300 max-md:text-base">
-            One gaming identity for players, games, and developers.
-          </p>
-          <div className="flex gap-6 max-md:w-full max-md:flex-col max-md:gap-4">
-            <a
-              href={PERIDOT_URLS.app}
-              target="_blank"
-              rel={EXTERNAL_REL}
-              aria-label="Launch the PeridotID app (opens in a new tab)"
-              className={`rounded-xl ${FOCUS_RING}`}
-            >
-              <Button tabIndex={-1}>Launch the app</Button>
-            </a>
-            <Link href="#what-is" className={`rounded-lg ${FOCUS_RING}`}>
-              <GlassComponent className="flex min-h-[44px] items-center justify-center overflow-hidden rounded-lg px-6 py-3 duration-300 hover:bg-surface hover:text-white text-label">
-                <p>How it works</p>
-              </GlassComponent>
-            </Link>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function WhatIsSection() {
-  return (
-    <AnimatedContent>
-      <section
-        id="what-is"
-        aria-label="What is PeridotID?"
-        className="w-full scroll-mt-24 py-24 max-md:py-10"
-      >
-        <ContainerPadding>
-          <FeatureHeader
-            Icon={LuSparkles}
-            title="What is PeridotID?"
-            description="PeridotID (Peridot Identity) is a unified sign-in for gaming. One identity gives players a profile and sessions that follow them game-to-game, and gives studios and developers a ready-made way to handle players without building auth from scratch."
-          />
-        </ContainerPadding>
-      </section>
-    </AnimatedContent>
-  );
-}
 
 function AudiencesSection() {
   return (
@@ -443,11 +359,8 @@ function FinalCtaSection() {
 export default function PeridotIdPage() {
   return (
     <div className="flex flex-col items-center justify-center">
-      <ContainerPadding className="pt-6">
-        <Breadcrumb />
-      </ContainerPadding>
-      <IdentityHeroSection />
-      <WhatIsSection />
+      <BurnHero />
+      <AppShowcase />
       <AudiencesSection />
       <ProductsSection />
       <DevelopersSection />

@@ -23,7 +23,7 @@ const nextConfig: NextConfig = {
   async headers() {
     return [
       {
-        source: "/(.*)",
+        source: "/_next/static/:path*",
         headers: [
           {
             key: "Cache-Control",

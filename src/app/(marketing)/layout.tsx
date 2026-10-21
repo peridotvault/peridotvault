@@ -16,7 +16,7 @@ export default function MarketingLayout({
     <div>
       <FrameInvertedRadius />
       <Navbar />
-      <main className="flex flex-col w-full overflow-hidden min-h-screen justify-between p-2">
+      <main className="flex flex-col w-full overflow-x-clip min-h-screen justify-between p-2">
         {children}
       </main>
       <Music />
