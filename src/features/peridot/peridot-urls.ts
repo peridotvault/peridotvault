@@ -10,8 +10,7 @@ const dashboardUrl =
   process.env.NEXT_PUBLIC_PERIDOT_DASHBOARD_URL ??
   "https://dashboard.peridot.id";
 const docsUrl =
-  process.env.NEXT_PUBLIC_PERIDOT_DOCS_URL ??
-  "https://docs.peridotvault.com/";
+  process.env.NEXT_PUBLIC_PERIDOT_DOCS_URL ?? "https://docs.peridot.id";
 
 export const PERIDOT_URLS = {
   /** Public PeridotID app: https://peridot.id */

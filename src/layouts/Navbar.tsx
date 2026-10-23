@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import StaggeredMenu from "../shared/components/atoms/StaggeredMenu";
 import { Button } from "@/shared/components/molecules/Button";
+import { PERIDOT_URLS } from "@/features/peridot/peridot-urls";
 import { SideCorner } from "@/shared/components/atoms/SideCorner";
 import Image from "next/image";
 
@@ -47,6 +48,13 @@ export const Navbar = () => {
       target: "_self",
       type: "route",
     },
+    {
+      label: "Identity",
+      ariaLabel: "Peridot ID gaming identity",
+      link: "/identity",
+      target: "_self",
+      type: "route",
+    },
 
     // 🔹 Team sekarang link ke "/#team"
     {
@@ -60,7 +68,7 @@ export const Navbar = () => {
     {
       label: "Docs",
       ariaLabel: "Go to docs",
-      link: "https://docs.peridotvault.com/",
+      link: PERIDOT_URLS.docs,
       target: "_blank",
       type: "external",
     },

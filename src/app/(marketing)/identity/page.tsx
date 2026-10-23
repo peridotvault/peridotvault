@@ -1,7 +1,24 @@
-import Link from "next/link";
+import dynamic from "next/dynamic";
+import Image from "next/image";
 import { createMetadata } from "@/features/seo";
 import { SITE } from "@/features/seo/site.config";
-import { PERIDOT_URLS } from "@/features/peridot/peridot-urls";
+import { FeatureHeader } from "@/shared/components/atoms/FeatureHeader";
+import ContainerPadding from "@/shared/components/atoms/ContainerPadding";
+import { LuBadgeCheck, LuLayers } from "react-icons/lu";
+
+const AnimatedContent = dynamic(
+  () => import("@/shared/components/animations/AnimatedContent"),
+);
+const ContainerGlass = dynamic(
+  () =>
+    import("@/shared/components/molecules/ContainerGlass").then((mod) => ({
+      default: mod.ContainerGlass,
+    })),
+);
+import { BurnHero } from "@/features/peridot-id/components/burn-hero";
+import Pricing7 from "@/features/peridot-id/components/pricing-7";
+import BentoStack from "@/features/peridot-id/components/bento-stack";
+import BentoSecure from "@/features/peridot-id/components/bento-secure";
 
 export const metadata = createMetadata({
   title: "Peridot ID — One gaming identity for players and developers",
@@ -10,14 +27,6 @@ export const metadata = createMetadata({
   path: "/identity",
   image: `${SITE.domain}/seo/social-preview.png`,
 });
-
-const EXTERNAL_REL = "noopener noreferrer";
-const FOCUS_RING =
-  "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent";
-const CARD =
-  "rounded-2xl border border-white/10 bg-surface p-6 flex flex-col gap-3";
-const CTA_PRIMARY = `inline-flex min-h-[44px] items-center justify-center rounded-xl bg-accent px-6 py-3 text-sm font-medium text-background ${FOCUS_RING}`;
-const CTA_SECONDARY = `inline-flex min-h-[44px] items-center justify-center rounded-xl border border-white/15 px-6 py-3 text-sm font-medium ${FOCUS_RING}`;
 
 const AUDIENCES = [
   {
@@ -34,305 +43,132 @@ const AUDIENCES = [
   },
 ] as const;
 
-const PRODUCTS = [
+const FEATURE = [
   {
-    title: "Web3 wallet",
-    body: "A wallet built for players, bundled with their identity.",
-    bullets: [
-      "Your game assets and collectibles live beside your profile",
-      "Works on the blockchain you choose at transaction time",
-      "No separate wallet install needed to start playing",
-    ],
-    cta: { label: "Open the app", href: PERIDOT_URLS.app },
+    title: "Seamless Login",
+    description: "Sign in with Google, Apple, email, or passkey. Your wallet is created silently — no seed phrases, no installs.",
+    image_url: "/assets/pebbo/sign-in.webp",
+    image_alt: "Seamless Peridot ID login"
   },
   {
-    title: "Profiles & sessions",
-    body: "One profile that carries progress and identity across games.",
-    bullets: [
-      "Shared sign-in and sessions across Peridot games",
-      "Player profile that follows players game-to-game",
-      "Studios skip building auth and account plumbing",
-    ],
-    cta: { label: "Explore the app", href: PERIDOT_URLS.app },
+    title: "Built for Play",
+    description: "Sessions, profiles, and progress that travel across every Peridot game. Log in once, pick up anywhere.",
+    image_url: "/assets/pebbo/play.webp",
+    image_alt: "Peridot ID built for play"
+  },
+  {
+    title: "US Stocks, In-Wallet",
+    description: "Buy NVDA, Netflix, and more straight from your Peridot wallet. Games and investments, one balance.",
+    image_url: "/assets/pebbo/us-stock.webp",
+    image_alt: "US Stocks in Peridot wallet"
   },
 ] as const;
 
-const DEV_STEPS = [
-  {
-    title: "Create a project",
-    body: "Register your game in the developer dashboard to get started.",
-  },
-  {
-    title: "Add PeridotID to your game",
-    body: "Follow the integration guide to add sign-in, profiles, and the wallet to your client.",
-  },
-  {
-    title: "Go live",
-    body: "Launch to players with the same identity across every title you ship.",
-  },
-] as const;
-
-const FAQS = [
-  {
-    q: "Is PeridotID free?",
-    a: "Yes. There is no seat fee and no API-call fee for players, studios, or developers. Peridot earns a fee on on-chain transaction fees on the blockchain the user chooses — nothing else.",
-  },
-  {
-    q: "Which blockchains does it work with?",
-    a: "Transactions settle on the blockchain the user chooses at transaction time. We do not lock players or studios into a single chain.",
-  },
-  {
-    q: "Do players need a wallet before they start?",
-    a: "No. The wallet is bundled with the player's PeridotID, so players can sign in and play without installing a separate wallet first.",
-  },
-  {
-    q: "How do developers start integrating?",
-    a: "Create a project in the developer dashboard, follow the integration guide to add PeridotID to your game, then go live. The developer section above links both the dashboard and the docs.",
-  },
-  {
-    q: "Where do a player's keys and assets live?",
-    a: "The player's wallet and assets are tied to their PeridotID and travel with their profile from game to game. For recovery and custody specifics, check the docs and the app's current guidance.",
-  },
-  {
-    q: "How is this different from privy.io?",
-    a: "Privy offers general embedded wallets for apps. PeridotID is gaming-native: identity, cross-game profiles, shared sessions, and a player wallet bundled as one integration built for games.",
-  },
-] as const;
-
-function Breadcrumb() {
+function FeaturesSection() {
   return (
-    <nav aria-label="Breadcrumb" className="text-sm text-neutral-400">
-      <ol className="flex items-center gap-2">
-        <li>
-          <Link
-            href="/"
-            className={`underline underline-offset-4 ${FOCUS_RING}`}
-          >
-            Home
-          </Link>
-        </li>
-        <li aria-hidden="true">/</li>
-        <li aria-current="page" className="text-neutral-200">
-          Peridot ID
-        </li>
-      </ol>
-    </nav>
+    <AnimatedContent>
+      <section aria-labelledby="features" className="w-full py-24 max-md:py-10">
+        <ContainerPadding className="flex flex-col items-center gap-12 max-md:gap-8">
+          <FeatureHeader
+            Icon={LuLayers}
+            title="One ID, everything included"
+            description="Login, play, and invest — three superpowers bundled into a single gaming identity."
+          />
+          <div className="grid w-full grid-cols-3 gap-8 max-lg:grid-cols-2 max-md:grid-cols-1 max-md:gap-6">
+            {FEATURE.map((f) => (
+              <div key={f.title} className="border bg-white/5 backdrop-blur-lg border-border duration-300 hover:-translate-y-4 overflow-hidden">
+                <div className="w-full aspect-square bg-background p-10 max-md:p-6">
+                  <Image
+                    src={f.image_url}
+                    className="w-full h-full object-cover opacity-80"
+                    alt={f.image_alt}
+                    draggable={false}
+                    width={1280}
+                    height={720}
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="h-full flex flex-col gap-2 p-8 max-md:p-6">
+                  <h3 className="text-2xl max-md:text-xl font-semibold">
+                    <span id="features">{f.title}</span>
+                  </h3>
+                  <p className="text-paragraph text-lg max-md:text-base">
+                    {f.description}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </ContainerPadding>
+      </section>
+    </AnimatedContent>
   );
 }
 
-function SectionHeading({ children }: { children: React.ReactNode }) {
-  return <h2 className="text-3xl font-bold max-md:text-2xl">{children}</h2>;
+function AudiencesSection() {
+  return (
+    <AnimatedContent>
+      <section aria-labelledby="for-whom" className="w-full py-24 max-md:py-10">
+        <ContainerPadding className="flex flex-col items-center gap-12 max-md:gap-8">
+          <h2 className="bg-linear-to-tr from-primary via-accent to-accent bg-clip-text text-transparent text-center text-5xl font-bold max-md:text-3xl">
+            <span id="for-whom">Who PeridotID is for</span>
+          </h2>
+          <div className="grid w-full grid-cols-3 max-lg:grid-cols-2 max-md:grid-cols-1 gap-8 max-md:gap-6">
+            {AUDIENCES.map((a) => (
+              <ContainerGlass key={a.title} title={a.title} description={a.body} sharp />
+            ))}
+          </div>
+        </ContainerPadding>
+      </section>
+    </AnimatedContent>
+  );
+}
+
+function StackSection() {
+  return (
+    <AnimatedContent>
+      <section aria-labelledby="stack" className="w-full py-24 max-md:py-10">
+        <ContainerPadding className="flex flex-col items-center gap-12 max-md:gap-8">
+          <div className="grid w-full grid-cols-2 max-md:grid-cols-1 gap-8 max-md:gap-6">
+            <BentoStack />
+            <BentoSecure />
+          </div>
+        </ContainerPadding>
+      </section>
+    </AnimatedContent>
+  );
+}
+
+function PricingSection() {
+  return (
+    <AnimatedContent>
+      <section
+        id="pricing"
+        aria-label="Completely free to use"
+        className="w-full py-24 max-md:py-10"
+      >
+        <ContainerPadding className="flex flex-col gap-12 max-md:gap-8">
+          <FeatureHeader
+            Icon={LuBadgeCheck}
+            title="Completely free to use"
+            description="PeridotID is completely free: no seat fee and no API-call fee for players, studios, or developers. Peridot earns a fee on on-chain transaction fees on the blockchain the user chooses. There is no hidden SDK fee."
+          />
+          <Pricing7 />
+        </ContainerPadding>
+      </section>
+    </AnimatedContent>
+  );
 }
 
 export default function PeridotIdPage() {
   return (
-    <div className="mx-auto w-full max-w-(--container-max-width) px-8 py-24 max-md:py-12 flex flex-col gap-20 max-md:gap-12">
-      {/* 1. Hero */}
-      <section aria-labelledby="identity-heading" className="flex flex-col gap-6">
-        <Breadcrumb />
-        <h1 id="identity-heading" className="text-5xl font-bold max-md:text-3xl">
-          Peridot ID
-        </h1>
-        <p className="text-xl text-neutral-300 max-md:text-lg">
-          One gaming identity for players, games, and developers.
-        </p>
-        <div>
-          <a
-            href={PERIDOT_URLS.app}
-            target="_blank"
-            rel={EXTERNAL_REL}
-            aria-label="Visit the PeridotID app site (opens in a new tab)"
-            className={`${CTA_SECONDARY} min-h-[44px]`}
-          >
-            Visit peridot.id
-          </a>
-        </div>
-      </section>
-
-      {/* 2. What is PeridotID */}
-      <section aria-labelledby="what-is" className="flex flex-col gap-4">
-        <SectionHeading>
-          <span id="what-is">What is PeridotID?</span>
-        </SectionHeading>
-        <p className="text-lg text-neutral-300">
-          PeridotID (Peridot Identity) is a unified sign-in for gaming. One
-          identity gives players a profile and sessions that follow them
-          game-to-game, and gives studios and developers a ready-made way to
-          handle players without building auth from scratch.
-        </p>
-      </section>
-
-      {/* 3. Who it is for */}
-      <section aria-labelledby="for-whom" className="flex flex-col gap-6">
-        <SectionHeading>
-          <span id="for-whom">Who PeridotID is for</span>
-        </SectionHeading>
-        <div className="grid grid-cols-3 gap-4 max-md:grid-cols-1">
-          {AUDIENCES.map((a) => (
-            <article key={a.title} className={CARD}>
-              <h3 className="text-xl font-semibold">{a.title}</h3>
-              <p className="text-neutral-300">{a.body}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      {/* 4. Products incl. web3 wallet */}
-      <section aria-labelledby="products" className="flex flex-col gap-6">
-        <SectionHeading>
-          <span id="products">Products, including the web3 wallet</span>
-        </SectionHeading>
-        <div className="grid grid-cols-2 gap-4 max-md:grid-cols-1">
-          {PRODUCTS.map((p) => (
-            <article key={p.title} className={CARD}>
-              <h3 className="text-xl font-semibold">{p.title}</h3>
-              <p className="text-neutral-300">{p.body}</p>
-              <ul className="list-disc pl-5 text-neutral-300 flex flex-col gap-1">
-                {p.bullets.map((b) => (
-                  <li key={b}>{b}</li>
-                ))}
-              </ul>
-              <div className="mt-auto pt-2">
-                <a
-                  href={p.cta.href}
-                  target="_blank"
-                  rel={EXTERNAL_REL}
-                  aria-label={`${p.cta.label} in the PeridotID app (opens in a new tab)`}
-                  className={`${CTA_SECONDARY} mt-2`}
-                >
-                  {p.cta.label}
-                </a>
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      {/* 5. Developers */}
-      <section aria-labelledby="developers" className="flex flex-col gap-6">
-        <SectionHeading>
-          <span id="developers">Build on PeridotID</span>
-        </SectionHeading>
-        <p className="text-lg text-neutral-300">
-          Gaming-native identity integration — profiles, sessions, and wallet
-          bundled — with a free tier for getting started.
-        </p>
-        <ol className="grid grid-cols-3 gap-4 max-md:grid-cols-1 list-none p-0">
-          {DEV_STEPS.map((s, i) => (
-            <li key={s.title} className={CARD}>
-              <span
-                aria-hidden="true"
-                className="text-sm font-semibold text-accent"
-              >
-                Step {i + 1}
-              </span>
-              <h3 className="text-xl font-semibold">{s.title}</h3>
-              <p className="text-neutral-300">{s.body}</p>
-            </li>
-          ))}
-        </ol>
-        <div className="flex gap-4 max-md:flex-col">
-          <a
-            href={PERIDOT_URLS.dashboard}
-            target="_blank"
-            rel={EXTERNAL_REL}
-            aria-label="Open the PeridotID developer dashboard (opens in a new tab)"
-            className={CTA_PRIMARY}
-          >
-            Open developer dashboard
-          </a>
-          <a
-            href={PERIDOT_URLS.docs}
-            target="_blank"
-            rel={EXTERNAL_REL}
-            aria-label="Read the Peridot developer docs (opens in a new tab)"
-            className={CTA_SECONDARY}
-          >
-            Read the docs
-          </a>
-        </div>
-      </section>
-
-      {/* 6. Pricing */}
-      <section aria-labelledby="pricing" className="flex flex-col gap-4">
-        <SectionHeading>
-          <span id="pricing">Completely free to use</span>
-        </SectionHeading>
-        <p className="text-lg text-neutral-300">
-          PeridotID is completely free: no seat fee and no API-call fee for
-          players, studios, or developers. Peridot earns a fee on on-chain
-          transaction fees on the blockchain the user chooses. There is no
-          hidden SDK fee.
-        </p>
-      </section>
-
-      {/* 7. Security */}
-      <section aria-labelledby="security" className="flex flex-col gap-4">
-        <SectionHeading>
-          <span id="security">Security basics</span>
-        </SectionHeading>
-        <p className="text-lg text-neutral-300">
-          PeridotID sessions are scoped per product, and outbound links on
-          this page open with evaluated referrer protections. We describe
-          only what exists today — check the docs and the app for current
-          account-protection guidance.
-        </p>
-      </section>
-
-      {/* 8. FAQ */}
-      <section aria-labelledby="faq" className="flex flex-col gap-6">
-        <SectionHeading>
-          <span id="faq">Frequently asked questions</span>
-        </SectionHeading>
-        <div className="flex flex-col gap-3">
-          {FAQS.map((f) => (
-            <details
-              key={f.q}
-              className="group rounded-2xl border border-white/10 bg-surface px-6 py-4"
-            >
-              <summary
-                className={`min-h-[44px] cursor-pointer list-none text-lg font-medium flex items-center justify-between gap-4 [&::-webkit-details-marker]:hidden ${FOCUS_RING} rounded-lg`}
-              >
-                {f.q}
-                <span aria-hidden="true" className="text-accent shrink-0">
-                  +
-                </span>
-              </summary>
-              <p className="pt-2 text-neutral-300">{f.a}</p>
-            </details>
-          ))}
-        </div>
-      </section>
-
-      {/* 9. Dual CTA */}
-      <section
-        aria-labelledby="get-started"
-        className="flex flex-col items-center gap-6 rounded-2xl border border-white/10 bg-surface p-10 text-center max-md:p-6"
-      >
-        <SectionHeading>
-          <span id="get-started">Get started with PeridotID</span>
-        </SectionHeading>
-        <div className="flex gap-4 max-md:flex-col max-md:w-full">
-          <a
-            href={PERIDOT_URLS.app}
-            target="_blank"
-            rel={EXTERNAL_REL}
-            aria-label="Launch the PeridotID app (opens in a new tab)"
-            className={`${CTA_PRIMARY} max-md:w-full`}
-          >
-            Launch the app
-          </a>
-          <a
-            href={PERIDOT_URLS.dashboard}
-            target="_blank"
-            rel={EXTERNAL_REL}
-            aria-label="Go to the PeridotID developer dashboard (opens in a new tab)"
-            className={`${CTA_SECONDARY} max-md:w-full`}
-          >
-            Go to developer dashboard
-          </a>
-        </div>
-      </section>
+    <div className="flex flex-col items-center justify-center">
+      <BurnHero />
+      <FeaturesSection />
+      <AudiencesSection />
+      <StackSection />
+      <PricingSection />
     </div>
   );
 }
