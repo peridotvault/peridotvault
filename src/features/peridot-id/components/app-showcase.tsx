@@ -1,7 +1,7 @@
 "use client";
 
-import { FeatureHeader } from "@/shared/components/atoms/FeatureHeader";
 import ContainerPadding from "@/shared/components/atoms/ContainerPadding";
+import Image from "next/image";
 import {
   cubicBezier,
   motion,
@@ -12,7 +12,6 @@ import {
 } from "motion/react";
 import {
   Apple,
-  BadgeCheck,
   ChevronRight,
   Fingerprint,
   Gamepad2,
@@ -27,24 +26,44 @@ import { useRef, useSyncExternalStore, type ReactNode } from "react";
 type Step = {
   title: string;
   body: string;
+  asideEyebrow: string;
+  asideTitle: string;
+  asideBody: string;
+  chip: string;
 };
 
 const STEPS: Step[] = [
   {
     title: "Sign in once",
     body: "Socials, email, or passkey — no seed phrase to write down, no wallet to install before the first play.",
+    asideEyebrow: "Auth",
+    asideTitle: "Social · Email · Passkey",
+    asideBody: "Wallet created silently on first login",
+    chip: "No seed phrases",
   },
   {
     title: "Your profile follows you",
     body: "Handle, level, and progress live on the identity itself. New game, same player — nothing to re-create.",
+    asideEyebrow: "Identity",
+    asideTitle: "@ranaplay · Level 24",
+    asideBody: "One handle across every title",
+    chip: "Shared profile",
   },
   {
     title: "Wallet included",
     body: "Assets and collectibles sit beside the profile, ready on the chain the player picks at transaction time.",
+    asideEyebrow: "Wallet",
+    asideTitle: "1,240 PRDT · 6 collectibles",
+    asideBody: "Chain picked at transaction time",
+    chip: "$0 seat · $0 signature",
   },
   {
     title: "Play everywhere",
     body: "Sessions carry across every Peridot title. Pick up mid-quest on any game, on any device.",
+    asideEyebrow: "Session",
+    asideTitle: "Session live",
+    asideBody: "Mid-quest in Neon Drift · resumes anywhere",
+    chip: "Synced across games",
   },
 ];
 
@@ -96,11 +115,11 @@ function driftWindow(
 
 function ScreenChrome({ label }: { label: string }): ReactNode {
   return (
-    <div className="flex items-center justify-between pt-11 pb-3">
+    <div className="flex items-center justify-between pt-5 pb-3">
       <span className="text-[13px] font-medium tracking-tight text-foreground">
         {label}
       </span>
-      <span className="size-6 rounded-full bg-foreground/10" aria-hidden="true" />
+      <span className="size-6 rounded-none bg-foreground/10" aria-hidden="true" />
     </div>
   );
 }
@@ -124,7 +143,7 @@ function LoginScreen(): ReactNode {
         {methods.map((item) => (
           <div
             key={item.label}
-            className="flex h-11 items-center gap-2.5 rounded-full border border-border bg-background px-4"
+            className="flex h-11 items-center gap-2.5 rounded-none border border-border bg-background px-4"
           >
             <item.icon className="size-4 text-foreground" aria-hidden="true" />
             <span className="text-xs font-medium text-foreground">
@@ -137,14 +156,14 @@ function LoginScreen(): ReactNode {
         {["No seed phrase", "No install"].map((chip) => (
           <span
             key={chip}
-            className="rounded-full border border-border bg-background px-2.5 py-1 text-[10px] font-medium text-muted-foreground"
+            className="rounded-none border border-border bg-background px-2.5 py-1 text-[10px] font-medium text-muted-foreground"
           >
             {chip}
           </span>
         ))}
       </div>
       <div className="flex-1" />
-      <div className="flex h-11 items-center justify-center rounded-full bg-accent text-xs font-semibold text-background">
+      <div className="flex h-11 items-center justify-center rounded-none bg-accent text-xs font-semibold text-background">
         Start playing
       </div>
     </div>
@@ -156,7 +175,7 @@ function ProfileScreen(): ReactNode {
     <div className="flex h-full flex-col px-4 pb-4">
       <ScreenChrome label="Profile" />
       <div className="mt-2 flex items-center gap-3">
-        <div className="flex size-12 items-center justify-center rounded-full bg-accent text-base font-bold text-background">
+        <div className="flex size-12 items-center justify-center rounded-none bg-accent text-base font-bold text-background">
           R
         </div>
         <div>
@@ -165,19 +184,19 @@ function ProfileScreen(): ReactNode {
             Level 24 · 3 games
           </p>
         </div>
-        <span className="ml-auto rounded-full bg-accent/15 px-2.5 py-1 text-[10px] font-semibold text-accent">
+        <span className="ml-auto rounded-none bg-accent/15 px-2.5 py-1 text-[10px] font-semibold text-accent">
           Lv 24
         </span>
       </div>
-      <div className="mt-4 rounded-2xl border border-border bg-background p-3.5">
+      <div className="mt-4 rounded-none border border-border bg-background p-3.5">
         <div className="flex items-center justify-between">
           <p className="text-xs font-medium text-foreground">Season progress</p>
           <p className="font-mono text-[10px] tabular-nums text-muted-foreground">
             78%
           </p>
         </div>
-        <div className="mt-2.5 h-1.5 overflow-hidden rounded-full bg-foreground/10">
-          <div className="h-full w-[78%] rounded-full bg-accent" />
+        <div className="mt-2.5 h-1.5 overflow-hidden rounded-none bg-foreground/10">
+          <div className="h-full w-[78%] rounded-none bg-accent" />
         </div>
         <div className="mt-3 flex items-center gap-2 text-[11px] text-muted-foreground">
           <Trophy className="size-3.5 text-accent" aria-hidden="true" />
@@ -205,7 +224,7 @@ function WalletScreen(): ReactNode {
   return (
     <div className="flex h-full flex-col px-4 pb-4">
       <ScreenChrome label="Wallet" />
-      <div className="mt-2 rounded-2xl border border-border bg-background p-4">
+      <div className="mt-2 rounded-none border border-border bg-background p-4">
         <p className="text-[10px] font-medium tracking-widest text-muted-foreground uppercase">
           Balance
         </p>
@@ -224,9 +243,9 @@ function WalletScreen(): ReactNode {
         {LOOT.map((tone, i) => (
           <div
             key={tone}
-            className={`flex aspect-square items-end rounded-xl bg-gradient-to-br p-1.5 ${tone}`}
+            className={`flex aspect-square items-end rounded-none bg-gradient-to-br p-1.5 ${tone}`}
           >
-            <span className="rounded-md bg-black/45 px-1.5 py-0.5 text-[9px] font-semibold text-white">
+            <span className="rounded-none bg-black/45 px-1.5 py-0.5 text-[9px] font-semibold text-white">
               #{i + 1}
             </span>
           </div>
@@ -256,13 +275,13 @@ function GamesScreen(): ReactNode {
         {GAMES.map((game) => (
           <div
             key={game.name}
-            className={`flex items-center gap-2.5 rounded-2xl border p-3 ${
+            className={`flex items-center gap-2.5 rounded-none border p-3 ${
               game.active
                 ? "border-accent/50 bg-background"
                 : "border-border bg-background"
             }`}
           >
-            <span className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-accent/15">
+            <span className="flex size-9 shrink-0 items-center justify-center rounded-none bg-accent/15">
               <Swords className="size-4 text-accent" aria-hidden="true" />
             </span>
             <div className="min-w-0">
@@ -292,84 +311,28 @@ const SCREENS: ReactNode[] = [
   <GamesScreen key="games" />,
 ];
 
-const ASIDES: ReactNode[] = [
-  <>
-    <div className="rounded-2xl border border-border bg-background p-4 shadow-sm">
-      <p className="font-mono text-[10px] tracking-widest text-muted-foreground uppercase">
-        Auth
-      </p>
-      <p className="mt-1.5 text-sm font-medium text-foreground">
-        Social · Email · Passkey
-      </p>
-      <p className="mt-1 text-xs text-muted-foreground">
-        Wallet created silently on first login
-      </p>
-    </div>
-    <span className="rounded-full border border-border bg-background px-3.5 py-1.5 text-xs text-muted-foreground">
-      No seed phrases
-    </span>
-  </>,
-  <>
-    <div className="rounded-2xl border border-border bg-background p-4 shadow-sm">
-      <p className="font-mono text-[10px] tracking-widest text-muted-foreground uppercase">
-        Identity
-      </p>
-      <p className="mt-1.5 text-sm font-medium text-foreground">
-        @ranaplay · Level 24
-      </p>
-      <p className="mt-1 text-xs text-muted-foreground">
-        One handle across every title
-      </p>
-    </div>
-    <span className="rounded-full border border-border bg-background px-3.5 py-1.5 text-xs text-muted-foreground">
-      Shared profile
-    </span>
-  </>,
-  <>
-    <div className="rounded-2xl border border-border bg-background p-4 shadow-sm">
-      <p className="font-mono text-[10px] tracking-widest text-muted-foreground uppercase">
-        Wallet
-      </p>
-      <p className="mt-1.5 text-sm font-medium text-foreground">
-        1,240 PRDT · 6 collectibles
-      </p>
-      <p className="mt-1 text-xs text-muted-foreground">
-        Chain picked at transaction time
-      </p>
-    </div>
-    <span className="rounded-full border border-border bg-background px-3.5 py-1.5 text-xs text-muted-foreground">
-      $0 seat · $0 signature
-    </span>
-  </>,
-  <>
-    <div className="flex items-start gap-2.5 rounded-2xl border border-border bg-background p-4 shadow-sm">
-      <BadgeCheck
-        className="mt-0.5 size-4 shrink-0 text-foreground"
-        aria-hidden="true"
-      />
-      <div>
-        <p className="text-sm font-medium text-foreground">Session live</p>
-        <p className="mt-1 text-xs text-muted-foreground">
-          Mid-quest in Neon Drift · resumes anywhere
-        </p>
-      </div>
-    </div>
-    <span className="rounded-full border border-border bg-background px-3.5 py-1.5 text-xs text-muted-foreground">
-      Synced across games
-    </span>
-  </>,
-];
-
-function PhoneFrame({ children }: { children: ReactNode }): ReactNode {
+function ShowcaseHeading(): ReactNode {
   return (
-    <div className="w-[272px] rounded-[44px] border border-border bg-background p-2 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.35)] sm:w-[300px] [@media(max-height:760px)]:w-[248px]">
-      <div className="relative aspect-[9/19] w-full overflow-hidden rounded-[36px] bg-surface">
-        {children}
-        <div
-          className="absolute top-2.5 left-1/2 h-[22px] w-[76px] -translate-x-1/2 rounded-full bg-black"
-          aria-hidden="true"
-        />
-      </div>
+    <div>
+      <p className="flex items-center gap-2 text-sm font-semibold tracking-widest text-accent uppercase">
+        <LuGamepad2 className="size-4" aria-hidden="true" />
+        How it works
+      </p>
+      <h2 className="mt-3 text-4xl font-bold tracking-tight text-foreground">
+        From login to loot.
+      </h2>
+      <p className="mt-3 max-w-sm text-paragraph md:text-lg">
+        One identity with profile, sessions, and wallet — following players game
+        to game.
+      </p>
+    </div>
+  );
+}
+
+function ScreenStage({ children }: { children: ReactNode }): ReactNode {
+  return (
+    <div className="relative aspect-[9/16] w-[320px] overflow-hidden rounded-none border border-white/10 bg-surface shadow-[0_30px_80px_-30px_rgba(0,0,0,0.55)] sm:w-[360px] [@media(max-height:760px)]:w-[280px]">
+      {children}
     </div>
   );
 }
@@ -411,7 +374,7 @@ function ScreenLayer({
       : isLast
         ? [enter - FADE, enter + FADE]
         : [enter - FADE, enter + FADE, cover - FADE, cover + FADE],
-    isFirst ? [0, 24] : isLast ? [32, 0] : [32, 0, 0, 24],
+    isFirst ? [0, 0] : isLast ? [0, 0] : [0, 0, 0, 0],
   );
 
   return (
@@ -429,7 +392,7 @@ function ScreenLayer({
   );
 }
 
-function StepText({
+function StepCard({
   progress,
   index,
   step,
@@ -448,46 +411,29 @@ function StepText({
       style={{ opacity, y }}
       className="absolute inset-0 flex flex-col justify-center"
     >
-      <div className="flex items-center gap-4">
-        <span className="font-mono text-xs font-medium text-foreground">
-          0{index + 1}
+      <div className="rounded-none border border-border bg-white/5 p-6">
+        <span className="text-sm font-semibold text-accent">
+          Step {index + 1}
         </span>
-        <motion.span
-          style={{ scaleX: opacity, originX: 0 }}
-          className="block h-px w-12 bg-foreground"
-        />
+        <h3 className="mt-3 text-3xl font-bold text-foreground">
+          {step.title}
+        </h3>
+        <p className="mt-3 text-paragraph md:text-lg">{step.body}</p>
+        <div className="mt-5 rounded-none border border-border bg-background p-4">
+          <p className="font-mono text-[10px] tracking-widest text-muted-foreground uppercase">
+            {step.asideEyebrow}
+          </p>
+          <p className="mt-1.5 text-sm font-medium text-foreground">
+            {step.asideTitle}
+          </p>
+          <p className="mt-1 text-xs text-muted-foreground">
+            {step.asideBody}
+          </p>
+        </div>
+        <span className="mt-4 inline-flex rounded-none border border-border bg-background px-3.5 py-1.5 text-xs text-muted-foreground">
+          {step.chip}
+        </span>
       </div>
-      <h3 className="mt-5 text-3xl font-medium tracking-tight text-foreground xl:text-4xl">
-        {step.title}
-      </h3>
-      <p className="mt-4 max-w-sm text-base leading-relaxed text-muted-foreground">
-        {step.body}
-      </p>
-    </motion.div>
-  );
-}
-
-function StepAside({
-  progress,
-  index,
-  children,
-}: {
-  progress: MotionValue<number>;
-  index: number;
-  children: ReactNode;
-}): ReactNode {
-  const presence = presenceWindow(index);
-  const drift = driftWindow(index, 70);
-  const opacity = useTransform(progress, presence.input, presence.output);
-  const y = useTransform(progress, drift.input, drift.output);
-
-  return (
-    <motion.div
-      style={{ opacity, y }}
-      aria-hidden="true"
-      className="absolute inset-0 flex flex-col items-start justify-center gap-4"
-    >
-      {children}
     </motion.div>
   );
 }
@@ -506,7 +452,7 @@ function SegmentTick({
   );
 
   return (
-    <span className="h-[3px] w-9 overflow-hidden rounded-full bg-border">
+    <span className="h-[3px] w-9 overflow-hidden rounded-none bg-border">
       <motion.span
         style={{ scaleX: fill, originX: 0 }}
         className="block h-full w-full bg-foreground"
@@ -529,32 +475,26 @@ export function AppShowcase() {
 
   return (
     <section id="how-it-works" aria-label="How Peridot ID works" className="w-full scroll-mt-24 py-24 max-md:py-10">
-      <ContainerPadding>
-        <FeatureHeader
-          Icon={LuGamepad2}
-          title="From login to loot."
-          description="PeridotID is a unified sign-in for gaming — one identity with a profile, sessions, and wallet that follow players game to game. Scroll to walk the loop."
-        />
-      </ContainerPadding>
-
       {pinned ? (
         <div ref={wrapperRef} className="relative h-[420svh]">
           <div className="sticky top-0 flex h-svh items-center overflow-hidden">
             <div className="max-w-(--container-max-width) mx-auto grid w-full grid-cols-[1fr_auto_1fr] items-center gap-x-16 px-12">
-              <div className="relative h-[340px]">
-                {STEPS.map((step, i) => (
-                  <StepText
-                    key={step.title}
-                    progress={scrollYProgress}
-                    index={i}
-                    step={step}
-                  />
-                ))}
+              <div className="flex h-[600px] max-h-[80svh] w-full flex-col self-stretch">
+                <ShowcaseHeading />
+                <Image
+                  src="/assets/pebbo/pointing-to-right.webp"
+                  alt="Pebbo pirate mascot"
+                  width={640}
+                  height={640}
+                  sizes="(max-width: 1280px) 30vw, 420px"
+                  draggable={false}
+                  className="mt-auto h-auto w-full self-stretch object-contain object-bottom select-none pointer-events-none"
+                />
               </div>
 
               <div className="relative">
                 <div className="relative z-10 flex flex-col items-center gap-7">
-                  <PhoneFrame>
+                  <ScreenStage>
                     <div className="absolute inset-0">
                       {SCREENS.map((screen, i) => (
                         <ScreenLayer
@@ -566,7 +506,7 @@ export function AppShowcase() {
                         </ScreenLayer>
                       ))}
                     </div>
-                  </PhoneFrame>
+                  </ScreenStage>
                   <div className="flex items-center gap-2" aria-hidden="true">
                     {STEPS.map((step, i) => (
                       <SegmentTick
@@ -579,40 +519,46 @@ export function AppShowcase() {
                 </div>
               </div>
 
-              <div className="relative h-[340px]">
-                {ASIDES.map((aside, i) => (
-                  <StepAside
-                    key={STEPS[i]?.title}
+              <div className="relative h-[420px]">
+                {STEPS.map((step, i) => (
+                  <StepCard
+                    key={step.title}
                     progress={scrollYProgress}
                     index={i}
-                  >
-                    {aside}
-                  </StepAside>
+                    step={step}
+                  />
                 ))}
               </div>
             </div>
           </div>
         </div>
       ) : (
-        <ContainerPadding className="mt-14 flex flex-col gap-16">
+        <ContainerPadding className="flex flex-col gap-12">
+          <ShowcaseHeading />
+          <Image
+            src="/assets/pebbo/pointing-to-right.webp"
+            alt="Pebbo pirate mascot"
+            width={400}
+            height={400}
+            sizes="(max-width: 768px) 200px, 240px"
+            draggable={false}
+            className="w-[200px] max-w-full object-contain select-none pointer-events-none"
+          />
           <div className="flex justify-center">
-            <PhoneFrame>
+            <ScreenStage>
               <div className="absolute inset-0">{SCREENS[2]}</div>
-            </PhoneFrame>
+            </ScreenStage>
           </div>
           <ol className="flex flex-col gap-12">
             {STEPS.map((step, i) => (
               <li key={step.title}>
-                <div className="flex items-center gap-4">
-                  <span className="font-mono text-xs font-medium text-foreground">
-                    0{i + 1}
-                  </span>
-                  <span className="block h-px w-12 bg-foreground" />
-                </div>
-                <h3 className="mt-5 text-3xl font-medium tracking-tight text-foreground sm:text-4xl">
+                <span className="text-sm font-semibold text-accent">
+                  Step {i + 1}
+                </span>
+                <h3 className="mt-3 text-3xl font-bold text-foreground sm:text-4xl">
                   {step.title}
                 </h3>
-                <p className="mt-4 max-w-sm text-base leading-relaxed text-muted-foreground">
+                <p className="mt-3 max-w-sm text-paragraph md:text-lg">
                   {step.body}
                 </p>
               </li>

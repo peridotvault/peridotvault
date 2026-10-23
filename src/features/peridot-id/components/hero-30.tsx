@@ -1080,7 +1080,7 @@ export function Hero30() {
     <section className="flex w-full p-2">
       <div
         ref={sectionRef}
-        className="relative isolate flex min-h-[80dvh] w-full items-center justify-center overflow-hidden rounded-4xl bg-background px-8 py-16 text-foreground"
+        className="relative isolate flex min-h-[80dvh] w-full items-center justify-center overflow-hidden rounded-none bg-background px-8 py-16 text-foreground"
       >
         <motion.div
           ref={contentRef}
@@ -1106,18 +1106,18 @@ export function Hero30() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Start building with Peridot ID for free (opens in a new tab)"
-                className="rounded-xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+                className="rounded-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
               >
-                <Button tabIndex={-1}>Start free</Button>
+                <Button tabIndex={-1} sharp>Start free</Button>
               </a>
               <a
                 href={PERIDOT_URLS.docs}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Read the Peridot ID docs (opens in a new tab)"
-                className="rounded-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+                className="rounded-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
               >
-                <GlassComponent className="flex min-h-[44px] items-center justify-center overflow-hidden rounded-lg px-6 py-3 text-sm font-medium duration-300 hover:bg-surface hover:text-white">
+                <GlassComponent className="flex min-h-[44px] items-center justify-center overflow-hidden rounded-none px-6 py-3 text-sm font-medium duration-300 hover:bg-surface hover:text-white">
                   Read the docs
                 </GlassComponent>
               </a>
@@ -1132,7 +1132,7 @@ export function Hero30() {
               <div
                 role="group"
                 aria-label="Compare cost against"
-                className="inline-flex rounded-full border border-white/10 bg-white/5 p-1 text-xs font-medium"
+                className="inline-flex rounded-none border border-white/10 bg-white/5 p-1 text-xs font-medium"
               >
                 {(["privy", "zerodev"] as const).map((item) => (
                   <button
@@ -1140,7 +1140,7 @@ export function Hero30() {
                     type="button"
                     onClick={() => setVendor(item)}
                     aria-pressed={vendor === item}
-                    className={`rounded-full px-4 py-1.5 transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent ${
+                    className={`rounded-none px-4 py-1.5 transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent ${
                       vendor === item ? "bg-white text-neutral-950" : "text-neutral-400 hover:text-white"
                     }`}
                   >
@@ -1178,7 +1178,7 @@ export function Hero30() {
                 style={{
                   background: `linear-gradient(to right, #87ee83 ${mauFill}%, color-mix(in srgb, currentColor 18%, transparent) ${mauFill}%)`,
                 }}
-                className="mt-3 h-1 w-full cursor-pointer appearance-none rounded-full outline-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-current [&::-moz-range-thumb]:size-4 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:border-0 [&::-moz-range-thumb]:bg-current [&::-webkit-slider-thumb]:size-4 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-current"
+                className="mt-3 h-1 w-full cursor-pointer appearance-none rounded-none outline-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-current [&::-moz-range-thumb]:size-4 [&::-moz-range-thumb]:rounded-none [&::-moz-range-thumb]:border-0 [&::-moz-range-thumb]:bg-current [&::-webkit-slider-thumb]:size-4 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-none [&::-webkit-slider-thumb]:bg-current"
               />
             </label>
             <label className="mt-6 block">
@@ -1198,7 +1198,7 @@ export function Hero30() {
                 style={{
                   background: `linear-gradient(to right, #87ee83 ${sigFill}%, color-mix(in srgb, currentColor 18%, transparent) ${sigFill}%)`,
                 }}
-                className="mt-3 h-1 w-full cursor-pointer appearance-none rounded-full outline-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-current [&::-moz-range-thumb]:size-4 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:border-0 [&::-moz-range-thumb]:bg-current [&::-webkit-slider-thumb]:size-4 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-current"
+                className="mt-3 h-1 w-full cursor-pointer appearance-none rounded-none outline-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-current [&::-moz-range-thumb]:size-4 [&::-moz-range-thumb]:rounded-none [&::-moz-range-thumb]:border-0 [&::-moz-range-thumb]:bg-current [&::-webkit-slider-thumb]:size-4 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-none [&::-webkit-slider-thumb]:bg-current"
               />
             </label>
           </motion.div>
