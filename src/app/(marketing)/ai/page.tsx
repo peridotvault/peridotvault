@@ -149,24 +149,6 @@ const GAME_NIGHT_FEATURES = [
 ];
 
 function AiCompanionSection() {
-  const features = [
-    {
-      title: "Real-time Tactical Support",
-      description:
-        "Get instant strategic tips while you play, tailored to your current in-game situation",
-    },
-    {
-      title: "Learns and Adapts Your Playstyle",
-      description:
-        "Receive intelligent prompts based on what is happening in your game right when you need them.",
-    },
-    {
-      title: "Context-aware Suggestions",
-      description:
-        "The more you play, the smarter it gets. Evolving to fit your unique gaming habits.",
-    },
-  ];
-
   return (
     <>
       <section className="max-w-(--container-max-width) px-8 max-md:px-4 py-24 max-md:py-10 w-full">

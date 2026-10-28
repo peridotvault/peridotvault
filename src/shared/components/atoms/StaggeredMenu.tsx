@@ -2,6 +2,7 @@
 
 import React, { useCallback, useLayoutEffect, useRef, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { gsap } from "gsap";
 import clsx from "clsx";
 
@@ -456,10 +457,12 @@ export const StaggeredMenu = ({
             className="flex items-center pointer-events-auto"
             aria-label="Logo"
           >
-            <img
+            <Image
               src="/logo/logo.png"
               className="h-8 w-8"
               alt="PeridotVault logo"
+              width={32}
+              height={32}
               draggable={false}
             />
           </Link>

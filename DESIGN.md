@@ -52,6 +52,16 @@ Standard structure:
 
 Shared pieces: `SectionHeader` (atoms), `RailCard` (molecules), `Button` / `ButtonLink` (molecules). A first-child grid omits `border-t`; cards inside a `gap-px` grid must not carry their own outer `border`.
 
+## Foldering
+
+- Page sections live co-located in `_sections/` next to their `page.tsx` (`(marketing)/_sections/`,
+  `identity/_sections/`) — one file per section, `page.tsx` only composes. Adding, removing, or
+  reordering a section = one line in the composer, no scrolling through 600-line files.
+- Shared UI: `shared/components/{atoms,molecules,organisms}/`. Feature-specific interactive
+  pieces: `features/<feature>/components/`. Third-party blocks: `components/blocks/`
+  (harmonized to this system on install, never used raw).
+- `_`-prefixed folders are route-exempt by Next.js convention — safe for co-location.
+
 ## Stack
 
 Next.js App Router + TypeScript, Tailwind v4 (`@import "tailwindcss"`), `next/font` (Inter), `lucide-react` icons, `framer-motion`/`motion` for orchestrated motion only, CSS transitions otherwise.

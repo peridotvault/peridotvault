@@ -5,9 +5,17 @@ export async function POST(req: Request) {
     try {
         const { email, roles } = await req.json();
 
-        if (!email || !roles?.length) {
+        const validRoles = Array.isArray(roles)
+            ? roles.filter((r) => r === "gamer" || r === "developer")
+            : [];
+
+        if (
+            typeof email !== "string" ||
+            !/^\S+@\S+\.\S+$/.test(email) ||
+            validRoles.length === 0
+        ) {
             return NextResponse.json(
-                { error: "Missing data" },
+                { error: "Invalid data" },
                 { status: 400 }
             );
         }
@@ -27,11 +35,11 @@ export async function POST(req: Request) {
                     custom_fields: [
                         {
                             name: "is_gamer",
-                            value: roles.includes("gamer"),
+                            value: validRoles.includes("gamer"),
                         },
                         {
                             name: "is_developer",
-                            value: roles.includes("developer"),
+                            value: validRoles.includes("developer"),
                         },
                     ],
 
@@ -40,10 +48,8 @@ export async function POST(req: Request) {
         );
 
         if (!response.ok) {
-            const errorText = await response.text();
-
             return NextResponse.json(
-                { error: errorText },
+                { error: "Subscription failed, please try again." },
                 { status: response.status }
             );
         }

@@ -23,22 +23,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
             priority: 0.8,
         },
         {
-            url: `${SITE_URL}/peri`,
-            lastModified: new Date(),
-            changeFrequency: 'weekly',
-            priority: 0.8,
-        },
-        {
             url: `${SITE_URL}/identity`,
             lastModified: new Date(),
             changeFrequency: 'weekly',
             priority: 0.8,
-        },
-        {
-            url: `${SITE_URL}/peridotcode`,
-            lastModified: new Date(),
-            changeFrequency: 'weekly',
-            priority: 0.9,
         },
     ]
 }
