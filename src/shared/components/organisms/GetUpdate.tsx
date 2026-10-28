@@ -4,9 +4,10 @@ import { useState } from "react";
 import clsx from "clsx";
 import { GoMail } from "react-icons/go";
 import { FaCode, FaPuzzlePiece } from "react-icons/fa6";
-import BgGrainient from "../atoms/BgGrainient";
 import { toastService } from "@/shared/infra/toast/toast.service";
 import { Button } from "../molecules/Button";
+import { SectionHeader } from "../atoms/SectionHeader";
+import { GlyphTide } from "@/components/react-bits/glyph-tide";
 
 export const GetUpdate = () => {
   const [roles, setRoles] = useState<string[]>([]);
@@ -71,67 +72,73 @@ export const GetUpdate = () => {
   };
 
   return (
-    <section
-      id="waitlist"
-      className="w-full px-8 max-md:px-4 pb-4 pt-24 max-md:pt-10 flex justify-center"
-    >
-      <div className="w-full max-w-(--container-max-width) rounded-3xl max-md:rounded-2xl px-24 max-md:px-8 relative overflow-hidden flex justify-center items-center drop-shadow-2xl">
-        {/* CONTENT */}
-        <div className="flex h-full flex-col items-center justify-center lg:py-28 md:py-20 py-12 max-lg:w-full lg:gap-18 md:gap-10 gap-8 z-20">
-          <h2 className="lg:text-7xl md:text-5xl text-3xl text-background max-w-4xl text-center font-medium">
-            Get Exclusive PeridotVault Platform Updates
-          </h2>
+    <section id="waitlist" className="border-b border-line">
+      <div className="mx-auto w-full max-w-(--container-max-width)">
+        <SectionHeader
+          title="Get Exclusive PeridotVault Platform Updates"
+        />
+        <div className="relative overflow-hidden border-t border-line bg-background">
+          <GlyphTide
+            colors={["#349b65", "#87ee83"]}
+            backgroundColor="#0d0f0e"
+            fontSize={18}
+            dpr={1}
+            interactive={false}
+            clickRipples={false}
+            waves={0.5}
+            foam={0}
+            contours={0}
+            className="absolute inset-0 opacity-40"
+          />
+          <div className="relative z-10 flex flex-col items-center px-12 py-18 max-md:px-8 max-md:py-12">
+            {/* FORM */}
+            <div className={"flex flex-col w-full max-w-140"}>
+              <RoleSelector roles={roles} setRoles={setRoles} />
 
-          {/* FORM */}
-          <div className={"flex flex-col w-full max-w-140"}>
-            <RoleSelector roles={roles} setRoles={setRoles} />
-
-            <div
-              className={
-                "flex max-md:flex-col items-center w-full bg-background rounded-2xl p-1.5 relative"
-              }
-            >
-              {/* EMAIL */}
               <div
-                className={clsx(
-                  "flex items-center py-2 pl-3 w-full transition-all",
-                  !canTypeEmail && "opacity-50",
-                )}
+                className={
+                  "flex max-md:flex-col items-center w-full bg-background rounded-none border border-line p-1.5 relative"
+                }
               >
-                <GoMail className="w-8 h-8 p-1 text-label" />
-                <input
-                  type="email"
-                  className="py-1 px-3 w-full placeholder:text-white/80 outline-none bg-transparent disabled:cursor-not-allowed"
-                  placeholder={
-                    canTypeEmail ? "Email Address" : "Choose your role first..."
-                  }
-                  value={email}
-                  disabled={!canTypeEmail}
-                  onChange={(e) => setEmail(e.target.value)}
-                  onFocus={() => {
-                    if (!canTypeEmail) {
-                      toastService.error("Choose Your Role First", {
-                        desc: "Select Gamer or Developer to continue.",
-                      });
+                {/* EMAIL */}
+                <div
+                  className={clsx(
+                    "flex items-center py-2 pl-3 w-full transition-all",
+                    !canTypeEmail && "opacity-50",
+                  )}
+                >
+                  <GoMail className="w-8 h-8 p-1 text-label" />
+                  <input
+                    type="email"
+                    className="py-1 px-3 w-full placeholder:text-white/80 outline-none bg-transparent disabled:cursor-not-allowed"
+                    placeholder={
+                      canTypeEmail ? "Email Address" : "Choose your role first..."
                     }
-                  }}
-                />
-              </div>
+                    value={email}
+                    disabled={!canTypeEmail}
+                    onChange={(e) => setEmail(e.target.value)}
+                    onFocus={() => {
+                      if (!canTypeEmail) {
+                        toastService.error("Choose Your Role First", {
+                          desc: "Select Gamer or Developer to continue.",
+                        });
+                      }
+                    }}
+                  />
+                </div>
 
-              {/* BUTTON */}
-              <Button
-                onClick={handleSubmit}
-                disabled={!canSubmit}
-                className="max-md:w-full md:shrink-0"
-              >
-                Join Waitlist
-              </Button>
+                {/* BUTTON */}
+                <Button
+                  onClick={handleSubmit}
+                  disabled={!canSubmit}
+                  className="max-md:w-full md:shrink-0"
+                >
+                  Join Waitlist
+                </Button>
+              </div>
             </div>
           </div>
         </div>
-
-        {/* BACKGROUND */}
-        <BgGrainient />
       </div>
     </section>
   );
@@ -174,7 +181,7 @@ function RoleSelector({
 
           <div
             className={clsx(
-              "h-full w-full rounded-xl py-2 px-4 relative overflow-hidden transition-all duration-300 border text-lg",
+              "h-full w-full rounded-none py-2 px-4 relative overflow-hidden transition-all duration-300 border text-lg",
               isActive(item.value)
                 ? "border-background/20 text-background bg-white shadow-[0_0_25px_rgba(76,255,143,0.25)]"
                 : "border-border bg-background",

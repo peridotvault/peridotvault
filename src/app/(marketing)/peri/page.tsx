@@ -2,6 +2,7 @@
 
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { EyeglassesIcon } from "../../../assets/icons/MainIcons";
+import { Navbar } from "@/layouts/Navbar";
 
 function stripXmlBlocks(s: string) {
   return s
@@ -85,7 +86,25 @@ const QUESTION_LISTS = [
 
 function PeriChatSection() {
   const [input, setInput] = useState("");
-  const [msgs, setMsgs] = useState<ChatMessage[]>([]);
+  const [msgs, setMsgs] = useState<ChatMessage[]>(() => {
+    try {
+      const stored = localStorage.getItem("peri_chat_msgs");
+      if (!stored) return [];
+      const parsed: unknown = JSON.parse(stored);
+      if (!Array.isArray(parsed)) return [];
+      return parsed.filter((item): item is ChatMessage => {
+        if (!item || typeof item !== "object") return false;
+        const obj = item as ChatMessage;
+        return (
+          typeof obj.id === "string" &&
+          (obj.role === "user" || obj.role === "assistant") &&
+          typeof obj.text === "string"
+        );
+      });
+    } catch {
+      return [];
+    }
+  });
   const [loading, setLoading] = useState(false);
 
   const listRef = useRef<HTMLDivElement | null>(null);
@@ -118,30 +137,6 @@ function PeriChatSection() {
 
     return sanitizeReply(raw, { maxSentences: 3 });
   }
-
-  useEffect(() => {
-    try {
-      const stored = localStorage.getItem("peri_chat_msgs");
-      if (!stored) return;
-
-      const parsed = JSON.parse(stored);
-      if (!Array.isArray(parsed)) return;
-
-      setMsgs(
-        parsed.filter((item): item is ChatMessage => {
-          if (!item || typeof item !== "object") return false;
-          const obj = item as ChatMessage;
-          return (
-            typeof obj.id === "string" &&
-            (obj.role === "user" || obj.role === "assistant") &&
-            typeof obj.text === "string"
-          );
-        }),
-      );
-    } catch {
-      setMsgs([]);
-    }
-  }, []);
 
   useEffect(() => {
     localStorage.setItem("peri_chat_msgs", JSON.stringify(msgs));
@@ -327,6 +322,7 @@ function PeriChatSection() {
 export default function PeriRoutePage() {
   return (
     <div>
+      <Navbar />
       <PeriChatSection />
     </div>
   );

@@ -1,3 +1,4 @@
 :root {
-  --container-max-width: 1400px;
+  /* Rail container — single source of truth for section max width. */
+  --container-max-width: 1512px;
 }

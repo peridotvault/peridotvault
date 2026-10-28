@@ -8,6 +8,7 @@ import {
   useTransform,
 } from "motion/react";
 import { Check, Fingerprint, KeyRound, Lock } from "lucide-react";
+import { DotGrid } from "@/shared/components/atoms/DotGrid";
 const SIZE = 240;
 const shieldPath =
   "M120 34 L192 60 V118 C192 162 162 192 120 208 C78 192 48 162 48 118 V60 Z";
@@ -61,12 +62,9 @@ export default function BentoSecure() {
     py.set(0);
   };
   return (
-    <article className="group relative flex h-full min-h-[380px] w-full flex-col overflow-hidden border border-border bg-surface">
-      <div className="@container relative min-h-[220px] flex-1 overflow-hidden">
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle,rgb(255_255_255/0.08)_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_at_center,black_25%,transparent_70%)]"
-        />
+    <article className="group relative flex h-full min-h-[380px] w-full flex-col overflow-hidden bg-background">
+      <div className="@container relative flex aspect-square w-full items-center justify-center overflow-hidden">
+        <DotGrid />
 
         <motion.div
           initial={{ opacity: 0, y: reduce ? 0 : 12 }}

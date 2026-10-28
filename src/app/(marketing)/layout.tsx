@@ -1,11 +1,6 @@
 import { ReactNode } from "react";
 import "@/shared/styles/globals.css";
 import { Footer } from "@/layouts/Footer";
-import { Navbar } from "@/layouts/Navbar";
-import { FrameInvertedRadius } from "@/layouts/FrameInvertedRadius";
-import dynamic from "next/dynamic";
-
-const Music = dynamic(() => import("@/layouts/Music").then((mod) => ({ default: mod.Music })));
 
 export default function MarketingLayout({
   children,
@@ -13,14 +8,11 @@ export default function MarketingLayout({
   children: ReactNode;
 }>) {
   return (
-    <div>
-      <FrameInvertedRadius />
-      <Navbar />
-      <main className="flex flex-col w-full overflow-x-clip min-h-screen justify-between p-2">
+    <div className="bg-background">
+      <main className="mx-auto flex min-h-screen w-full max-w-(--container-max-width) flex-col justify-between border-x border-line">
         {children}
+        <Footer />
       </main>
-      <Music />
-      <Footer />
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import { createMetadata } from "@/features/seo";
+import { Navbar } from "@/layouts/Navbar";
 
 export const metadata = createMetadata({
   title: "Terms and Conditions",
@@ -9,7 +10,9 @@ export const metadata = createMetadata({
 
 export default function TermsPage() {
   return (
-    <div className="max-w-(--container-max-width) mx-auto px-8 py-24">
+    <>
+      <Navbar />
+      <div className="max-w-(--container-max-width) mx-auto px-8 py-24">
       <h1 className="text-4xl font-bold mb-8">Terms and Conditions</h1>
       <div className="prose prose-invert max-w-none">
         <p className="text-neutral-400 mb-6">
@@ -58,5 +61,6 @@ export default function TermsPage() {
         </p>
       </div>
     </div>
+    </>
   );
 }

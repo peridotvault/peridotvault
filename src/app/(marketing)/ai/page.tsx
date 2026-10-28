@@ -6,11 +6,9 @@ import dynamic from "next/dynamic";
 import GlassComponent from "../../../shared/components/atoms/GlassComponent";
 import { ContainerGlass } from "../../../shared/components/molecules/ContainerGlass";
 import { Button } from "@/shared/components/molecules/Button";
+import { Navbar } from "@/layouts/Navbar";
 import Image from "next/image";
 
-const AnimatedContent = dynamic(
-  () => import("../../../shared/components/animations/AnimatedContent"),
-);
 const GradientBlinds = dynamic(
   () => import("../../../shared/components/atoms/GradientBlinds"),
 );
@@ -22,6 +20,7 @@ export default function AiRoutePage() {
 
   return (
     <div className="flex flex-col items-center justify-center text-lg">
+      <Navbar />
       <AiHeroSection />
       <AiAboutSection />
       <AiCompanionSection />
@@ -169,7 +168,7 @@ function AiCompanionSection() {
   ];
 
   return (
-    <AnimatedContent>
+    <>
       <section className="max-w-(--container-max-width) px-8 max-md:px-4 py-24 max-md:py-10 w-full">
         <div className="w-full p-16 max-md:p-8 flex flex-col gap-16  max-md:gap-8 rounded-2xl border border-border">
           <div className="flex max-md:flex-col items-center justify-between gap-16 max-md:gap-8">
@@ -216,13 +215,13 @@ function AiCompanionSection() {
           </div>
         </div>
       </section>
-    </AnimatedContent>
+    </>
   );
 }
 
 function PersonalizedRecommendationsSection() {
   return (
-    <AnimatedContent>
+    <>
       <section className="max-w-(--container-max-width) px-8 py-24 w-full flex flex-col items-center gap-8 max-md:gap-6 max-md:py-10">
         <h2 className="text-center text-5xl bg-linear-to-tr from-primary via-accent to-accent bg-clip-text text-transparent font-bold max-md:text-3xl max-md:text-start">
           Personalized Recommendations
@@ -266,13 +265,13 @@ function PersonalizedRecommendationsSection() {
           </div>
         </div>
       </section>
-    </AnimatedContent>
+    </>
   );
 }
 
 function GameNightPlannerSection() {
   return (
-    <AnimatedContent>
+    <>
       <section className="max-w-(--container-max-width) px-8 py-24 max-md:py-10 w-full flex flex-col gap-12 max-md:gap-6">
         <div className="grid grid-cols-2 max-md:grid-cols-1 gap-4">
           <h2 className="bg-linear-to-tr from-primary via-accent to-accent bg-clip-text text-transparent text-5xl max-md:text-3xl font-bold">
@@ -294,6 +293,6 @@ function GameNightPlannerSection() {
           ))}
         </div>
       </section>
-    </AnimatedContent>
+    </>
   );
 }

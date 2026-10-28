@@ -1,5 +1,6 @@
 "use client";
 
+import { Fragment } from "react";
 import { motion } from "motion/react";
 import { Check, Minus } from "lucide-react";
 import { PERIDOT_URLS } from "@/features/peridot/peridot-urls";
@@ -106,9 +107,9 @@ function Cell({ v }: { v: true | false | string }) {
 
 export default function Pricing7() {
   return (
-    <div className="w-full">
-      <div className="grid max-w-(--container-max-width) grid-cols-1 border border-border md:grid-cols-4">
-        <div className="border-b border-border p-6 md:border-b-0 md:border-r">
+    <div className="w-full border-t border-line">
+      <div className="grid grid-cols-1 gap-px bg-line md:grid-cols-4">
+        <div className="bg-background p-6">
           <p className="text-xs uppercase tracking-wider text-muted-foreground">
             Compare
           </p>
@@ -126,9 +127,7 @@ export default function Pricing7() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: idx * 0.05 }}
-            className={`flex flex-col gap-4 border-b border-border p-6 md:border-b-0 ${
-              idx < vendors.length - 1 ? "md:border-r" : ""
-            } ${t.popular ? "bg-accent/5" : ""}`}
+            className={`flex flex-col gap-4 p-6 ${t.popular ? "bg-accent/5" : "bg-background"}`}
           >
             <p
               className={`text-xl font-semibold ${idx === 0 ? "text-foreground" : "text-muted-foreground"}`}
@@ -159,34 +158,26 @@ export default function Pricing7() {
                 aria-label="Start building with Peridot ID for free (opens in a new tab)"
                 className="mt-auto rounded-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
               >
-                <Button tabIndex={-1} sharp fullWidth>
+                <Button tabIndex={-1} fullWidth>
                   {t.cta}
                 </Button>
               </a>
             )}
           </motion.div>
         ))}
-      </div>
-
-      <div className="mt-0 max-w-(--container-max-width)">
-        <div className="grid grid-cols-1 border-x border-border bg-white/5 md:grid-cols-4">
-          <div className="col-span-full p-3 text-base font-semibold text-foreground">
-            Pricing
-          </div>
+        <div className="col-span-full bg-white/5 p-3 text-base font-semibold text-foreground">
+          Pricing
         </div>
         {pricingRows.map((r) => (
-          <div
-            key={r.feature}
-            className="grid grid-cols-1 border-x border-b border-border md:grid-cols-4"
-          >
-            <div className="border-border p-4 text-lg text-paragraph">
+          <Fragment key={r.feature}>
+            <div className="bg-background p-4 text-lg text-paragraph">
               {r.feature}
             </div>
             {r.values.map((v, i) => (
               <div
                 key={i}
-                className={`flex items-center justify-between border-t border-border p-4 text-center text-lg md:block md:border-l md:border-t-0 ${
-                  i === 0 ? "bg-accent/5" : ""
+                className={`flex items-center justify-between p-4 text-center text-lg md:block ${
+                  i === 0 ? "bg-accent/5" : "bg-background"
                 }`}
               >
                 <span className="text-sm tracking-wider text-muted-foreground uppercase md:hidden">
@@ -203,27 +194,21 @@ export default function Pricing7() {
                 </span>
               </div>
             ))}
-          </div>
+          </Fragment>
         ))}
-
-        <div className="grid grid-cols-1 border-x border-border bg-white/5 md:grid-cols-4">
-          <div className="col-span-full p-3 text-base font-semibold text-foreground">
-            Product
-          </div>
+        <div className="col-span-full bg-white/5 p-3 text-base font-semibold text-foreground">
+          Product
         </div>
         {productRows.map((r) => (
-          <div
-            key={r.feature}
-            className="grid grid-cols-1 border-x border-b border-border md:grid-cols-4"
-          >
-            <div className="border-border p-4 text-lg text-paragraph">
+          <Fragment key={r.feature}>
+            <div className="bg-background p-4 text-lg text-paragraph">
               {r.feature}
             </div>
             {r.values.map((v, i) => (
               <div
                 key={i}
-                className={`flex items-center justify-between border-t border-border p-4 text-center md:block md:border-l md:border-t-0 ${
-                  i === 0 ? "bg-accent/5" : ""
+                className={`flex items-center justify-between p-4 text-center md:block ${
+                  i === 0 ? "bg-accent/5" : "bg-background"
                 }`}
               >
                 <span className="text-sm tracking-wider text-muted-foreground uppercase md:hidden">
@@ -234,9 +219,9 @@ export default function Pricing7() {
                 </span>
               </div>
             ))}
-          </div>
+          </Fragment>
         ))}
-        <p className="mt-4 text-xs text-muted-foreground">
+        <p className="col-span-full bg-background px-12 py-6 text-xs text-muted-foreground max-md:px-8">
           Sources: privy.io/pricing, zerodev.app/pricing.
         </p>
       </div>

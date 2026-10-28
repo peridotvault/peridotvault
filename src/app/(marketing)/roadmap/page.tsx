@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import roadmapData from "../../../assets/roadmap.json";
 import dynamic from "next/dynamic";
+import { Navbar } from "@/layouts/Navbar";
 import SpotlightCard from "../../../shared/components/atoms/SpotlightCard";
 import {
   FaCheck,
@@ -47,6 +48,7 @@ export default function RoadmapRoutePage() {
 
   return (
     <div>
+      <Navbar />
       <RoadmapHeroSection />
       <RoadmapContentSections />
     </div>

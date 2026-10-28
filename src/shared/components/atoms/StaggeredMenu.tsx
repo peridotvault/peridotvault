@@ -453,21 +453,15 @@ export const StaggeredMenu = ({
         >
           <Link
             href="/"
-            className="text-2xl flex items-center gap-2 pl-8 pointer-events-auto"
+            className="flex items-center pointer-events-auto"
             aria-label="Logo"
           >
             <img
-              src="/Logo-full.png"
-              className="h-6"
+              src="/logo/logo.png"
+              className="h-8 w-8"
               alt="PeridotVault logo"
               draggable={false}
             />
-            <div
-              className={`${open ? "text-black" : "text-white"} duration-300`}
-            >
-              <span className="font-bold">Peridot</span>
-              <span>Vault</span>
-            </div>
           </Link>
 
           <button

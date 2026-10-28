@@ -3,9 +3,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import StaggeredMenu from "../shared/components/atoms/StaggeredMenu";
-import { Button } from "@/shared/components/molecules/Button";
 import { PERIDOT_URLS } from "@/features/peridot/peridot-urls";
-import { SideCorner } from "@/shared/components/atoms/SideCorner";
 import Image from "next/image";
 
 type MenuItem = {
@@ -110,94 +108,82 @@ export const Navbar = () => {
   }, []);
 
   return (
-    <header className="fixed top-4 left-0 z-50 w-full">
-      <div
-        className={`transition-all duration-300  flex justify-between  max-md:hidden`}
-      >
-        <div className="bg-surface rounded-b-[35] px-8 py-6 flex items-center justify-between mx-auto w-180 relative">
-          <SideCorner
-            position="top-left"
-            className="absolute right-0 top-0 translate-x-full text-surface"
+    <header className="sticky top-0 z-50 ml-[calc(50%-50vw)] w-screen border-y border-line bg-background/80 backdrop-blur-md">
+      <div className="mx-auto flex w-full max-w-(--container-max-width) items-center justify-between px-12 py-4 max-md:px-6">
+        <Link href="/" className="text-2xl hidden items-center gap-2 md:flex">
+          <Image
+            src="/logo/logo.png"
+            className="h-8 w-8"
+            alt="PeridotVault logo"
+            width={169}
+            height={169}
+            priority
           />
-          <SideCorner
-            position="top-right"
-            className="absolute left-0 -translate-x-full top-0 text-surface"
-          />
+        </Link>
 
-          <Link href="/" className="text-2xl flex items-center gap-2">
-            <Image
-              src="/Logo-full.png"
-              className="h-8 w-auto"
-              alt="PeridotVault logo"
-              width={160}
-              height={32}
-              priority
-            />
-          </Link>
-
-          {/* Desktop actions */}
-          <nav className="gap-8 items-center flex text-lg">
-            {menuItems.map((item, index) => {
-              // 1) Route internal
-              if (item.type === "route") {
-                const isActive = pathname === item.link;
-                return (
-                  <Link
-                    key={index}
-                    href={item.link}
-                    aria-label={item.ariaLabel}
-                    className={`${base} ${isActive ? active : inactive}`}
-                    title={item.label}
-                  >
-                    {item.label}
-                  </Link>
-                );
-              }
-
-              // 2) Team → Link ke "/#team" + cek hash
-              if (item.type === "waitlist") {
-                return (
-                  <Link
-                    key={index}
-                    href={item.link} // "/#team"
-                    aria-label={item.ariaLabel}
-                    className={`${base} ${isTeamActive ? active : inactive}`}
-                    title={item.label}
-                  >
-                    {item.label}
-                  </Link>
-                );
-              }
-
-              // 3) External link → <a> biasa
+        {/* Desktop actions */}
+        <nav className="gap-8 items-center hidden md:flex text-lg">
+          {menuItems.map((item, index) => {
+            // 1) Route internal
+            if (item.type === "route") {
+              const isActive = pathname === item.link;
               return (
-                <a
+                <Link
                   key={index}
                   href={item.link}
                   aria-label={item.ariaLabel}
-                  className={base}
-                  target={item.target}
-                  rel={item.target === "_blank" ? "noreferrer" : undefined}
+                  className={`${base} ${isActive ? active : inactive}`}
                   title={item.label}
                 >
                   {item.label}
-                </a>
+                </Link>
               );
-            })}
-          </nav>
+            }
 
-          <a
-            href="https://web.peridotvault.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Button>Try Web Version</Button>
-          </a>
-        </div>
-      </div>
+            // 2) Team → Link ke "/#team" + cek hash
+            if (item.type === "waitlist") {
+              return (
+                <Link
+                  key={index}
+                  href={item.link} // "/#team"
+                  aria-label={item.ariaLabel}
+                  className={`${base} ${isTeamActive ? active : inactive}`}
+                  title={item.label}
+                >
+                  {item.label}
+                </Link>
+              );
+            }
 
-      <div className="fixed top-4 right-4 z-50 w-full md:hidden">
-        <StaggeredMenu
+            // 3) External link → <a> biasa
+            return (
+              <a
+                key={index}
+                href={item.link}
+                aria-label={item.ariaLabel}
+                className={base}
+                target={item.target}
+                rel={item.target === "_blank" ? "noreferrer" : undefined}
+                title={item.label}
+              >
+                {item.label}
+              </a>
+            );
+          })}
+        </nav>
+
+        <a
+          href="https://web.peridotvault.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="max-md:hidden inline-flex h-12 items-center gap-2 bg-white px-6 text-base font-medium text-black transition-colors duration-300 hover:bg-accent"
+        >
+          Try Web Version
+          <span aria-hidden="true">↳</span>
+        </a>
+
+        <div className="md:hidden flex-1">
+          <StaggeredMenu
           position="right"
           items={menuItems}
           socialItems={socialItems}
@@ -211,6 +197,7 @@ export const Navbar = () => {
           onMenuOpen={() => console.log("Menu opened")}
           onMenuClose={() => console.log("Menu closed")}
         />
+      </div>
       </div>
     </header>
   );

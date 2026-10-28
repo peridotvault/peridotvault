@@ -1,11 +1,12 @@
 import "@/shared/styles/globals.css";
+import "@hackernoon/pixel-icon-library/fonts/iconfont.css";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import ScrollToHash from "@/shared/components/atoms/ScrollToHash";
 import { ToasterComponent } from "@/shared/infra/toast/ToasterComponent";
 import { buildRootMetadata } from "@/features/seo";
-import { Inter } from "next/font/google";
+import { Space_Grotesk } from "next/font/google";
 
-const inter = Inter({
+const sans = Space_Grotesk({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-inter",
@@ -19,7 +20,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en" className={sans.variable}>
       <body>
         <ScrollToHash />
         <ToasterComponent />

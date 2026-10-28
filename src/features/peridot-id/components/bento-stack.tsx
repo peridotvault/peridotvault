@@ -8,6 +8,7 @@ import {
   useTransform,
 } from "motion/react";
 import { Fingerprint, Gamepad2, Layers, Wallet } from "lucide-react";
+import { DotGrid } from "@/shared/components/atoms/DotGrid";
 import type { LucideIcon } from "lucide-react";
 const SIZE = 240;
 const C = SIZE / 2;
@@ -61,12 +62,9 @@ export default function BentoStack() {
   const gap = spread ? STEP + 22 : STEP;
   const baseY = C + 34;
   return (
-    <article className="group relative flex h-full min-h-[380px] w-full flex-col overflow-hidden rounded-none border border-neutral-200 bg-white dark:border-neutral-800 dark:bg-neutral-900">
-      <div className="@container relative min-h-[220px] flex-1 overflow-hidden">
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle,rgb(0_0_0/0.07)_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_at_center,black_25%,transparent_70%)] dark:bg-[radial-gradient(circle,rgb(255_255_255/0.08)_1px,transparent_1px)]"
-        />
+    <article className="dark group relative flex h-full min-h-[380px] w-full flex-col overflow-hidden rounded-none bg-background">
+      <div className="@container relative flex aspect-square w-full items-center justify-center overflow-hidden">
+        <DotGrid />
 
         <motion.div
           initial={{ opacity: 0, y: reduce ? 0 : 12 }}

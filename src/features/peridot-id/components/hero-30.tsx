@@ -1108,7 +1108,7 @@ export function Hero30() {
                 aria-label="Start building with Peridot ID for free (opens in a new tab)"
                 className="rounded-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
               >
-                <Button tabIndex={-1} sharp>Start free</Button>
+                <Button tabIndex={-1}>Start free</Button>
               </a>
               <a
                 href={PERIDOT_URLS.docs}
