@@ -151,17 +151,15 @@ export default function Pricing7() {
                 {t.cta}
               </a>
             ) : (
-              <a
+              <Button
                 href={t.href}
-                target="_blank"
-                rel="noopener noreferrer"
+                external
+                fullWidth
+                className="mt-auto"
                 aria-label="Start building with Peridot ID for free (opens in a new tab)"
-                className="mt-auto rounded-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
               >
-                <Button tabIndex={-1} fullWidth>
-                  {t.cta}
-                </Button>
-              </a>
+                {t.cta}
+              </Button>
             )}
           </motion.div>
         ))}

@@ -1,4 +1,3 @@
-import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/shared/components/molecules/Button";
 
@@ -43,9 +42,7 @@ function WhitepaperRoadmapCard({
         <h2 className="text-4xl font-medium tracking-tight text-foreground max-md:text-3xl">{title}</h2>
         <p className="text-paragraph max-md:text-base">{description}</p>
         <div className="py-4 max-md:py-2">
-          <Link href={href}>
-            <Button variant="secondary">{hookText}</Button>
-          </Link>
+          <Button href={href} variant="secondary">{hookText}</Button>
         </div>
       </div>
     </section>
@@ -55,7 +52,7 @@ function WhitepaperRoadmapCard({
 export function WhitepaperRoadmapSection() {
   return (
     <>
-      <section className="border-b border-line">
+      <section>
         <div className="mx-auto w-full max-w-(--container-max-width)">
           <div className="grid grid-cols-2 gap-px bg-line max-md:grid-cols-1">
           <WhitepaperRoadmapCard

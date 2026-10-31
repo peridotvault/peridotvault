@@ -7,7 +7,7 @@ export function PricingSection() {
       <section
         id="pricing"
         aria-label="Completely free to use"
-        className="w-full border-b border-line"
+        className="w-full"
       >
         <div className="mx-auto w-full max-w-(--container-max-width)">
           <SectionHeader

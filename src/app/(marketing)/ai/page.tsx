@@ -6,7 +6,6 @@ import dynamic from "next/dynamic";
 import GlassComponent from "../../../shared/components/atoms/GlassComponent";
 import { ContainerGlass } from "../../../shared/components/molecules/ContainerGlass";
 import { Button } from "@/shared/components/molecules/Button";
-import { Navbar } from "@/layouts/Navbar";
 import Image from "next/image";
 
 const GradientBlinds = dynamic(
@@ -20,7 +19,6 @@ export default function AiRoutePage() {
 
   return (
     <div className="flex flex-col items-center justify-center text-lg">
-      <Navbar />
       <AiHeroSection />
       <AiAboutSection />
       <AiCompanionSection />
@@ -34,14 +32,14 @@ function AiHeroSection() {
   return (
     <section className="w-full h-[80dvh] p-4">
       <div className="bg-surface w-full h-full rounded-2xl overflow-hidden relative">
-        <div className="absolute h-full z-10 flex flex-col gap-10 items-center justify-center w-full pointer-events-none p-8 text-center">
+        <div className="absolute h-full z-10 flex flex-col gap-10 items-center justify-center w-full pointer-events-none p-8 pt-[calc(var(--navbar-height)+2rem)] text-center">
           <h1 className="text-6xl font-bold max-md:text-3xl">
             Smarter Play, Powered by AI
           </h1>
           <div className="flex gap-6">
-            <Link href="/peri" className="pointer-events-auto">
-              <Button>Try PERI AI</Button>
-            </Link>
+            <Button href="/peri" className="pointer-events-auto">
+              Try PERI AI
+            </Button>
             <Link href="/ai/#gaming_with_ai" className="pointer-events-auto">
               <GlassComponent className="flex justify-center items-center py-3 px-6 rounded-lg duration-300 hover:bg-surface hover:text-white overflow-hidden text-label">
                 <p>Learn More</p>

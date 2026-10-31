@@ -10,7 +10,7 @@ const CarouselCard = dynamic(
 
 export function AboutSection() {
   return (
-    <section id="about" className="border-b border-line">
+    <section id="about">
       <div className="mx-auto w-full max-w-(--container-max-width)">
         <div className="grid gap-px bg-line md:grid-cols-3">
           <div className="flex flex-col justify-center gap-5 bg-background px-12 py-18 max-md:px-8 max-md:py-12">

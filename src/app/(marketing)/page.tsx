@@ -1,6 +1,5 @@
 import { ScrollToTop } from "@/shared/components/atoms/ScrollToTop";
 import { createMetadata } from "@/features/seo";
-import { Navbar } from "@/layouts/Navbar";
 import { HeroSection } from "./_sections/hero-section";
 import { AboutSection } from "./_sections/about-section";
 import { VideoSection } from "./_sections/video-section";
@@ -8,6 +7,7 @@ import { GameVaultSection } from "./_sections/game-vault-section";
 import { IdentitySection } from "./_sections/identity-section";
 import { WhitepaperRoadmapSection } from "./_sections/whitepaper-section";
 import { Gallery } from "./_sections/gallery-section";
+import { RailSection } from "@/shared/components/atoms/Rail";
 
 export const metadata = createMetadata({
   title: "Intelligent Decentralized Gaming",
@@ -20,14 +20,13 @@ export default function HomePage() {
   return (
     <div className="flex w-full flex-col">
       <ScrollToTop />
-      <HeroSection />
-      <Navbar />
-      <AboutSection />
-      <VideoSection />
-      <GameVaultSection />
-      <IdentitySection />
-      <WhitepaperRoadmapSection />
-      <Gallery />
+      <RailSection><HeroSection /></RailSection>
+      <RailSection><AboutSection /></RailSection>
+      <RailSection><VideoSection /></RailSection>
+      <RailSection><GameVaultSection /></RailSection>
+      <RailSection><IdentitySection /></RailSection>
+      <RailSection><WhitepaperRoadmapSection /></RailSection>
+      <RailSection><Gallery /></RailSection>
     </div>
   );
 }

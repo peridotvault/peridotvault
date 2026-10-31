@@ -1,5 +1,5 @@
 import { SectionHeader } from "@/shared/components/atoms/SectionHeader";
-import { ButtonLink } from "@/shared/components/molecules/Button";
+import { Button } from "@/shared/components/molecules/Button";
 import { RailCard } from "@/shared/components/molecules/RailCard";
 
 const IDENTITY_FEATURES = [
@@ -26,14 +26,14 @@ const IDENTITY_FEATURES = [
 export function IdentitySection() {
   return (
     <>
-      <section className="border-b border-line">
+      <section>
         <div className="mx-auto w-full max-w-(--container-max-width)">
           <SectionHeader
             title="One identity for every game."
             actions={
-              <ButtonLink href="/identity" variant="outline">
+              <Button href="/identity" variant="outline">
                 Meet PeridotID
-              </ButtonLink>
+              </Button>
             }
           />
 

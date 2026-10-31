@@ -46,7 +46,7 @@ const GALLERY_ITEMS = [
 
 export function Gallery() {
   return (
-    <section className="py-24 max-md:py-10 flex flex-col items-center gap-12 overflow-hidden border-b border-line">
+    <section className="py-24 max-md:py-10 flex flex-col items-center gap-12 overflow-hidden">
       <ContainerPadding className="flex flex-col gap-6 mb-12">
         <div className="px-3">
           <span className="text-accent uppercase text-base lg:text-xl md:text-lg">Community</span>

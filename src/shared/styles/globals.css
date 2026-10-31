@@ -13,6 +13,23 @@
 
 @custom-variant dark (&:is(.dark *));
 
+.section-rail {
+  position: relative;
+}
+
+.section-rail::after {
+  content: "";
+  position: absolute;
+  z-index: 30;
+  bottom: 0;
+  left: 50%;
+  width: 100vw;
+  height: 1px;
+  transform: translateX(-50%);
+  background: var(--line);
+  pointer-events: none;
+}
+
 .video-container {
   position: absolute;
   top: 0;
@@ -145,5 +162,6 @@
   }
   html {
     @apply font-sans;
+    scroll-padding-top: var(--navbar-height);
   }
 }

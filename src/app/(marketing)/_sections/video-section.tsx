@@ -1,6 +1,6 @@
 export function VideoSection() {
   return (
-    <section className="relative w-full overflow-hidden border-b border-line">
+    <section className="relative w-full overflow-hidden">
       <video
         autoPlay
         draggable={false}

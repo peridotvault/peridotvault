@@ -30,3 +30,37 @@ html {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
+
+/* Overlay-style scrollbar for code blocks: the 6px gutter is always
+   reserved (card height never changes), the thumb stays invisible until
+   hover — single-line text stays perfectly centered at all times. */
+.codeblock-scroll {
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: transparent transparent; /* Firefox */
+}
+
+.codeblock-scroll::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+
+.codeblock-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.codeblock-scroll::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 999px;
+}
+
+.codeblock-scroll:hover {
+  scrollbar-color: #434343 transparent; /* Firefox */
+}
+
+.codeblock-scroll:hover::-webkit-scrollbar-thumb {
+  background: #434343;
+}
+
+.codeblock-scroll:hover::-webkit-scrollbar-thumb:hover {
+  background: #505050;
+}

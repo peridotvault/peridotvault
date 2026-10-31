@@ -5,7 +5,7 @@ import Bento3 from "@/components/blocks/bento-3";
 export function StackSection() {
   return (
     <>
-      <section aria-label="Stack" className="w-full border-b border-line">
+      <section aria-label="Stack" className="w-full">
         <div className="mx-auto w-full max-w-(--container-max-width)">
           <div className="grid gap-px bg-line md:grid-cols-3">
             <BentoStack />

@@ -1,4 +1,3 @@
-import Link from "next/link";
 import Image from "next/image";
 import { SectionHeader } from "@/shared/components/atoms/SectionHeader";
 import { Button } from "@/shared/components/molecules/Button";
@@ -26,18 +25,18 @@ const GAME_VAULT_FEATURES = [
 export function GameVaultSection() {
   return (
     <>
-      <section className="border-b border-line">
+      <section>
         <div className="mx-auto w-full max-w-(--container-max-width)">
           <SectionHeader
             title="The Vault for games you truly own."
             actions={
-              <a
+              <Button
                 href="https://web.peridotvault.com/"
-                target="_blank"
-                rel="noopener noreferrer"
+                external
+                variant="secondary"
               >
-                <Button variant="secondary">Open the Vault</Button>
-              </a>
+                Open the Vault
+              </Button>
             }
           />
           <div className="grid gap-px border-t border-line bg-line md:grid-cols-3 md:grid-rows-3">
@@ -72,11 +71,9 @@ export function GameVaultSection() {
                   Smarter Play, Powered by AI
                 </h2>
                 <div className="flex">
-                  <Link href="/ai">
-                    <Button variant="secondary">
-                      Learn More Our AI Features
-                    </Button>
-                  </Link>
+                  <Button href="/ai" variant="secondary">
+                    Learn More Our AI Features
+                  </Button>
                 </div>
               </div>
               <div className="relative w-2/5 shrink-0 overflow-hidden max-md:hidden">

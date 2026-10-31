@@ -4,7 +4,9 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import StaggeredMenu from "../shared/components/atoms/StaggeredMenu";
 import { PERIDOT_URLS } from "@/features/peridot/peridot-urls";
+import { Button } from "@/shared/components/molecules/Button";
 import Image from "next/image";
+import { RailEdges } from "@/shared/components/atoms/Rail";
 
 type MenuItem = {
   label: string;
@@ -108,8 +110,10 @@ export const Navbar = () => {
   }, []);
 
   return (
-    <header className="sticky top-0 z-50 ml-[calc(50%-50vw)] w-screen border-y border-line bg-background/80 backdrop-blur-md">
-      <div className="mx-auto flex w-full max-w-(--container-max-width) items-center justify-between px-12 py-4 max-md:px-6">
+    <header className="fixed inset-x-0 top-0 z-50 w-full border-b border-line">
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-background/80 backdrop-blur-md" />
+      <RailEdges className="z-10" />
+      <div className="relative mx-auto flex w-full max-w-(--container-max-width) items-center justify-between px-12 py-4 max-md:px-6 max-md:py-0">
         <Link href="/" className="text-2xl hidden items-center gap-2 md:flex">
           <Image
             src="/logo/logo.png"
@@ -172,15 +176,13 @@ export const Navbar = () => {
           })}
         </nav>
 
-        <a
+        <Button
           href="https://web.peridotvault.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="max-md:hidden inline-flex h-12 items-center gap-2 bg-white px-6 text-base font-medium text-black transition-colors duration-300 hover:bg-accent"
+          external
+          className="max-md:hidden"
         >
           Try Web Version
-          <span aria-hidden="true">↳</span>
-        </a>
+        </Button>
 
         <div className="md:hidden flex-1">
           <StaggeredMenu

@@ -22,7 +22,7 @@ const FEATURE = [
 export function FeaturesSection() {
   return (
     <>
-      <section aria-label="Features" className="w-full border-b border-line">
+      <section aria-label="Features" className="w-full">
         <div className="mx-auto w-full max-w-(--container-max-width)">
           <SectionHeader
             title="One ID, everything included"

@@ -31,7 +31,7 @@ Motion:     crisp, subtle — tsparticles hero only, respect prefers-reduced-mot
 
 Single source of truth for section layout. Rules:
 
-1. Section carries only `border-b border-line` — never `border-t` (the top line comes from the previous section's `border-b`; two lines render as a 2px double).
+1. Wrap each page-level section in `RailSection`. Its decorative bottom rail spans the viewport, stays in front of section backgrounds, and connects to the vertical rails. Do not add another top or bottom border to the wrapped section.
 2. Blocks stacked inside a section are separated by `border-t border-line` on the lower block.
 3. Column rails use `grid gap-px bg-line` full-bleed inside `max-w-(--container-max-width)` — never an outer `border` box floating in section padding.
 4. Vertical rhythm comes from cell padding (`p-12` / `px-12 py-18`), not section `py-*`.
@@ -40,17 +40,21 @@ Single source of truth for section layout. Rules:
 Standard structure:
 
 ```
-<section className="border-b border-line">
-  <div className="mx-auto w-full max-w-(--container-max-width)">
-    <SectionHeader ... />
-    <div className="grid gap-px border-t border-line bg-line md:grid-cols-3">
-      <RailCard ... />
+<RailSection>
+  <section>
+    <div className="mx-auto w-full max-w-(--container-max-width)">
+      <SectionHeader ... />
+      <div className="grid gap-px border-t border-line bg-line md:grid-cols-3">
+        <RailCard ... />
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+</RailSection>
 ```
 
-Shared pieces: `SectionHeader` (atoms), `RailCard` (molecules), `Button` / `ButtonLink` (molecules). A first-child grid omits `border-t`; cards inside a `gap-px` grid must not carry their own outer `border`.
+`RailSection` and `RailEdges` live in `src/shared/components/atoms/Rail.tsx`; the horizontal rail style lives in `globals.css`. The marketing layout owns the vertical edges and fixed navbar, which uses the same `RailEdges` above its background. Both align to `--container-max-width`, use `--line`, and ignore pointer events. Heroes may extend behind the navbar; keep their content clear using `--navbar-height`. Keep the section wrapper outside any clipping container so the horizontal rail can reach the viewport edges. Use the existing semantic section inside the wrapper.
+
+Other shared pieces: `SectionHeader` (atoms), `RailCard` (molecules), `Button` / `ButtonLink` (molecules). A first-child grid omits `border-t`; cards inside a `gap-px` grid must not carry their own outer `border`.
 
 ## Foldering
 

@@ -3,7 +3,6 @@
 import { useEffect, useRef } from "react";
 import roadmapData from "../../../assets/roadmap.json";
 import dynamic from "next/dynamic";
-import { Navbar } from "@/layouts/Navbar";
 import SpotlightCard from "../../../shared/components/atoms/SpotlightCard";
 import {
   FaCheck,
@@ -48,7 +47,6 @@ export default function RoadmapRoutePage() {
 
   return (
     <div>
-      <Navbar />
       <RoadmapHeroSection />
       <RoadmapContentSections />
     </div>
@@ -80,7 +78,7 @@ function RoadmapHeroSection() {
           brightness={1}
         />
       </div>
-      <div className="absolute w-full h-full top-0 left-0 p-8 flex justify-center pointer-events-none">
+      <div className="absolute w-full h-full top-0 left-0 p-8 pt-[calc(var(--navbar-height)+2rem)] flex justify-center pointer-events-none">
         <div className="w-full max-w-(--container-max-width) h-full flex flex-col gap-4 max-md:gap-3 justify-center items-start text-start max-md:text-center">
           <h1 className="text-7xl font-bold max-md:text-4xl max-md:w-full">
             Roadmap
