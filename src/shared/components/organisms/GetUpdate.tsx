@@ -72,7 +72,7 @@ export const GetUpdate = () => {
   };
 
   return (
-    <section id="waitlist" className="border-b border-line">
+    <section id="waitlist">
       <div className="mx-auto w-full max-w-(--container-max-width)">
         <SectionHeader
           title="Get Exclusive PeridotVault Platform Updates"
@@ -103,13 +103,16 @@ export const GetUpdate = () => {
                 {/* EMAIL */}
                 <div
                   className={clsx(
-                    "flex items-center py-2 pl-3 w-full transition-all",
+                    "flex items-center py-2 pl-3 w-full transition-opacity focus-within:ring-2 focus-within:ring-accent",
                     !canTypeEmail && "opacity-50",
                   )}
                 >
                   <GoMail className="w-8 h-8 p-1 text-label" />
                   <input
                     type="email"
+                    name="email"
+                    autoComplete="email"
+                    aria-label="Email address"
                     className="py-1 px-3 w-full placeholder:text-white/80 outline-none bg-transparent disabled:cursor-not-allowed"
                     placeholder={
                       canTypeEmail ? "Email Address" : "Choose your role first..."
@@ -175,15 +178,16 @@ function RoleSelector({
           <input
             type="checkbox"
             value={item.value}
-            className="hidden"
+            className="peer sr-only"
+            checked={isActive(item.value)}
             onChange={() => toggleRole(item.value)}
           />
 
           <div
             className={clsx(
-              "h-full w-full rounded-none py-2 px-4 relative overflow-hidden transition-all duration-300 border text-lg",
+              "h-full w-full rounded-none py-2 px-4 relative overflow-hidden transition-colors duration-300 border text-lg peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-accent",
               isActive(item.value)
-                ? "border-background/20 text-background bg-white shadow-[0_0_25px_rgba(76,255,143,0.25)]"
+                ? "border-background/20 text-background bg-foreground"
                 : "border-border bg-background",
             )}
           >

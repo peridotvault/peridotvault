@@ -1,80 +1,49 @@
 # DESIGN — PeridotVault Web
 
-> Source of truth for tokens: `brand.md`. This file holds page-level direction only.
+`brand.md` documents identity, colors and typography; the CSS token files are the source of truth for implemented values. This document describes the shared marketing layout and its design rules.
 
 ## Direction
 
-```
-Direction: dark marketing site + docs, workstation-dense where data shows
-Density:   comfortable (marketing), compact (data/stats blocks)
-Surface:   cards on dark bg (#0a0c0b on #1a1a1a), flat-sm neumorphic shadow
-Type mood:  tight, technical, Inter-only
-Motion:     crisp, subtle — tsparticles hero only, respect prefers-reduced-motion
-```
+Dark, technical and gaming-focused. Use generous marketing layouts, sharp edges, thin connected rails and restrained peridot accents. Space Grotesk is the primary font. Motion supports the content and must respect reduced-motion preferences.
 
-## Do / Don't
+## Rails and page layout
 
-**Do:**
-- One `h1` per page, `p` for paragraphs, `span` otherwise
-- `<button>` / `<a>` for interactive elements, visible focus ring
-- Skeleton > spinner for loading; empty + error states with recovery action
-- `text-paragraph` for body copy, `text-label` for meta only
-- Images get `alt`, icons get `aria-label` or `aria-hidden`
+- `--container-max-width` is `1512px`; `RailEdges` draws the vertical rails at that width. The marketing layout owns the main rails and fixed navbar; the navbar uses the same edges.
+- Wrap each page-level section in `RailSection`. Its decorative bottom rail spans the viewport and connects to the vertical rails. Do not add another outer top or bottom border to the wrapped section.
+- `RailSection` and `RailEdges` live in `src/shared/components/atoms/Rail.tsx`; the horizontal rail style lives in `src/shared/styles/globals.css`. Keep the wrapper outside clipping containers. Rails are decorative and do not intercept input.
+- Separate blocks inside a section with `border-t border-line` on the lower block. Use `grid gap-px bg-line` for column dividers. Cells have opaque backgrounds; a first-child grid omits its top border.
+- `SectionHeader`, `RailCard`, `DotGrid` and `Button` are shared building blocks. Use cell padding to establish rhythm and avoid adding a floating border around an entire grid.
+- The fixed navbar is rendered once by the marketing layout. Full-bleed hero backgrounds may extend behind it; keep content clear using `--navbar-height`, also used for anchor scrolling.
 
-**Don't:**
-- No pure `#000` backgrounds, no `transition-all`, no arbitrary `p-[13px]` / hardcoded hex
-- No body copy in `text-label` (contrast fail)
-- No second font without updating `brand.md` + `layout.tsx`
-- No new gradient without updating `brand.md`
-
-## Rail system (borders)
-
-Single source of truth for section layout. Rules:
-
-1. Wrap each page-level section in `RailSection`. Its decorative bottom rail spans the viewport, stays in front of section backgrounds, and connects to the vertical rails. Do not add another top or bottom border to the wrapped section.
-2. Blocks stacked inside a section are separated by `border-t border-line` on the lower block.
-3. Column rails use `grid gap-px bg-line` full-bleed inside `max-w-(--container-max-width)` — never an outer `border` box floating in section padding.
-4. Vertical rhythm comes from cell padding (`p-12` / `px-12 py-18`), not section `py-*`.
-5. Card media sits on `<DotGrid/>` dots (visible behind icons, covered by full-bleed images).
-
-Standard structure:
-
-```
+```tsx
 <RailSection>
   <section>
     <div className="mx-auto w-full max-w-(--container-max-width)">
-      <SectionHeader ... />
+      <SectionHeader title="Section title" />
       <div className="grid gap-px border-t border-line bg-line md:grid-cols-3">
-        <RailCard ... />
+        <RailCard title="Title" description="Description" />
       </div>
     </div>
   </section>
 </RailSection>
 ```
 
-`RailSection` and `RailEdges` live in `src/shared/components/atoms/Rail.tsx`; the horizontal rail style lives in `globals.css`. The marketing layout owns the vertical edges and fixed navbar, which uses the same `RailEdges` above its background. Both align to `--container-max-width`, use `--line`, and ignore pointer events. Heroes may extend behind the navbar; keep their content clear using `--navbar-height`. Keep the section wrapper outside any clipping container so the horizontal rail can reach the viewport edges. Use the existing semantic section inside the wrapper.
+## Hero and motion
 
-Other shared pieces: `SectionHeader` (atoms), `RailCard` (molecules), `Button` / `ButtonLink` (molecules). A first-child grid omits `border-t`; cards inside a `gap-px` grid must not carry their own outer `border`.
+`HeroBackground` is shared by the home and Identity heroes. Grainient uses a green palette, a dark upper area, a brighter lower area and grain. Preserve the contrast overlay and readable content over the animation. Its WebGL fallback is static; reduced motion is supported. Do not assume all other legacy animations and videos already have reduced-motion alternatives; check them when modifying those areas.
 
-## Foldering
+## Components and accessibility
 
-- Page sections live co-located in `_sections/` next to their `page.tsx` (`(marketing)/_sections/`,
-  `identity/_sections/`) — one file per section, `page.tsx` only composes. Adding, removing, or
-  reordering a section = one line in the composer, no scrolling through 600-line files.
-- Shared UI: `shared/components/{atoms,molecules,organisms}/`. Feature-specific interactive
-  pieces: `features/<feature>/components/`. Third-party blocks: `components/blocks/`
-  (harmonized to this system on install, never used raw).
-- `_`-prefixed folders are route-exempt by Next.js convention — safe for co-location.
+- Prefer semantic links, buttons and form controls; give controls accessible names and visible keyboard focus.
+- Use `text-paragraph` for body copy and check contrast on the actual surface. Decorative rail colors are not accessible control borders by themselves.
+- Use responsive layouts, meaningful image alternatives and decorative `aria-hidden` attributes. Avoid hover-only functionality.
+- The primary rail system uses square corners and flat surfaces. AI and roadmap retain older rounded styles and are not yet fully migrated.
+- Size and spacing tokens use `rem` against the project's `0.85rem` root font size. Check rendered sizing instead of assuming Tailwind's default pixel measurements.
 
-## Stack
+## Project structure
 
-Next.js App Router + TypeScript, Tailwind v4 (`@import "tailwindcss"`), `next/font` (Inter), `lucide-react` icons, `framer-motion`/`motion` for orchestrated motion only, CSS transitions otherwise.
+Page-specific sections live in their route's `_sections/` folder. Shared UI lives under `src/shared/components/{atoms,molecules,organisms}/`; feature-specific components live under `src/features/`. Keep theme values in `src/shared/styles/token/` and shadcn-specific values in `globals.css`.
 
-Skills: `frontend-design-guidelines` (mechanical correctness), `design-taste` (direction review), `brand-design` (re-theme).
+## Checks
 
-## Checks before done
-
-- Keyboard nav (Tab/Enter/Escape), focus ring, hit target ≥40px
-- Contrast AA (4.5:1 body, 3:1 large/icon)
-- Mobile 375 / tablet 768 / desktop 1280
-- Dark-only render correct (light mode not supported)
+Verify keyboard navigation and visible focus, labels, contrast, reduced motion and dark-mode rendering. Check at mobile (375px), tablet (768px) and desktop (1280px), as well as wider screens where full-width rails extend beyond the content container. Validate with ESLint and TypeScript; use browser testing when available.

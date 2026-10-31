@@ -113,31 +113,16 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-/* Brand tokens (dark-only product) — source of truth: brand.md + token/*.css.
-   These intentionally override shadcn's default neutral theme. */
+/* Additional shadcn tokens; shared brand colors live in token/colors.css. */
 :root {
-  --background: #0d0f0e;
-  --foreground: #e0e4e4;
-  --surface: #060807;
-  --card: #060807;
-  --card-foreground: #ffffff;
   --popover: #060807;
   --popover-foreground: #e0e4e4;
-  --primary: #349b65;
   --primary-foreground: #0a0c0b;
-  --secondary: #349b6650;
   --secondary-foreground: #e0e4e4;
-  --muted: #363636;
-  --muted-foreground: #7d7d7d;
-  --accent: #87ee83;
   --accent-foreground: #0a0c0b;
   --destructive: oklch(0.704 0.191 22.216);
-  --border: #ffffff28;
   --input: #ffffff28;
   --ring: #87ee83;
-  --line: #ffffff14;
-  --paragraph: #b5b5b5;
-  --label: #ffffff60;
   --radius: 0rem; /* sharp identity — no rounded corners */
   --sidebar: #060807;
   --sidebar-foreground: #e0e4e4;
@@ -162,6 +147,7 @@
   }
   html {
     @apply font-sans;
+    color-scheme: dark;
     scroll-padding-top: var(--navbar-height);
   }
 }

@@ -56,7 +56,7 @@ export const CarouselCard = () => {
         >
           {extendedItems.map((item, idx) => (
             <div key={idx} className="w-60 max-md:w-50 shrink-0">
-              <div className="bg-background_secondary rounded-2xl max-md:rounded-xl shadow-lg overflow-hidden h-full aspect-3/4 flex flex-col justify-between relative">
+              <div className="bg-surface overflow-hidden h-full aspect-3/4 flex flex-col justify-between relative">
                 <Image
                   src={item.img_url}
                   draggable={false}

@@ -27,7 +27,7 @@ export const RailCard = ({
   const showArrow = arrow ?? isLink;
 
   const body = showArrow ? (
-    <div className="flex flex-1 items-stretch justify-between border-t border-line group-hover:border-[#0a0c0b40]">
+    <div className="flex flex-1 items-stretch justify-between border-t border-line group-hover:border-background/25">
       <div className="flex flex-col justify-center gap-2 p-8 max-md:p-6">
         <h3 className="text-3xl font-medium tracking-tight text-foreground transition-colors duration-300 group-hover:text-background max-md:text-2xl">
           {title}
@@ -38,7 +38,7 @@ export const RailCard = ({
       </div>
       <span
         aria-hidden="true"
-        className="flex aspect-square h-auto w-auto shrink-0 items-center justify-center self-stretch border-l border-line text-foreground transition-colors duration-300 group-hover:border-[#0a0c0b40] group-hover:text-background max-md:aspect-auto max-md:h-20 max-md:w-20"
+        className="flex aspect-square h-auto w-auto shrink-0 items-center justify-center self-stretch border-l border-line text-foreground transition-colors duration-300 group-hover:border-background/25 group-hover:text-background max-md:aspect-auto max-md:h-20 max-md:w-20"
       >
         <LuArrowUpRight className="h-8 w-8 transition-transform duration-300 group-hover:rotate-45" />
       </span>
@@ -75,7 +75,7 @@ export const RailCard = ({
   }
 
   const linkClass = clsx(
-    "group flex flex-col bg-background transition-[background-color,box-shadow] duration-300 hover:bg-foreground hover:ring-1 hover:ring-inset hover:ring-[#0a0c0b40]",
+    "group flex flex-col bg-background transition-[background-color,box-shadow] duration-300 hover:bg-foreground hover:ring-1 hover:ring-inset hover:ring-background/25 focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-accent",
     className,
   );
 

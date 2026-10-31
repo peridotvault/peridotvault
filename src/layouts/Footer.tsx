@@ -8,6 +8,7 @@ import {
   FaXTwitter,
 } from "react-icons/fa6";
 import { GetUpdate } from "@/shared/components/organisms/GetUpdate";
+import { RailSection } from "@/shared/components/atoms/Rail";
 
 const socialItems = [
   { label: "X", link: "https://x.com/peridotvault", Icon: FaXTwitter },
@@ -32,7 +33,7 @@ const socialItems = [
 export const Footer = () => {
   return (
     <>
-      <GetUpdate />
+      <RailSection><GetUpdate /></RailSection>
       <footer className="w-full bg-background text-foreground">
         <div className="mx-auto w-full max-w-(--container-max-width)">
           <div className="flex items-center justify-between gap-6 px-12 py-10 max-md:flex-col max-md:items-start max-md:px-6">
